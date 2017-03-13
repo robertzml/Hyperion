@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Poseidon.Base">
       <HintPath>..\Assembly\Poseidon.Base.dll</HintPath>
     </Reference>
@@ -52,12 +56,15 @@
   <ItemGroup>
     <Compile Include="Abstract\AbstractDALMySql.cs" />
     <Compile Include="BL\UserInfoBusiness.cs" />
-    <Compile Include="DAL\MySql\UserInfoRepository.cs" />
+    <Compile Include="DAL\MySQL\UserInfoRepository.cs" />
     <Compile Include="DL\UserInfo.cs" />
     <Compile Include="IDAL\IUserInfoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

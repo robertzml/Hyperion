@@ -15,5 +15,14 @@ namespace Hyperion.Core.Abstract
     /// <typeparam name="T">实体类型</typeparam>
     public abstract class AbstractDALMySql<T> : AbstractDALMySql<T, int> where T : IBaseEntity<int>
     {
+        #region Constructor
+        /// <summary>
+        /// MySQL抽象数据访问类
+        /// </summary>
+        /// <param name="tableName">数据表名</param>
+        /// <param name="primaryKey">主键名称</param>
+        public AbstractDALMySql(string tableName, string primaryKey) : base(tableName, primaryKey)
+        { }
+        #endregion //Constructor
     }
 }

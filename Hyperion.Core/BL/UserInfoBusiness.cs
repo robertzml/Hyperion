@@ -10,7 +10,7 @@ namespace Hyperion.Core.BL
     using Hyperion.Core.DL;
     using Hyperion.Core.IDAL;
 
-    public class UserInfoBusiness : AbsctractBusiness<UserInfo>
+    public class UserInfoBusiness : AbstractBusiness<UserInfo, int>
     {
     }
 }
