@@ -13,7 +13,7 @@ namespace Hyperion.Core.Abstract
     /// MySQL抽象数据访问类,默认主键类型int
     /// </summary>
     /// <typeparam name="T">实体类型</typeparam>
-    public abstract class AbstractDALMySql<T> : AbstractDALMySql<T, int> where T : IBaseEntity<int>
+    internal abstract class AbstractDALMySql<T> : AbstractDALMySql<T, int> where T : IBaseEntity<int>
     {
         #region Constructor
         /// <summary>
