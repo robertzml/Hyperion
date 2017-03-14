@@ -13,9 +13,12 @@ namespace Hyperion.Core.BL
     /// <summary>
     /// 用户业务类
     /// </summary>
-    public class UserInfoBusiness : AbstractBusiness<UserInfo, int>
+    public class UserInfoBusiness : AbstractBusiness<UserInfo, int>, IBaseBL<UserInfo, int>
     {
         #region Constructor
+        /// <summary>
+        /// 用户业务类
+        /// </summary>
         public UserInfoBusiness()
         {
             this.baseDal = RepositoryFactory<IUserInfoRepository>.Instance;
@@ -23,6 +26,16 @@ namespace Hyperion.Core.BL
         #endregion //Constructor
 
         #region Method
+        /// <summary>
+        /// 按用户名查找
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <returns></returns>
+        public UserInfo FindByUserName(string username)
+        {
+            return this.baseDal.FindOneByField("username", username);
+        }
+
         /// <summary>
         /// 修改密码
         /// </summary>

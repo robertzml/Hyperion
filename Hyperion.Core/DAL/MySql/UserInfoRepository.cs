@@ -23,7 +23,7 @@ namespace Hyperion.Core.DAL.MySQL
         #region Constructor
         public UserInfoRepository() : base("user_info", "id")
         {
-            base.Init(ConnectionSource.Cache, "ConnectionString");
+            base.Init(ConnectionSource.Cache, Utility.HyperionConstant.ConnectionStringCacheKey);
         }
         #endregion //Constructor
 
