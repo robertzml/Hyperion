@@ -56,8 +56,10 @@
   <ItemGroup>
     <Compile Include="Abstract\AbstractDALMySql.cs" />
     <Compile Include="BL\AccountBusiness.cs" />
+    <Compile Include="BL\AccountInfoBusiness.cs" />
     <Compile Include="BL\UserInfoBusiness.cs" />
     <Compile Include="BL\VendorInfoBusiness.cs" />
+    <Compile Include="DAL\MySQL\AccountInfoRepository.cs" />
     <Compile Include="DAL\MySQL\AccountRepository.cs" />
     <Compile Include="DAL\MySQL\UserInfoRepository.cs" />
     <Compile Include="DAL\MySQL\VendorInfoRepository.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="DL\AccountInfo.cs" />
     <Compile Include="DL\UserInfo.cs" />
     <Compile Include="DL\VendorInfo.cs" />
+    <Compile Include="IDAL\IAccountInfoRepository.cs" />
     <Compile Include="IDAL\IAccountRepository.cs" />
     <Compile Include="IDAL\IUserInfoRepository.cs" />
     <Compile Include="IDAL\IVendorInfoRepository.cs" />

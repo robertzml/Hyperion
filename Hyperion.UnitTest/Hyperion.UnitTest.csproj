@@ -59,6 +59,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GlobalAction.cs" />
+    <Compile Include="AccountTest.cs" />
+    <Compile Include="AccountInfoTest.cs" />
     <Compile Include="VendorTest.cs" />
     <Compile Include="UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

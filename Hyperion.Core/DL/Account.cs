@@ -45,10 +45,10 @@ namespace Hyperion.Core.DL
         public string IMSI { get; set; }
 
         /// <summary>
-        /// IMSE
+        /// IMEI
         /// </summary>
-        [Display(Name = "IMSE")]
-        public string IMSE { get; set; }
+        [Display(Name = "IMEI")]
+        public string IMEI { get; set; }
 
         /// <summary>
         /// MSISDN

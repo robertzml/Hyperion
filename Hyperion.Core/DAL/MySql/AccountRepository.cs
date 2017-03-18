@@ -46,14 +46,14 @@ namespace Hyperion.Core.DAL.MySQL
             entity.Password = row["password"].ToString();
             entity.LoginState = Convert.ToInt16(row["login_state"]);
             entity.IMSI = row["imsi"].ToString();
-            entity.IMSE = row["imse"].ToString();
+            entity.IMEI = row["imei"].ToString();
             entity.MSISDN = row["msisdn"].ToString();
-            if (row["ostype"] == null)
+            if (row.IsNull("ostype"))
                 entity.OSType = null;
             else
                 entity.OSType = Convert.ToInt16(row["ostype"]);
 
-            if (row["updatedate"] == null)
+            if (row.IsNull("updatedate"))
                 entity.UpdateDate = null;
             else
                 entity.UpdateDate = Convert.ToDateTime(row["updatedate"]);
@@ -76,7 +76,7 @@ namespace Hyperion.Core.DAL.MySQL
             table.Add("password", entity.Password);
             table.Add("login_state", entity.LoginState);
             table.Add("imsi", entity.IMSI);
-            table.Add("imse", entity.IMSE);
+            table.Add("imei", entity.IMEI);
             table.Add("msisdn", entity.MSISDN);
             table.Add("ostype", entity.OSType);
             table.Add("updatedate", entity.UpdateDate);

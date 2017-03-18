@@ -41,7 +41,7 @@ namespace Hyperion.UnitTest
         public void TestChangePassword()
         {
             int id = 19;
-            string old = Hasher.MD5Encrypt("123456").ToUpper();
+            string old = Hasher.MD5Encrypt("123").ToUpper();
             string newpass = Hasher.MD5Encrypt("123").ToUpper();
 
             bool result = BusinessFactory<UserInfoBusiness>.Instance.ChangePassword(id, old, newpass);
