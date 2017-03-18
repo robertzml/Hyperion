@@ -18,18 +18,6 @@ namespace Hyperion.UnitTest
         }
 
         [TestMethod]
-        public void TestCreate()
-        {
-            VendorInfo info = new VendorInfo();
-            info.Name = "AUPU";
-            info.Description = "Aupu company";
-
-            BusinessFactory<VendorInfoBusiness>.Instance.Create(info);
-
-            Assert.IsTrue(true);
-        }
-
-        [TestMethod]
         public void TestFindByName()
         {
             var info = BusinessFactory<VendorInfoBusiness>.Instance.FindByName("AUPU");

@@ -24,5 +24,17 @@ namespace Hyperion.Core.BL
             this.baseDal = RepositoryFactory<IEquipmentManagerRepository>.Instance;
         }
         #endregion //Constructor
+
+        #region Method
+        /// <summary>
+        /// 根据序列号查找设备
+        /// </summary>
+        /// <param name="serialNumber">序列号</param>
+        /// <returns></returns>
+        public EquipmentManager FindBySerialNumber(string serialNumber)
+        {
+            return this.baseDal.FindOneByField("serialnumber", serialNumber);
+        }
+        #endregion //Method
     }
 }

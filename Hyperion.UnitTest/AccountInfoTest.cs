@@ -25,5 +25,16 @@ namespace Hyperion.UnitTest
             Assert.AreEqual("AA", info.UserName);
             Assert.IsTrue(string.IsNullOrEmpty(info.Email));
         }
+
+        [TestMethod]
+        public void TestFindByName()
+        {
+            string name = "loveyou";
+
+            var info = BusinessFactory<AccountInfoBusiness>.Instance.FindByUserName(name);
+            Assert.AreEqual(name, info.UserName);
+
+            Assert.IsNull(info.Height);
+        }
     }
 }

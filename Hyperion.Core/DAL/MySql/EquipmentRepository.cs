@@ -69,5 +69,35 @@ namespace Hyperion.Core.DAL.MySQL
             return table;
         }
         #endregion //Function
+
+        #region Method
+        /// <summary>
+        /// 禁用按ID查找
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns></returns>
+        public override Equipment FindById(int id)
+        {
+            throw new PoseidonException(ErrorCode.NotImplement);
+        }
+
+        /// <summary>
+        /// 根据用户ID和序列号查找设备
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <param name="serialNumber">序列号</param>
+        /// <returns></returns>
+        public Equipment FindOne(int userId, string serialNumber)
+        {
+            string sql = string.Format("userid = {0}userid AND serialNumber = {0}serialNumber", this.parameterPrefix);
+
+            List<MySqlParameter> paras = new List<MySqlParameter>();
+            paras.Add(new MySqlParameter("userid", userId));
+            paras.Add(new MySqlParameter("serialNumber", serialNumber));
+
+            var entity = base.FindOne(sql, paras);
+            return entity;
+        }
+        #endregion //Method
     }
 }

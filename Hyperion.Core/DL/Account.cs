@@ -72,7 +72,7 @@ namespace Hyperion.Core.DL
         /// 创建时间
         /// </summary>
         [Display(Name = "创建时间")]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         #endregion //Property
     }
 }

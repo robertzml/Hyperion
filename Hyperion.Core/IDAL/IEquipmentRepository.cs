@@ -13,5 +13,12 @@ namespace Hyperion.Core.IDAL
     /// </summary>
     internal interface IEquipmentRepository : IBaseDAL<Equipment, int>
     {
+        /// <summary>
+        /// 根据用户ID和序列号查找设备
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <param name="serialNumber">序列号</param>
+        /// <returns></returns>
+        Equipment FindOne(int userId, string serialNumber);
     }
 }

@@ -24,5 +24,19 @@ namespace Hyperion.Core.BL
             this.baseDal = RepositoryFactory<IHomeRepository>.Instance;
         }
         #endregion //Constructor
+
+        #region Method
+        /// <summary>
+        /// 按用户ID、房屋ID查找对象
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <param name="homeId">房屋ID</param>
+        /// <returns></returns>
+        public Home FindOne(int userId, int homeId)
+        {
+            var dal = this.baseDal as IHomeRepository;
+            return dal.FindOne(userId, homeId);
+        }
+        #endregion //Method
     }
 }

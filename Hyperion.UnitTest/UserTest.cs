@@ -27,14 +27,14 @@ namespace Hyperion.UnitTest
             Assert.IsTrue(string.IsNullOrEmpty(user.ParentUserName));
         }
 
-        /// <summary>
-        /// 测试null字段
-        /// </summary>
         [TestMethod]
-        public void TestFindNullField()
+        public void TestFindByName()
         {
-            var user = BusinessFactory<UserInfoBusiness>.Instance.FindById(19);
-            Assert.IsNull(user.Email);
+            string username = "admin";
+
+            var user = BusinessFactory<UserInfoBusiness>.Instance.FindByUserName(username);
+
+            Assert.IsNotNull(user);
         }
 
         [TestMethod]

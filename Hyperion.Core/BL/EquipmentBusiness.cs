@@ -24,5 +24,40 @@ namespace Hyperion.Core.BL
             this.baseDal = RepositoryFactory<IEquipmentRepository>.Instance;
         }
         #endregion //Constructor
+
+        #region Method
+        /// <summary>
+        /// 根据用户ID和序列号查找设备
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <param name="serialNumber">序列号</param>
+        /// <returns></returns>
+        public Equipment FindOne(int userId, string serialNumber)
+        {
+            var dal = this.baseDal as IEquipmentRepository;
+
+            return dal.FindOne(userId, serialNumber);
+        }
+
+        /// <summary>
+        /// 根据序列号查找设备
+        /// </summary>
+        /// <param name="serialNumber">序列号</param>
+        /// <returns></returns>
+        public IEnumerable<Equipment> FindBySerialNumber(string serialNumber)
+        {
+            return this.baseDal.FindListByField("serialnumber", serialNumber);
+        }
+
+        /// <summary>
+        /// 根据用户ID查找设备
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <returns></returns>
+        public IEnumerable<Equipment> FindByUserId(int userId)
+        {
+            return this.baseDal.FindListByField("userid", userId);
+        }
+        #endregion //Method
     }
 }

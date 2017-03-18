@@ -24,5 +24,17 @@ namespace Hyperion.Core.BL
             this.baseDal = RepositoryFactory<IAccountRepository>.Instance;
         }
         #endregion //Constructor
+
+        #region Method
+        /// <summary>
+        /// 按用户名查找用户
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <returns></returns>
+        public Account FindByName(string userName)
+        {
+            return this.baseDal.FindOneByField("username", userName);
+        }
+        #endregion //Method
     }
 }

@@ -74,13 +74,31 @@ namespace Hyperion.Core.DAL.MySQL
 
         #region Method
         /// <summary>
-        /// 按ID查找对象
+        /// 禁用按ID查找对象
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public override Home FindById(int id)
         {
             throw new PoseidonException(ErrorCode.NotImplement);
+        }
+
+        /// <summary>
+        /// 按用户ID、房屋ID查找对象
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <param name="homeId">房屋ID</param>
+        /// <returns></returns>
+        public Home FindOne(int userId, int homeId)
+        {
+            string sql = string.Format("userid = {0}userid AND homeid = {0}homeid", this.parameterPrefix);
+
+            List<MySqlParameter> paras = new List<MySqlParameter>();
+            paras.Add(new MySqlParameter("userid", userId));
+            paras.Add(new MySqlParameter("homeid", homeId));
+
+            var entity = base.FindOne(sql, paras);
+            return entity;
         }
         #endregion //Method
     }
