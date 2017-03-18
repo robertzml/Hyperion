@@ -15,7 +15,7 @@ namespace Hyperion.Core.DL
     {
         #region Property
         /// <summary>
-        /// ID
+        /// ID，留空，非主键
         /// </summary>
         [Display(Name = "ID")]
         public virtual int Id { get; set; }

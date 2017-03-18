@@ -16,19 +16,19 @@ namespace Hyperion.Core.DAL.MySQL
     using Hyperion.Core.IDAL;
 
     /// <summary>
-    /// 房屋数据访问类
+    /// 设备数据访问类
     /// </summary>
-    internal class HomeRepository : AbstractDALMySql<Home, int>, IHomeRepository
+    internal class EquipmentRepository : AbstractDALMySql<Equipment, int>, IEquipmentRepository
     {
         #region Constructor
-        public HomeRepository() : base("home", "id")
+        public EquipmentRepository() : base("equipment", "id")
         {
             base.Init(ConnectionSource.Cache, Utility.HyperionConstant.ConnectionStringCacheKey);
         }
         #endregion //Constructor
 
         #region Function
-        protected override Home DataReaderToEntity(MySqlDataReader reader)
+        protected override Equipment DataReaderToEntity(MySqlDataReader reader)
         {
             throw new NotImplementedException();
         }
@@ -38,16 +38,15 @@ namespace Hyperion.Core.DAL.MySQL
         /// </summary>
         /// <param name="row">DataRow</param>
         /// <returns></returns>
-        protected override Home DataRowToEntity(DataRow row)
+        protected override Equipment DataRowToEntity(DataRow row)
         {
-            Home entity = new Home();
+            Equipment entity = new Equipment();
             entity.UserId = Convert.ToInt32(row["userid"]);
             entity.HomeId = Convert.ToInt32(row["homeid"]);
+            entity.RoomId = Convert.ToInt32(row["roomid"]);
+            entity.Id = Convert.ToInt32(row["id"]);
+            entity.SerialNumber = row["serialnumber"].ToString();
             entity.Name = row["name"].ToString();
-            entity.Info = row["info"].ToString();
-            entity.Position = row["position"].ToString();
-            entity.Latitude = row["latitude"].ToString();
-            entity.Longitude = row["longitude"].ToString();
 
             return entity;
         }
@@ -57,31 +56,18 @@ namespace Hyperion.Core.DAL.MySQL
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        protected override Hashtable EntityToHash(Home entity)
+        protected override Hashtable EntityToHash(Equipment entity)
         {
             Hashtable table = new Hashtable();
             table.Add("userid", entity.UserId);
             table.Add("homeid", entity.HomeId);
+            table.Add("roomid", entity.RoomId);
+            table.Add("id", entity.Id);
+            table.Add("serialnumber", entity.SerialNumber);
             table.Add("name", entity.Name);
-            table.Add("info", entity.Info);
-            table.Add("position", entity.Position);
-            table.Add("latitude", entity.Latitude);
-            table.Add("longitude", entity.Longitude);
 
             return table;
         }
         #endregion //Function
-
-        #region Method
-        /// <summary>
-        /// 按ID查找对象
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public override Home FindById(int id)
-        {
-            throw new PoseidonException(ErrorCode.NotImplement);
-        }
-        #endregion //Method
     }
 }
