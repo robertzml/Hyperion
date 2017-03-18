@@ -18,7 +18,7 @@ namespace Hyperion.Core.DAL.MySQL
     /// <summary>
     /// 房屋数据访问类
     /// </summary>
-    internal class HomeRepository : AbstractDALMySql<Home, int>, IHomeRepository
+    internal class HomeRepository : AbstractDALMySql<Home>, IHomeRepository
     {
         #region Constructor
         public HomeRepository() : base("home", "id")

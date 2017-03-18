@@ -18,7 +18,7 @@ namespace Hyperion.Core.DAL.MySQL
     /// <summary>
     /// 设备管理数据访问类
     /// </summary>
-    internal class EquipmentManagerRepository : AbstractDALMySql<EquipmentManager, int>, IEquipmentManagerRepository
+    internal class EquipmentManagerRepository : AbstractDALMySql<EquipmentManager>, IEquipmentManagerRepository
     {
         #region Constructor
         public EquipmentManagerRepository() : base("equipment_manager", "id")
