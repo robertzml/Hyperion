@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +14,6 @@ namespace Hyperion.Core.DAL.MySQL
     using Hyperion.Core.Abstract;
     using Hyperion.Core.DL;
     using Hyperion.Core.IDAL;
-    using System.Data;
-    using System.Collections;
 
     /// <summary>
     /// 厂家数据访问类

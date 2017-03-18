@@ -27,12 +27,22 @@ namespace Hyperion.UnitTest
             Assert.IsTrue(string.IsNullOrEmpty(user.ParentUserName));
         }
 
+        /// <summary>
+        /// 测试null字段
+        /// </summary>
+        [TestMethod]
+        public void TestFindNullField()
+        {
+            var user = BusinessFactory<UserInfoBusiness>.Instance.FindById(19);
+            Assert.IsNull(user.Email);
+        }
+
         [TestMethod]
         public void TestChangePassword()
         {
             int id = 19;
-            string old = "123";
-            string newpass = Hasher.MD5Encrypt("123456").ToUpper();
+            string old = Hasher.MD5Encrypt("123456").ToUpper();
+            string newpass = Hasher.MD5Encrypt("123").ToUpper();
 
             bool result = BusinessFactory<UserInfoBusiness>.Instance.ChangePassword(id, old, newpass);
 
@@ -63,12 +73,14 @@ namespace Hyperion.UnitTest
             int id = 20;
 
             var user = BusinessFactory<UserInfoBusiness>.Instance.FindById(id);
+            if (user != null)
+            {
+                bool result = BusinessFactory<UserInfoBusiness>.Instance.Delete(user);
+                Assert.IsTrue(result);
 
-            bool result = BusinessFactory<UserInfoBusiness>.Instance.Delete(user);
-            Assert.IsTrue(result);
-
-            var user2 = BusinessFactory<UserInfoBusiness>.Instance.FindById(id);
-            Assert.IsNull(user2);
+                var user2 = BusinessFactory<UserInfoBusiness>.Instance.FindById(id);
+                Assert.IsNull(user2);
+            }
         }
     }
 }

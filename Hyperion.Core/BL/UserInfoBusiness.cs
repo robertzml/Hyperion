@@ -11,13 +11,13 @@ namespace Hyperion.Core.BL
     using Hyperion.Core.IDAL;
 
     /// <summary>
-    /// 用户业务类
+    /// 管理用户业务类
     /// </summary>
     public class UserInfoBusiness : AbstractBusiness<UserInfo, int>, IBaseBL<UserInfo, int>
     {
         #region Constructor
         /// <summary>
-        /// 用户业务类
+        /// 管理用户业务类
         /// </summary>
         public UserInfoBusiness()
         {
