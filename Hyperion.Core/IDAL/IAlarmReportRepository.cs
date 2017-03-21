@@ -14,5 +14,12 @@ namespace Hyperion.Core.IDAL
     /// </summary>
     internal interface IAlarmReportRepository : IBaseDAL<AlarmReport, int>
     {
+        /// <summary>
+        /// 分页方式查找对象
+        /// </summary>
+        /// <param name="startPos">起始位置</param>
+        /// <param name="count">数量</param>
+        /// <returns></returns>
+        IEnumerable<AlarmReport> FindWithPage(int startPos, int count);
     }
 }

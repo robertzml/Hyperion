@@ -67,5 +67,54 @@ namespace Hyperion.Core.DAL.MySQL
             return table;
         }
         #endregion //Function
+
+        #region Method
+        /// <summary>
+        /// 禁用按ID查找对象
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public override Room FindById(int id)
+        {
+            throw new PoseidonException(ErrorCode.NotImplement);
+        }
+
+        /// <summary>
+        /// 按用户ID、房屋ID，房间ID查找对象
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <param name="homeId">房屋ID</param>
+        /// <param name="roomId">房间ID</param>
+        /// <returns></returns>
+        public Room FindOne(int userId, int homeId, int roomId)
+        {
+            string sql = string.Format("userid = {0}userid AND homeid = {0}homeid AND roomid = {0}roomid", this.parameterPrefix);
+
+            List<MySqlParameter> paras = new List<MySqlParameter>();
+            paras.Add(new MySqlParameter("userid", userId));
+            paras.Add(new MySqlParameter("homeid", homeId));
+            paras.Add(new MySqlParameter("roomid", roomId));
+
+            var entity = base.FindOne(sql, paras);
+            return entity;
+        }
+
+        /// <summary>
+        /// 按用户ID、房屋ID查找对象
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <param name="homeId">房屋ID</param>
+        /// <returns></returns>
+        public IEnumerable<Room> FindInHome(int userId, int homeId)
+        {
+            string sql = string.Format("userid = {0}userid AND homeid = {0}homeid", this.parameterPrefix);
+
+            List<MySqlParameter> paras = new List<MySqlParameter>();
+            paras.Add(new MySqlParameter("userid", userId));
+            paras.Add(new MySqlParameter("homeid", homeId));
+
+            return base.FindList(sql, paras);
+        }
+        #endregion //Method
     }
 }

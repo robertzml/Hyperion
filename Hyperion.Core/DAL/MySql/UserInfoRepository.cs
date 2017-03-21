@@ -95,12 +95,13 @@ namespace Hyperion.Core.DAL.MySQL
         /// 添加用户
         /// </summary>
         /// <param name="entity">用户对象</param>
-        public override void Create(UserInfo entity)
+        /// <returns></returns>
+        public override UserInfo Create(UserInfo entity)
         {
             if (!CheckDuplicate(entity))
                 throw new PoseidonException(ErrorCode.DuplicateName);
 
-            base.Create(entity);
+            return base.Create(entity);
         }
         #endregion //Method
     }

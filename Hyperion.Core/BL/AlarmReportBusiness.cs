@@ -24,5 +24,30 @@ namespace Hyperion.Core.BL
             this.baseDal = RepositoryFactory<IAlarmReportRepository>.Instance;
         }
         #endregion //Constructor
+
+        #region Method
+        /// <summary>
+        /// 分页方式获取数据
+        /// </summary>
+        /// <param name="startPos"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public IEnumerable<AlarmReport> FindWithPage(int startPos, int count)
+        {
+            var dal = this.baseDal as IAlarmReportRepository;
+
+            return dal.FindWithPage(startPos, count);
+        }
+
+        /// <summary>
+        /// 按用户查找对象
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <returns></returns>
+        public IEnumerable<AlarmReport> FindByUser(int userId)
+        {
+            return this.baseDal.FindListByField("userid", userId);
+        }
+        #endregion //Method
     }
 }

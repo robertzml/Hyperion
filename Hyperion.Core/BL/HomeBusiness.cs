@@ -37,6 +37,16 @@ namespace Hyperion.Core.BL
             var dal = this.baseDal as IHomeRepository;
             return dal.FindOne(userId, homeId);
         }
+
+        /// <summary>
+        /// 按用户ID查找对象
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <returns></returns>
+        public IEnumerable<Home> FindByUser(int userId)
+        {
+            return this.baseDal.FindListByField("userid", userId);
+        }
         #endregion //Method
     }
 }

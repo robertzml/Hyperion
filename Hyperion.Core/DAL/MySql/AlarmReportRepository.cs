@@ -88,5 +88,21 @@ namespace Hyperion.Core.DAL.MySQL
             return table;
         }
         #endregion //Function
+
+        #region Method
+        /// <summary>
+        /// 分页方式查找对象
+        /// </summary>
+        /// <param name="startPos">起始位置</param>
+        /// <param name="count">数量</param>
+        /// <returns></returns>
+        public IEnumerable<AlarmReport> FindWithPage(int startPos, int count)
+        {
+            string condition = "1 = 1";
+            List<MySqlParameter> paras = new List<MySqlParameter>();
+
+            return base.FindWithPage(condition, paras, startPos, count);
+        }
+        #endregion //Method
     }
 }

@@ -68,6 +68,8 @@
     <Compile Include="EquipmentTest.cs" />
     <Compile Include="EquipmentManagerTest.cs" />
     <Compile Include="HomeTest.cs" />
+    <Compile Include="RoomTest.cs" />
+    <Compile Include="AlarmReportTest.cs" />
     <Compile Include="VendorTest.cs" />
     <Compile Include="UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

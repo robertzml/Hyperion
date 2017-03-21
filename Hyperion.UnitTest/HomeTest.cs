@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyperion.UnitTest
@@ -29,6 +30,16 @@ namespace Hyperion.UnitTest
             Assert.AreEqual(homeid, entity.HomeId);
 
             Console.WriteLine(entity.Name);
+        }
+
+        [TestMethod]
+        public void TestFindByUser()
+        {
+            int userid = 134;
+
+            var data = BusinessFactory<HomeBusiness>.Instance.FindByUser(userid).ToList();
+
+            Assert.AreEqual(4, data.Count);
         }
     }
 }
