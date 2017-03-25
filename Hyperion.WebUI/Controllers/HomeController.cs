@@ -6,8 +6,12 @@ using System.Web.Mvc;
 
 namespace Hyperion.WebUI.Controllers
 {
+    /// <summary>
+    /// 主页控制器
+    /// </summary>
     public class HomeController : Controller
     {
+        #region Action
         public ActionResult Index()
         {
             return View();
@@ -20,11 +24,15 @@ namespace Hyperion.WebUI.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        /// <summary>
+        /// 菜单页面
+        /// </summary>
+        /// <returns></returns>
+        [ChildActionOnly]
+        public ActionResult Menu()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
+        #endregion //Action
     }
 }
