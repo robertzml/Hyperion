@@ -179,6 +179,7 @@
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\VendorInfo\List.cshtml" />
+    <Content Include="Views\VendorInfo\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

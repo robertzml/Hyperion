@@ -17,12 +17,6 @@ namespace Hyperion.WebUI.Controllers
     public class VendorInfoController : Controller
     {
         #region Action
-        // GET: VendorInfo
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         /// <summary>
         /// 厂家列表
         /// </summary>
@@ -31,6 +25,21 @@ namespace Hyperion.WebUI.Controllers
         public ActionResult List()
         {
             var data = CallerFactory<IVendorInfoService>.Instance.FindAll();
+            return View(data);
+        }
+
+        /// <summary>
+        /// 厂家信息
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var data = CallerFactory<IVendorInfoService>.Instance.FindById(id);
+            if (data == null)
+                return HttpNotFound();
+
             return View(data);
         }
         #endregion //Action
