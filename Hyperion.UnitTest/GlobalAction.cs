@@ -16,7 +16,7 @@ namespace Hyperion.UnitTest
         public static void Initialize()
         {
             string cs = "server = 192.168.0.111; user = hc; database = test_zml; port = 3306; password = webDev;";
-            Cache.Instance.Add("ConnectionString", cs);            
+            Cache.Instance.Add("ConnectionString", cs);
         }
     }
 }

@@ -7,6 +7,10 @@ using System.Web.Routing;
 
 namespace Hyperion.WebUI.Controllers
 {
+    using Poseidon.Base.Framework;
+    using Poseidon.Common;
+    using Hyperion.Caller.Facade;
+    using Hyperion.Core.DL;
     using Hyperion.WebUI.Models;
     using Hyperion.WebUI.Services;
 
@@ -60,20 +64,19 @@ namespace Hyperion.WebUI.Controllers
                 formsService.SignOut();
                 HttpContext.Session.Clear();
 
-                //ErrorCode result = this.userBusiness.Login(model.UserName, model.Password);
-                //if (result == ErrorCode.Success)
-                //{
-                //    User user = this.userBusiness.Get(model.UserName);
-                //    HttpCookie cookie = formsService.SignIn(user.UserName, user.UserTypeName(), model.RememberMe);
-                //    Response.Cookies.Add(cookie);
-
-                //    return RedirectToLocal(returnUrl);
-                //}
-                //else
-                //{
-                //    ModelState.AddModelError("", result.DisplayName());
-                //}
-                ModelState.AddModelError("", "密码错误");
+                string pass = Hasher.MD5Encrypt(model.Password).ToUpper();
+                var result = CallerFactory<IUserInfoService>.Instance.Login(model.UserName, pass);
+                if (result)
+                {
+                    var user = CallerFactory<IUserInfoService>.Instance.FindByUserName(model.UserName);
+                    HttpCookie cookie = formsService.SignIn(user.UserName, user.UserLevel.ToString(), model.RememberMe);
+                    Response.Cookies.Add(cookie);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "用户名或密码错误");
+                }
             }
 
             return View(model);

@@ -4,8 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Hyperion.UnitTest
 {
     using Poseidon.Base.Framework;
-    using Poseidon.Base.System;
+    using Poseidon.Base.System;   
     using Poseidon.Common;
+    using Hyperion.Caller.Facade;
     using Hyperion.Core.BL;
     using Hyperion.Core.DL;
 
@@ -43,7 +44,8 @@ namespace Hyperion.UnitTest
             string username = "admin";
             string password = Hasher.MD5Encrypt("123").ToUpper();
 
-            var result = BusinessFactory<UserInfoBusiness>.Instance.Login(username, password);
+            //var result = BusinessFactory<UserInfoBusiness>.Instance.Login(username, password);
+            var result = CallerFactory<IUserInfoService>.Instance.Login(username, password);
 
             Assert.IsTrue(result);
         }

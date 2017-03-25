@@ -8,6 +8,8 @@ using System.Web.Routing;
 
 namespace Hyperion.WebUI
 {
+    using Poseidon.Common;
+    
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
@@ -16,6 +18,9 @@ namespace Hyperion.WebUI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            string cs = AppConfig.GetConnectionString();
+            Cache.Instance.Add("ConnectionString", cs);
         }
     }
 }
