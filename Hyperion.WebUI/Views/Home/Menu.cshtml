@@ -9,7 +9,7 @@
 <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
 <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-<ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+<ul id="left-nav" class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
     <li class="nav-item start ">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="icon-home"></i>
@@ -95,16 +95,6 @@
                 </a>
             </li>
             <li class="nav-item  ">
-                <a href="ui_bootstrap_growl.html" class="nav-link ">
-                    <span class="title">Bootstrap Growl Notifications</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="ui_extended_modals.html" class="nav-link ">
-                    <span class="title">Extended Modals</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
                 <a href="ui_tiles.html" class="nav-link ">
                     <span class="title">Tiles</span>
                 </a>
@@ -134,37 +124,6 @@
                 </a>
             </li>
             <li class="nav-item  ">
-                <a href="components_color_pickers.html" class="nav-link ">
-                    <span class="title">Color Pickers</span>
-                    <span class="badge badge-danger">2</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="components_select2.html" class="nav-link ">
-                    <span class="title">Select2 Dropdowns</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="components_bootstrap_fileinput.html" class="nav-link ">
-                    <span class="title">Bootstrap File Input</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="components_bootstrap_touchspin.html" class="nav-link ">
-                    <span class="title">Bootstrap Touchspin</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="components_form_tools.html" class="nav-link ">
-                    <span class="title">Form Widgets & Tools</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="components_context_menu.html" class="nav-link ">
-                    <span class="title">Context Menu</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
                 <a href="components_editors.html" class="nav-link ">
                     <span class="title">Markdown & WYSIWYG Editors</span>
                 </a>
@@ -191,21 +150,6 @@
             <li class="nav-item  ">
                 <a href="elements_lists.html" class="nav-link ">
                     <span class="title">Lists</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="elements_ribbons.html" class="nav-link ">
-                    <span class="title">Ribbons</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="elements_overlay.html" class="nav-link ">
-                    <span class="title">Overlays</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="elements_cards.html" class="nav-link ">
-                    <span class="title">User Cards</span>
                 </a>
             </li>
         </ul>
@@ -247,28 +191,21 @@
     <li class="heading">
         <h3 class="uppercase">Layouts</h3>
     </li>
-    <li class="nav-item  active open">
+    <li class="nav-item left-nav-top">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="icon-layers"></i>
             <span class="title">Page Layouts</span>
-            <span class="selected"></span>
-            <span class="arrow open"></span>
+            <span class="arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li class="nav-item  active open">
+            <li class="nav-item active open">
                 <a href="layout_blank_page.html" class="nav-link ">
                     <span class="title">Blank Page</span>
-                    <span class="selected"></span>
                 </a>
             </li>
             <li class="nav-item  ">
                 <a href="layout_ajax_page.html" class="nav-link ">
                     <span class="title">Ajax Content Layout</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="layout_language_bar.html" class="nav-link ">
-                    <span class="title">Header Language Bar</span>
                 </a>
             </li>
             <li class="nav-item  ">
@@ -285,7 +222,7 @@
     </li>
     <li class="nav-item  ">
         <a href="javascript:;" class="nav-link nav-toggle">
-            <i class=" icon-wrench"></i>
+            <i class="icon-wrench"></i>
             <span class="title">Custom Layouts</span>
             <span class="arrow"></span>
         </a>
@@ -298,19 +235,19 @@
         </ul>
     </li>
     <li class="heading">
-        <h3 class="uppercase">Pages</h3>
+        <h3>系统信息</h3>
     </li>
-    <li class="nav-item  ">
+    <li class="nav-item left-nav-top">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="icon-docs"></i>
-            <span class="title">Apps</span>
+            <span class="title">厂家管理</span>
             <span class="arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li class="nav-item  ">
-                <a href="app_todo.html" class="nav-link ">
+            <li class="nav-item ">
+                <a href="@Url.Action("List", new { controller = "VendorInfo" })" class="nav-link" id="menu-vendorinfo-list">
                     <i class="icon-clock"></i>
-                    <span class="title">Todo 1</span>
+                    <span class="title">厂家列表</span>
                 </a>
             </li>
             <li class="nav-item  ">
@@ -324,7 +261,7 @@
     <li class="nav-item  ">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="icon-user"></i>
-            <span class="title">User</span>
+            <span class="title">账户管理</span>
             <span class="arrow"></span>
         </a>
         <ul class="sub-menu">
@@ -344,35 +281,6 @@
                 <a href="page_user_lock_2.html" class="nav-link " target="_blank">
                     <i class="icon-lock-open"></i>
                     <span class="title">Lock Screen 2</span>
-                </a>
-            </li>
-        </ul>
-    </li>
-    <li class="nav-item  ">
-        <a href="javascript:;" class="nav-link nav-toggle">
-            <i class="icon-settings"></i>
-            <span class="title">System</span>
-            <span class="arrow"></span>
-        </a>
-        <ul class="sub-menu">
-            <li class="nav-item  ">
-                <a href="page_cookie_consent_1.html" class="nav-link ">
-                    <span class="title">Cookie Consent 1</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="page_cookie_consent_2.html" class="nav-link ">
-                    <span class="title">Cookie Consent 2</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="page_system_coming_soon.html" class="nav-link " target="_blank">
-                    <span class="title">Coming Soon</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="page_system_500_2.html" class="nav-link " target="_blank">
-                    <span class="title">500 Page 2</span>
                 </a>
             </li>
         </ul>

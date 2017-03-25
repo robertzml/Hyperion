@@ -81,6 +81,18 @@ namespace Hyperion.WebUI.Controllers
 
             return View(model);
         }
+
+        /// <summary>
+        /// 注销
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Logout()
+        {
+            formsService.SignOut();
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Index", "Home");
+        }
         #endregion //Action
     }
 }

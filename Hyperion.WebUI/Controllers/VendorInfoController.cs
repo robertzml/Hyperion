@@ -6,33 +6,32 @@ using System.Web.Mvc;
 
 namespace Hyperion.WebUI.Controllers
 {
+    using Poseidon.Base.Framework;
+    using Hyperion.Caller.Facade;
+    using Hyperion.Core.DL;
+
     /// <summary>
-    /// 主页控制器
+    /// 厂家管理控制器
     /// </summary>
     [EnhancedAuthorize]
-    public class HomeController : Controller
+    public class VendorInfoController : Controller
     {
         #region Action
+        // GET: VendorInfo
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
         /// <summary>
-        /// 菜单页面
+        /// 厂家列表
         /// </summary>
         /// <returns></returns>
-        [ChildActionOnly]
-        public ActionResult Menu()
+        [HttpGet]
+        public ActionResult List()
         {
-            return View();
+            var data = CallerFactory<IVendorInfoService>.Instance.FindAll();
+            return View(data);
         }
         #endregion //Action
     }

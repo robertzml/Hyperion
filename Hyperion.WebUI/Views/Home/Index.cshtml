@@ -17,15 +17,15 @@
 <!-- BEGIN PAGE BREADCRUMB -->
 <ul class="page-breadcrumb breadcrumb">
     <li>
-        <a href="index.html">Home</a>
+        <a href="@Url.Action("Index", new { controller = "Home" })">主页</a>
         <i class="fa fa-circle"></i>
     </li>
     <li>
-        <a href="#">Blank Page</a>
+        <a href="#">主页</a>
         <i class="fa fa-circle"></i>
     </li>
     <li>
-        <span class="active">Page Layouts</span>
+        <span class="active">@ViewBag.Title</span>
     </li>
 </ul>
 <!-- END PAGE BREADCRUMB -->
