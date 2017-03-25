@@ -38,6 +38,17 @@ namespace Hyperion.UnitTest
         }
 
         [TestMethod]
+        public void TestLogin()
+        {
+            string username = "admin";
+            string password = Hasher.MD5Encrypt("123").ToUpper();
+
+            var result = BusinessFactory<UserInfoBusiness>.Instance.Login(username, password);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
         public void TestChangePassword()
         {
             int id = 19;

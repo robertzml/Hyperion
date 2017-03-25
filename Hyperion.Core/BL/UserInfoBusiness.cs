@@ -37,6 +37,24 @@ namespace Hyperion.Core.BL
         }
 
         /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="password">密码</param>
+        /// <returns></returns>
+        public bool Login(string username, string password)
+        {
+            var entity = this.baseDal.FindOneByField("username", username);
+            if (entity == null)
+                return false;
+
+            if (entity.Password != password)
+                return false;
+            else
+                return true;
+        }
+
+        /// <summary>
         /// 修改密码
         /// </summary>
         /// <param name="id">用户ID</param>

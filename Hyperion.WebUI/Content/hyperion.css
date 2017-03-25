@@ -1,0 +1,13 @@
+﻿body, h1, h2, h3, h4, h5, h6{
+	font-family: '微软雅黑';
+}
+
+.validation-summary-errors {
+    color: #e80c4d;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid {
+    display: none;
+}
