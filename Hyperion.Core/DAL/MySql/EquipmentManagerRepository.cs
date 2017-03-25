@@ -58,12 +58,24 @@ namespace Hyperion.Core.DAL.MySQL
             if (row.IsNull("createdate"))
                 entity.CreateDate = null;
             else
-                entity.CreateDate = Convert.ToDateTime(row["createdate"]);
+            {
+                DateTime temp;
+                if (DateTime.TryParse(row["createdate"].ToString(), out temp))
+                    entity.CreateDate = temp;
+                else
+                    entity.CreateDate = null;
+            }
 
             if (row.IsNull("updatedate"))
                 entity.UpdateDate = null;
             else
-                entity.UpdateDate = Convert.ToDateTime(row["updatedate"]);
+            {
+                DateTime temp;
+                if (DateTime.TryParse(row["updatedate"].ToString(), out temp))
+                    entity.UpdateDate = temp;
+                else
+                    entity.UpdateDate = null;
+            }
 
             entity.UserName = row["username"].ToString();
 

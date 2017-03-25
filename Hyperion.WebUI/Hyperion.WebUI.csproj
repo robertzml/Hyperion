@@ -126,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorInfoController.cs" />
@@ -180,6 +181,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\VendorInfo\List.cshtml" />
     <Content Include="Views\VendorInfo\Details.cshtml" />
+    <Content Include="Views\Equipment\List.cshtml" />
+    <Content Include="Views\Equipment\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

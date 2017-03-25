@@ -1,0 +1,130 @@
+﻿@model Hyperion.Core.DL.EquipmentManager
+
+@{
+    Layout = null;
+    ViewBag.Title = "设备信息";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="caption font-green-sharp">
+                <i class="icon-speech font-green-sharp"></i>
+                <span class="caption-subject">@ViewBag.Title</span>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>属性</th>
+                            <th>值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Id)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.SerialNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.SerialNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Vendor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Vendor)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Type)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Version)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Version)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.UpgradeVersion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.UpgradeVersion)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Owner)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Owner)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.PhoneNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.PhoneNo)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.State)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.State)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.CreateDate)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.UpdateDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.UpdateDate)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.UserName)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn blue btn-outline">关闭</button>
+</div>
