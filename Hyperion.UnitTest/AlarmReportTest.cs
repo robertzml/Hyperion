@@ -78,8 +78,12 @@ namespace Hyperion.UnitTest
         public void TestThread2()
         {
             Console.WriteLine("test start");
-            var result = FindAll();
-            Console.WriteLine(result.Result.ToString());
+
+            for (int i = 0; i < 1000; i++)
+            {
+                var result = FindAll();
+                Console.WriteLine(result.Result.ToString());
+            }
 
             Assert.IsTrue(true);
             Console.WriteLine("test end");

@@ -51,9 +51,9 @@ namespace Hyperion.Core.DL
         public string IMEI { get; set; }
 
         /// <summary>
-        /// MSISDN
+        /// 终端号码
         /// </summary>
-        [Display(Name = "MSISDN")]
+        [Display(Name = "终端号码")]
         public string MSISDN { get; set; }
 
         /// <summary>

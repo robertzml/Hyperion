@@ -186,10 +186,11 @@
     <Content Include="Views\Equipment\Details.cshtml" />
     <Content Include="Views\AlarmReport\List.cshtml" />
     <Content Include="Views\AlarmReport\Details.cshtml" />
+    <Content Include="Views\User\List.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
