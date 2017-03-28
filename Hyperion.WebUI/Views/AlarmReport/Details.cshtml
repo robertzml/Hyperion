@@ -1,0 +1,120 @@
+﻿@model Hyperion.Core.DL.AlarmReport
+
+@{
+    Layout = null;
+    ViewBag.Title = "故障维护信息";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="caption font-green-sharp">
+                <i class="icon-speech font-green-sharp"></i>
+                <span class="caption-subject">@ViewBag.Title</span>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>属性</th>
+                            <th>值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Id)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.UserId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.UserId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.UserName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.SerialNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.SerialNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.AlarmCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.AlarmCode)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.AlarmDescription)
+                            </td>
+                            <td>
+                                @HttpUtility.UrlDecode(Model.AlarmDescription)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.MSISDN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.MSISDN)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.DealStatus)
+                            </td>
+                            <td>
+                                @{
+                                    string output = "";
+                                    switch (Model.DealStatus)
+                                    {
+                                        case 1:
+                                            output = "未处理";
+                                            break;
+                                        case 2:
+                                            output = "处理中";
+                                            break;
+                                        case 3:
+                                            output = "已处理";
+                                            break;
+                                    }
+                                    @output;
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.CreateDate)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn blue btn-outline">关闭</button>
+</div>

@@ -126,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlarmReportController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -183,6 +184,8 @@
     <Content Include="Views\VendorInfo\Details.cshtml" />
     <Content Include="Views\Equipment\List.cshtml" />
     <Content Include="Views\Equipment\Details.cshtml" />
+    <Content Include="Views\AlarmReport\List.cshtml" />
+    <Content Include="Views\AlarmReport\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
