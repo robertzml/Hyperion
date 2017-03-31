@@ -13,5 +13,11 @@ namespace Hyperion.Core.IDAL
     /// </summary>
     internal interface IAccountRepository : IBaseDAL<Account, int>
     {
+        /// <summary>
+        /// 查找设备操控用户
+        /// </summary>
+        /// <param name="serialNumber">设备序列号</param>
+        /// <returns></returns>
+        IEnumerable<Account> FindByEquipment(string serialNumber);
     }
 }

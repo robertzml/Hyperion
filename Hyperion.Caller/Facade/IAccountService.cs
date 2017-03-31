@@ -20,5 +20,12 @@ namespace Hyperion.Caller.Facade
         /// <param name="userName">用户名</param>
         /// <returns></returns>
         Account FindByName(string userName);
+
+        /// <summary>
+        /// 查找设备操控用户
+        /// </summary>
+        /// <param name="serialNumber">设备序列号</param>
+        /// <returns></returns>
+        IEnumerable<Account> FindByEquipment(string serialNumber);
     }
 }

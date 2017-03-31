@@ -17,6 +17,7 @@ namespace Hyperion.WebUI.Controllers
     /// <summary>
     /// 账户控制器
     /// </summary>
+    [EnhancedAuthorize]
     public class AccountController : Controller
     {
         #region Field
@@ -92,6 +93,32 @@ namespace Hyperion.WebUI.Controllers
             HttpContext.Session.Clear();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        /// <summary>
+        /// 管理用户列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult List()
+        {
+            var data = CallerFactory<IUserInfoService>.Instance.FindAll();
+            return View(data);
+        }
+
+        /// <summary>
+        /// 用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var data = CallerFactory<IUserInfoService>.Instance.FindById(id);
+            if (data == null)
+                return HttpNotFound();
+
+            return View(data);
         }
         #endregion //Action
     }

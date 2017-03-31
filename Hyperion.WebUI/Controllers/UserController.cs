@@ -40,6 +40,19 @@ namespace Hyperion.WebUI.Controllers
                 return HttpNotFound();
             return View(data);
         }
+
+        /// <summary>
+        /// 设备用户信息
+        /// </summary>
+        /// <param name="serialNumber">设备序列号</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult ListByEquipment(string serialNumber)
+        {
+            var data = CallerFactory<IAccountService>.Instance.FindByEquipment(serialNumber);
+            ViewBag.SerialNumber = serialNumber;
+            return View(data);
+        }
         #endregion //Action
     }
 }

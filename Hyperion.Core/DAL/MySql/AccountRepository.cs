@@ -88,5 +88,22 @@ namespace Hyperion.Core.DAL.MySQL
             return table;
         }
         #endregion //Function
+
+        #region Method
+        /// <summary>
+        /// 查找设备操控用户
+        /// </summary>
+        /// <param name="serialNumber">设备序列号</param>
+        /// <returns></returns>
+        public IEnumerable<Account> FindByEquipment(string serialNumber)
+        {
+            string sql = string.Format("id IN ( SELECT userid FROM equipment WHERE serialnumber = {0}serialnumber)", this.parameterPrefix);
+
+            List<MySqlParameter> paras = new List<MySqlParameter>();
+            paras.Add(new MySqlParameter("serialnumber", serialNumber));
+
+            return base.FindList(sql, paras);
+        }
+        #endregion //Method
     }
 }

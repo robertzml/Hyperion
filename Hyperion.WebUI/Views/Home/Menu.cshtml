@@ -11,26 +11,10 @@
 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
 <ul id="left-nav" class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
     <li class="nav-item start ">
-        <a href="javascript:;" class="nav-link nav-toggle">
+        <a href="@Url.Action("Index", new { controller = "Home" })" class="nav-link" id="menu-home">
             <i class="icon-home"></i>
-            <span class="title">Dashboard</span>
-            <span class="arrow"></span>
+            <span class="title">主 页</span>
         </a>
-        <ul class="sub-menu">
-            <li class="nav-item start ">
-                <a href="index.html" class="nav-link ">
-                    <i class="icon-bar-chart"></i>
-                    <span class="title">Dashboard 1</span>
-                </a>
-            </li>
-            <li class="nav-item start ">
-                <a href="dashboard_2.html" class="nav-link ">
-                    <i class="icon-bulb"></i>
-                    <span class="title">Dashboard 2</span>
-                    <span class="badge badge-success">1</span>
-                </a>
-            </li>
-        </ul>
     </li>
     <li class="heading">
         <h3 class="uppercase">设备信息</h3>
@@ -54,39 +38,6 @@
             </li>
         </ul>
     </li>
-    <li class="nav-item  ">
-        <a href="javascript:;" class="nav-link nav-toggle">
-            <i class="icon-bulb"></i>
-            <span class="title">Elements</span>
-            <span class="arrow"></span>
-        </a>
-        <ul class="sub-menu">
-            <li class="nav-item  ">
-                <a href="elements_steps.html" class="nav-link ">
-                    <span class="title">Steps</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="elements_lists.html" class="nav-link ">
-                    <span class="title">Lists</span>
-                </a>
-            </li>
-        </ul>
-    </li>
-    <li class="nav-item  ">
-        <a href="?p=" class="nav-link nav-toggle">
-            <i class="icon-wallet"></i>
-            <span class="title">Portlets</span>
-            <span class="arrow"></span>
-        </a>
-        <ul class="sub-menu">
-            <li class="nav-item  ">
-                <a href="portlet_boxed.html" class="nav-link ">
-                    <span class="title">Boxed Portlets</span>
-                </a>
-            </li>
-        </ul>
-    </li>
     <li class="heading">
         <h3 class="uppercase">用户信息</h3>
     </li>
@@ -97,28 +48,9 @@
             <span class="arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li class="nav-item  ">
+            <li class="nav-item">
                 <a href="@Url.Action("List", new { controller = "User" })" class="nav-link" id="menu-user-list">
                     <span class="title">用户列表</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="layout_footer_fixed.html" class="nav-link ">
-                    <span class="title">Fixed Footer</span>
-                </a>
-            </li>
-        </ul>
-    </li>
-    <li class="nav-item  ">
-        <a href="javascript:;" class="nav-link nav-toggle">
-            <i class="icon-wrench"></i>
-            <span class="title">Custom Layouts</span>
-            <span class="arrow"></span>
-        </a>
-        <ul class="sub-menu">
-            <li class="nav-item  ">
-                <a href="layout_disabled_menu.html" class="nav-link ">
-                    <span class="title">Disabled Menu Links</span>
                 </a>
             </li>
         </ul>
@@ -139,15 +71,9 @@
                     <span class="title">厂家列表</span>
                 </a>
             </li>
-            <li class="nav-item  ">
-                <a href="app_ticket.html" class="nav-link ">
-                    <i class="icon-notebook"></i>
-                    <span class="title">Support</span>
-                </a>
-            </li>
         </ul>
     </li>
-    <li class="nav-item  ">
+    <li class="nav-item left-nav-top">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="icon-user"></i>
             <span class="title">账户管理</span>
@@ -155,21 +81,9 @@
         </a>
         <ul class="sub-menu">
             <li class="nav-item  ">
-                <a href="page_user_profile_1.html" class="nav-link ">
+                <a href="@Url.Action("List", new { controller = "Account" })" class="nav-link" id="menu-account-list">
                     <i class="icon-user"></i>
-                    <span class="title">Profile 1</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="page_user_lock_1.html" class="nav-link " target="_blank">
-                    <i class="icon-lock"></i>
-                    <span class="title">Lock Screen 1</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="page_user_lock_2.html" class="nav-link " target="_blank">
-                    <i class="icon-lock-open"></i>
-                    <span class="title">Lock Screen 2</span>
+                    <span class="title">账户列表</span>
                 </a>
             </li>
         </ul>

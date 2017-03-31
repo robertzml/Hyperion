@@ -46,12 +46,14 @@
     <Compile Include="Facade\IAccountService.cs" />
     <Compile Include="Facade\IAlarmReportService.cs" />
     <Compile Include="Facade\IEquipmentManagerService.cs" />
+    <Compile Include="Facade\IEquipmentService.cs" />
     <Compile Include="Facade\IUserInfoService.cs" />
     <Compile Include="Facade\IVendorInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinformCaller\AccountService.cs" />
     <Compile Include="WinformCaller\AlarmReportService.cs" />
     <Compile Include="WinformCaller\EquipmentManagerService.cs" />
+    <Compile Include="WinformCaller\EquipmentService.cs" />
     <Compile Include="WinformCaller\UserInfoService.cs" />
     <Compile Include="WinformCaller\VendorInfoService.cs" />
   </ItemGroup>

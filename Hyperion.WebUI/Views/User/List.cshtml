@@ -101,6 +101,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-sm btn-primary" href="@Url.Action("Details", new { controller = "User", id = item.Id })" data-target="#ajax-modal" data-toggle="modal"> 查看 </a>
+                                    <a class="btn btn-sm green-dark" href="@Url.Action("ListByUser", new { controller = "Equipment", userId = item.Id })" data-target="#ajax-modal" data-toggle="modal"> 设备 </a>
                                 </td>
                             </tr>
                         }

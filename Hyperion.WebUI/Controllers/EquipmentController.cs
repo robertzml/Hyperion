@@ -42,6 +42,21 @@ namespace Hyperion.WebUI.Controllers
 
             return View(data);
         }
+
+        /// <summary>
+        /// 用户相关设备列表
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult ListByUser(int userId)
+        {
+            var user = CallerFactory<IAccountService>.Instance.FindById(userId);
+            ViewBag.UserName = user.UserName;
+
+            var data = CallerFactory<IEquipmentService>.Instance.FindByUserId(userId).OrderBy(r => r.Id);
+            return View(data);
+        }
         #endregion //Action
     }
 }

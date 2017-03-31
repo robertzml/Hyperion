@@ -1,8 +1,8 @@
-﻿@model Hyperion.Core.DL.AlarmReport
+﻿@model Hyperion.Core.DL.UserInfo
 
 @{
     Layout = null;
-    ViewBag.Title = "故障维护信息";
+    ViewBag.Title = "管理账户信息";
 }
 
 <div class="row">
@@ -35,14 +35,6 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.UserId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.UserId)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
                                 @Html.DisplayNameFor(model => model.UserName)
                             </td>
                             <td>
@@ -51,57 +43,34 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.SerialNumber)
+                                @Html.DisplayNameFor(model => model.UserLevel)
                             </td>
                             <td>
-                                @Html.DisplayFor(model => model.SerialNumber)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.AlarmCode)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.AlarmCode)
+                                @Html.DisplayFor(model => model.UserLevel)
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.AlarmDescription)
+                                @Html.DisplayNameFor(model => model.Vendor)
                             </td>
                             <td>
-                                @HttpUtility.UrlDecode(Model.AlarmDescription)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.MSISDN)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.MSISDN)
+                                @Html.DisplayFor(model => model.Vendor)
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.DealStatus)
+                                @Html.DisplayNameFor(model => model.PhoneNumber)
                             </td>
                             <td>
-                                @{
-                                    string output = "";
-                                    switch (Model.DealStatus)
-                                    {
-                                        case 1:
-                                            output = "未处理";
-                                            break;
-                                        case 2:
-                                            output = "处理中";
-                                            break;
-                                        case 3:
-                                            output = "已处理";
-                                            break;
-                                    }
-                                    @output;
-                                }
+                                @Html.DisplayFor(model => model.PhoneNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Email)
                             </td>
                         </tr>
                         <tr>
@@ -110,6 +79,14 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(model => model.CreateDate)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.ParentUserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.ParentUserName)
                             </td>
                         </tr>
                     </tbody>
