@@ -106,12 +106,24 @@
     </div>
 </div>
 
+ <!--DOC: Aplly "modal-cached" class after "modal" class to enable ajax content caching-->
+<div class="modal fade" id="ajax-modal" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="/assets/global/img/loading-spinner-grey.gif" alt="" class="loading">
+                <span> &nbsp;&nbsp;Loading... </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
 
 @section scripts {
     <script type="text/javascript">
         $(function () {
             hyperion.leftNavActive($('#menu-operate-list'));
-            hyperion.initAjaxDatatable($('#operate-table'), '/OperateRecord/GetData', [
+            var table = hyperion.initAjaxDatatable($('#operate-table'), '/OperateRecord/GetData', [
                 { "data": "Id" },
                 { "data": "LogType" },
                 { "data": "LogTime" },
@@ -119,8 +131,15 @@
                 { "data": "UserName" },
                 { "data": "OSType" },
                 { "data": "SerialNumber" },
-                { "data": "Id" }
+                { "data": null, "defaultContent": "<button class='btn btn-sm btn-primary' href=''> 查看 </button>" }
             ]);
+
+            $('#operate-table tbody').on('click', 'button', function () {
+                var data = table.api().row($(this).parents('tr')).data();
+                var id = data["Id"];
+
+                $('#ajax-modal').modal({ remote: '/OperateRecord/Details/' + id, show: true });
+            });
         });
     </script>
 }

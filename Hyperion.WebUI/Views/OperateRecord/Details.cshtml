@@ -1,0 +1,126 @@
+﻿@model Hyperion.Core.DL.OperateRecord
+
+@{
+    Layout = null;
+    ViewBag.Title = "设备操作日志";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-speech font-green-sharp"></i>
+                    <span class="caption-subject">@ViewBag.Title</span>
+                </div>
+                <div class="actions">
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>属性</th>
+                            <th>值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Id)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.LogType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.LogType)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.LogTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.LogTime)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.OpType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.OpType)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.UserName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.IMSI)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.IMSI)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.IMEI)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.IMEI)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.MSISDN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.MSISDN)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.OSType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.OSType)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.SerialNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.SerialNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.RequestBody)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.RequestBody)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn blue btn-outline">关闭</button>
+</div>
+

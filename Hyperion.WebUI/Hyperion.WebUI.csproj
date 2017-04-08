@@ -322,6 +322,7 @@
     <Content Include="Views\Equipment\ListByUser.cshtml" />
     <Content Include="Views\User\ListByEquipment.cshtml" />
     <Content Include="Views\OperateRecord\List.cshtml" />
+    <Content Include="Views\OperateRecord\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

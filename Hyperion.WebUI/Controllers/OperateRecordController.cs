@@ -17,9 +17,28 @@ namespace Hyperion.WebUI.Controllers
     public class OperateRecordController : Controller
     {
         #region Action
+        /// <summary>
+        /// 日志列表
+        /// </summary>
+        /// <returns></returns>
         public ActionResult List()
         {
             return View();
+        }
+
+        /// <summary>
+        /// 日志信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var data = CallerFactory<IOperateRecordService>.Instance.FindById(id);
+            if (data == null)
+                return HttpNotFound();
+
+            return View(data);
         }
         #endregion //Action
 
@@ -40,6 +59,7 @@ namespace Hyperion.WebUI.Controllers
 
             var data = new
             {
+                draw = draw,
                 recordsTotal = count,
                 recordsFiltered = count,
                 data = records

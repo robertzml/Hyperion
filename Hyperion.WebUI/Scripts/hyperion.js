@@ -112,6 +112,7 @@ var hyperion = function() {
                 "type": "POST"
             },
             "columns": columns,
+
             "ordering": false,
 
             "order": [],
@@ -125,6 +126,8 @@ var hyperion = function() {
 
             "dom": "<'row' <'col-md-12'>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
         });
+
+        return oTable;
     };
 
 
