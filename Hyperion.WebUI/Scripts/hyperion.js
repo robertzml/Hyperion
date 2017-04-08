@@ -80,6 +80,53 @@ var hyperion = function() {
         return oTable;
     };
 
+    var handleInitAjaxDatatable = function($dom, url, columns) {
+
+        var oTable = $dom.dataTable({
+
+            "language": {
+                "aria": {
+                    "sortAscending": ": activate to sort column ascending",
+                    "sortDescending": ": activate to sort column descending"
+                },
+                "emptyTable": "表格为空",
+                "info": "显示 _START_ 至 _END_ 共有 _TOTAL_ 条记录",
+                "infoEmpty": "结果为空",
+                "infoFiltered": "( 从 _MAX_ 条记录中筛选)",
+                "lengthMenu": " _MENU_ 记录",
+                "search": "搜索:",
+                "zeroRecords": "结果为空"
+            }, 
+
+            // setup responsive extension: http://datatables.net/extensions/responsive/
+            responsive: {
+                details: {
+                   
+                }
+            },
+
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": url,
+                "type": "POST"
+            },
+            "columns": columns,
+            "ordering": false,
+
+            "order": [],
+            
+            "lengthMenu": [
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "pageLength": 15,
+
+            "dom": "<'row' <'col-md-12'>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+        });
+    };
+
 
     return {
         leftNavActive: function($dom) {
@@ -89,5 +136,9 @@ var hyperion = function() {
         initDatatable: function($dom, filter) {
 			return handleInitDatatable($dom, filter);
 		},
+
+        initAjaxDatatable: function($dom, url, columns) {
+            return handleInitAjaxDatatable($dom, url, columns);
+        }
     }
 }();

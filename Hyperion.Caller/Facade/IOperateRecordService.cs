@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hyperion.Core.IDAL
+namespace Hyperion.Caller.Facade
 {
     using Poseidon.Base.Framework;
     using Hyperion.Core.DL;
 
     /// <summary>
-    /// 操作日志数据访问接口
+    /// 操作记录访问服务接口
     /// </summary>
-    internal interface IOperateRecordRepository : IBaseDAL<OperateRecord, int>
+    public interface IOperateRecordService : IBaseService<OperateRecord, int>
     {
         /// <summary>
         /// 分页查找

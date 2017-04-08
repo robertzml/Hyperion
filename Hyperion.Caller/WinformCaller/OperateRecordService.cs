@@ -4,24 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hyperion.Core.BL
+namespace Hyperion.Caller.WinformCaller
 {
     using Poseidon.Base.Framework;
+    using Hyperion.Caller.Facade;
+    using Hyperion.Core.BL;
     using Hyperion.Core.DL;
-    using Hyperion.Core.IDAL;
 
     /// <summary>
-    /// 操作日志业务类
+    /// 操作记录访问服务类
     /// </summary>
-    public class OperateRecordBusiness : AbstractBusiness<OperateRecord, int>, IBaseBL<OperateRecord, int>
+    internal class OperateRecordService : AbstractLocalService<OperateRecord, int>, IOperateRecordService
     {
+        #region Field
+        /// <summary>
+        /// 业务类对象
+        /// </summary>
+        private OperateRecordBusiness bl = null;
+        #endregion //Field
+
         #region Constructor
         /// <summary>
-        /// 操作日志业务类
+        /// 操作记录访问服务类
         /// </summary>
-        public OperateRecordBusiness()
+        public OperateRecordService() : base(BusinessFactory<OperateRecordBusiness>.Instance)
         {
-            this.baseDal = RepositoryFactory<IOperateRecordRepository>.Instance;
+            this.bl = this.baseBL as OperateRecordBusiness;
         }
         #endregion //Constructor
 
@@ -34,8 +42,7 @@ namespace Hyperion.Core.BL
         /// <returns></returns>
         public IEnumerable<OperateRecord> FindWithPage(int startPos, int count)
         {
-            var dal = this.baseDal as IOperateRecordRepository;
-            return dal.FindWithPage(startPos, count);
+            return this.bl.FindWithPage(startPos, count);
         }
         #endregion //Method
     }

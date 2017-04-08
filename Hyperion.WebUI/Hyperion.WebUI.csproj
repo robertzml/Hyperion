@@ -129,6 +129,7 @@
     <Compile Include="Controllers\AlarmReportController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OperateRecordController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorInfoController.cs" />
     <Compile Include="Filters\EnhancedAuthorizeAttribute.cs" />
@@ -320,6 +321,7 @@
     <Content Include="Views\Account\Details.cshtml" />
     <Content Include="Views\Equipment\ListByUser.cshtml" />
     <Content Include="Views\User\ListByEquipment.cshtml" />
+    <Content Include="Views\OperateRecord\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
