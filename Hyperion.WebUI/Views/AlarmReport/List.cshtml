@@ -1,0 +1,167 @@
+﻿@model IEnumerable<Hyperion.Core.DL.AlarmReport>
+
+@{
+    ViewBag.Title = "故障维护列表";
+}
+
+<!-- BEGIN PAGE HEAD-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            @ViewBag.Title
+            <small></small>
+        </h1>
+    </div>
+    <!-- END PAGE TITLE -->
+</div>
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE BREADCRUMB -->
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="@Url.Action("Index", new { controller = "Home" })">主页</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">设备管理</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <span class="active">@ViewBag.Title</span>
+    </li>
+</ul>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet box green-haze">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i>故障维护列表
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                    <a href="" class="fullscreen"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover dt-responsive" style="width: 100%;" id="alarm-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SerialNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AlarmCode)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MSISDN)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DealStatus)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SerialNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AlarmCode)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MSISDN)
+                            </th>
+                            <th data-filter="true">
+                                @Html.DisplayNameFor(model => model.DealStatus)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @HttpUtility.UrlDecode(item.UserName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AlarmCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MSISDN)
+                                </td>
+                                <td>
+                                    @{
+                                        string output = "";
+                                        switch(item.DealStatus)
+                                        {
+                                            case 1:
+                                                output = "未处理";
+                                                break;
+                                            case 2:
+                                                output = "处理中";
+                                                break;
+                                            case 3:
+                                                output = "已处理";
+                                                break;
+                                        }
+                                        @output;
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="@Url.Action("Details", new { controller = "AlarmReport", id = item.Id })" data-target="#ajax-modal" data-toggle="modal"> 查看 </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ajax-modal" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="/assets/global/img/loading-spinner-grey.gif" alt="" class="loading">
+                <span> &nbsp;&nbsp;Loading... </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            hyperion.leftNavActive($('#menu-alarm-list'));
+            hyperion.initDatatable($('#alarm-table'), true);
+        });
+    </script>
+}

@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.Core", "Hyperion.Core\Hyperion.Core.csproj", "{885B9039-B005-4C46-BF63-67968EE861E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.UnitTest", "Hyperion.UnitTest\Hyperion.UnitTest.csproj", "{A098D28B-554A-426F-9A90-194A35852791}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.WebUI", "Hyperion.WebUI\Hyperion.WebUI.csproj", "{439BA650-8540-4D6A-A96B-2C2864116BCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.Caller", "Hyperion.Caller\Hyperion.Caller.csproj", "{5B4827C2-B993-4409-BA87-1473F61616F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{885B9039-B005-4C46-BF63-67968EE861E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{885B9039-B005-4C46-BF63-67968EE861E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{885B9039-B005-4C46-BF63-67968EE861E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A098D28B-554A-426F-9A90-194A35852791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A098D28B-554A-426F-9A90-194A35852791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A098D28B-554A-426F-9A90-194A35852791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A098D28B-554A-426F-9A90-194A35852791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{439BA650-8540-4D6A-A96B-2C2864116BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{439BA650-8540-4D6A-A96B-2C2864116BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{439BA650-8540-4D6A-A96B-2C2864116BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{439BA650-8540-4D6A-A96B-2C2864116BCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B4827C2-B993-4409-BA87-1473F61616F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4827C2-B993-4409-BA87-1473F61616F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4827C2-B993-4409-BA87-1473F61616F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4827C2-B993-4409-BA87-1473F61616F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

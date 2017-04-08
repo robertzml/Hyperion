@@ -1,0 +1,154 @@
+﻿@model IEnumerable<Hyperion.Core.DL.EquipmentManager>
+
+@{
+    ViewBag.Title = "设备列表";
+}
+
+<!-- BEGIN PAGE HEAD-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            @ViewBag.Title
+            <small></small>
+        </h1>
+    </div>
+    <!-- END PAGE TITLE -->
+</div>
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE BREADCRUMB -->
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="@Url.Action("Index", new { controller = "Home" })">主页</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">设备管理</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <span class="active">@ViewBag.Title</span>
+    </li>
+</ul>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet box green-haze">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i>设备列表
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                    <a href="" class="fullscreen"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover dt-responsive" style="width: 100%;" id="equipment-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SerialNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Vendor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Type)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Version)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Owner)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PhoneNo)
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SerialNumber)
+                            </th>
+                            <th data-filter="true">
+                                @Html.DisplayNameFor(model => model.Vendor)
+                            </th>
+                            <th data-filter="true">
+                                @Html.DisplayNameFor(model => model.Type)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Version)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Owner)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PhoneNo)
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Vendor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Version)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Owner)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNo)
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="@Url.Action("Details", new { controller = "Equipment", id = item.Id })" data-target="#ajax-modal" data-toggle="modal"> 查看 </a>
+                                    <a class="btn btn-sm green-dark" href="@Url.Action("ListByEquipment", new { controller = "User", serialNumber = item.SerialNumber })" data-target="#ajax-modal" data-toggle="modal"> 用户 </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!--DOC: Aplly "modal-cached" class after "modal" class to enable ajax content caching-->
+<div class="modal fade" id="ajax-modal" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="/assets/global/img/loading-spinner-grey.gif" alt="" class="loading">
+                <span> &nbsp;&nbsp;Loading... </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            hyperion.leftNavActive($('#menu-equipment-list'));
+            hyperion.initDatatable($('#equipment-table'), true);
+        });
+    </script>
+}

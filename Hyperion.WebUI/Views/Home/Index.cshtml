@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- BEGIN PAGE HEAD-->
+<div class="page-head">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            Blank Page Layout
+            <small>blank page layout</small>
+        </h1>
+    </div>
+    <!-- END PAGE TITLE -->
+</div>
+<!-- END PAGE HEAD-->
+<!-- BEGIN PAGE BREADCRUMB -->
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="@Url.Action("Index", new { controller = "Home" })">主页</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="#">主页</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <span class="active">@ViewBag.Title</span>
+    </li>
+</ul>
+<!-- END PAGE BREADCRUMB -->
+<!-- BEGIN PAGE BASE CONTENT -->
+<div class="note note-info">
+    <p> A black page template with a minimal dependency assets to use as a base for any custom page you create </p>
+</div>
+<!-- END PAGE BASE CONTENT -->
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            hyperion.leftNavActive($('#menu-home'));
+        });
+</script>
+}
