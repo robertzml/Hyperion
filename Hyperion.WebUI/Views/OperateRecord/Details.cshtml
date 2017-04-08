@@ -62,7 +62,7 @@
                                 @Html.DisplayNameFor(model => model.UserName)
                             </td>
                             <td>
-                                @Html.DisplayFor(model => model.UserName)
+                                @HttpUtility.HtmlDecode(Model.UserName)
                             </td>
                         </tr>
                         <tr>
@@ -109,7 +109,7 @@
                             <td>
                                 @Html.DisplayNameFor(model => model.RequestBody)
                             </td>
-                            <td>
+                            <td style="word-break: break-all">
                                 @Html.DisplayFor(model => model.RequestBody)
                             </td>
                         </tr>

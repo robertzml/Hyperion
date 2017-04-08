@@ -80,7 +80,7 @@ var hyperion = function() {
         return oTable;
     };
 
-    var handleInitAjaxDatatable = function($dom, url, columns) {
+    var handleInitAjaxDatatable = function($dom, url, columns, columnDefs) {
 
         var oTable = $dom.dataTable({
 
@@ -112,7 +112,7 @@ var hyperion = function() {
                 "type": "POST"
             },
             "columns": columns,
-
+            "columnDefs": columnDefs,
             "ordering": false,
 
             "order": [],
@@ -130,6 +130,9 @@ var hyperion = function() {
         return oTable;
     };
 
+    var handleMomentDateTime = function(dt) {
+        return moment(dt).format('YYYY-MM-DD HH:mm:ss');
+	}
 
     return {
         leftNavActive: function($dom) {
@@ -140,8 +143,16 @@ var hyperion = function() {
 			return handleInitDatatable($dom, filter);
 		},
 
-        initAjaxDatatable: function($dom, url, columns) {
-            return handleInitAjaxDatatable($dom, url, columns);
-        }
+        initAjaxDatatable: function($dom, url, columns, columnDefs) {
+            return handleInitAjaxDatatable($dom, url, columns, columnDefs);
+        },
+
+        /* moment parse asp.net datetime */
+		parseDateTime: function(dt) {
+			if (dt != null && dt != '')
+				return handleMomentDateTime(dt);
+			else
+				return null;
+		}
     }
 }();

@@ -142,9 +142,7 @@
     <Compile Include="Services\IFormsAuthenticationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\global\css\components.css" />
     <Content Include="assets\global\css\components.min.css" />
-    <Content Include="assets\global\css\plugins.css" />
     <Content Include="assets\global\css\plugins.min.css" />
     <Content Include="assets\global\img\accordion-plusminus.png" />
     <Content Include="assets\global\img\ajax-loading.gif" />
@@ -220,8 +218,6 @@
     <Content Include="assets\layouts\layout4\css\layout.min.css" />
     <Content Include="assets\layouts\layout4\css\themes\default.css" />
     <Content Include="assets\layouts\layout4\css\themes\default.min.css" />
-    <Content Include="assets\layouts\layout4\css\themes\light.css" />
-    <Content Include="assets\layouts\layout4\css\themes\light.min.css" />
     <Content Include="assets\layouts\layout4\img\ajax-loading.gif" />
     <Content Include="assets\layouts\layout4\img\ajax-modal-loading.gif" />
     <Content Include="assets\layouts\layout4\img\arrow-down.png" />
@@ -246,7 +242,6 @@
     <Content Include="assets\layouts\layout4\scripts\layout.js" />
     <Content Include="assets\layouts\layout4\scripts\layout.min.js" />
     <Content Include="assets\pages\css\login-5.css" />
-    <Content Include="assets\pages\css\login-5.min.css" />
     <Content Include="assets\pages\img\bg-opacity.png" />
     <Content Include="assets\pages\img\bg-white-lock.png" />
     <Content Include="assets\pages\img\bg-white.png" />

@@ -132,7 +132,13 @@
                 { "data": "OSType" },
                 { "data": "SerialNumber" },
                 { "data": null, "defaultContent": "<button class='btn btn-sm btn-primary' href=''> 查看 </button>" }
-            ]);
+            ], [{
+                "targets": 2,
+                "render": function (data, type, row) {
+                    var date = hyperion.parseDateTime(data);
+                    return date;
+                }
+            }]);
 
             $('#operate-table tbody').on('click', 'button', function () {
                 var data = table.api().row($(this).parents('tr')).data();
