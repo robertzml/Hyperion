@@ -1,5 +1,24 @@
 var hyperion = function() {
 
+    var handleTostarMessage = function(message) {
+		
+		toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+		toastr['info'](message);
+	};
+
     var handleLeftNavActive = function($dom) {
 		$('ul#left-nav').children().removeClass('active open');	
 
@@ -44,7 +63,7 @@ var hyperion = function() {
                 [5, 10, 15, 20, "All"] // change per page values here
             ],
             // set the initial value
-            "pageLength": 15,
+            "pageLength": 10,
 
             "dom": "<'row' <'col-md-12'>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
 
@@ -135,6 +154,10 @@ var hyperion = function() {
 	}
 
     return {
+        showMessage: function(message) {
+			handleTostarMessage(message);
+		},
+
         leftNavActive: function($dom) {
 			handleLeftNavActive($dom);
 		},

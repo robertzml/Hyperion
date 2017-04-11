@@ -35,6 +35,29 @@ namespace Hyperion.Core.BL
         {
             return this.baseDal.FindOneByField("serialnumber", serialNumber);
         }
+
+        /// <summary>
+        /// 添加设备
+        /// </summary>
+        /// <param name="entity">实体对象</param>
+        /// <returns></returns>
+        public override EquipmentManager Create(EquipmentManager entity)
+        {
+            entity.CreateDate = DateTime.Now;
+            entity.State = 1;
+            return base.Create(entity);
+        }
+
+        /// <summary>
+        /// 编辑设备
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public override bool Update(EquipmentManager entity)
+        {
+            entity.UpdateDate = DateTime.Now;
+            return base.Update(entity);
+        }
         #endregion //Method
     }
 }

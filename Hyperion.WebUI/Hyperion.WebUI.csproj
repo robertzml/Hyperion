@@ -169,6 +169,10 @@
     <Content Include="assets\global\img\syncfusion-icons.png" />
     <Content Include="assets\global\plugins\backstretch\jquery.backstretch.js" />
     <Content Include="assets\global\plugins\backstretch\jquery.backstretch.min.js" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\toastr.css" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\toastr.js" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\toastr.min.css" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\toastr.min.js" />
     <Content Include="assets\global\plugins\bootstrap\css\bootstrap.css" />
     <Content Include="assets\global\plugins\bootstrap\css\bootstrap.min.css" />
     <Content Include="assets\global\plugins\bootstrap\fonts\bootstrap\glyphicons-halflings-regular.svg" />
@@ -272,6 +276,8 @@
     <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.eot" />
     <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
     <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\README.md" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\toastr.min.js.map" />
     <None Include="Properties\PublishProfiles\Hyperion.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\hyperion.js" />
@@ -318,6 +324,8 @@
     <Content Include="Views\User\ListByEquipment.cshtml" />
     <Content Include="Views\OperateRecord\List.cshtml" />
     <Content Include="Views\OperateRecord\Details.cshtml" />
+    <Content Include="Views\Equipment\Create.cshtml" />
+    <Content Include="Views\Equipment\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,12 +23,14 @@ namespace Hyperion.Core.DL
         /// <summary>
         /// 序列号
         /// </summary>
+        [Required]
         [Display(Name = "序列号")]
         public string SerialNumber { get; set; }
 
         /// <summary>
         /// 厂家
         /// </summary>
+        [Required]
         [Display(Name = "厂家")]
         public string Vendor { get; set; }
 
