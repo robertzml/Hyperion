@@ -2,42 +2,37 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Runtime.Serialization;
+using System.Web;
 
-namespace Hyperion.Core.DL
+namespace Hyperion.WebUI.Models
 {
-    using Poseidon.Base.Framework;
-
     /// <summary>
-    /// 管理用户类
+    /// 注册账户模型
     /// </summary>
-    public class UserInfo : IBaseEntity<int>
+    public class RegisterModel
     {
-        #region Property
-        /// <summary>
-        /// ID
-        /// </summary>
-        [Display(Name = "Id")]
-        public int Id { get; set; }
-
         /// <summary>
         /// 用户名
         /// </summary>
+        [Required]
         [Display(Name = "用户名")]
         public string UserName { get; set; }
 
         /// <summary>
         /// 密码
         /// </summary>
+        [Required]
+        [DataType(DataType.Password)]
         [Display(Name = "密码")]
         public string Password { get; set; }
 
         /// <summary>
-        /// 用户级别
+        /// 确认密码
         /// </summary>
-        [Display(Name = "用户级别")]
-        public int UserLevel { get; set; }
+        [Compare("Password", ErrorMessage = "两次输入密码不一致")]
+        [DataType(DataType.Password)]
+        [Display(Name = "确认密码")]
+        public string ConfirmPassword { get; set; }
 
         /// <summary>
         /// 所属企业
@@ -58,18 +53,5 @@ namespace Hyperion.Core.DL
         /// </summary>
         [Display(Name = "邮箱")]
         public string Email { get; set; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        [Display(Name = "创建时间")]
-        public DateTime CreateDate { get; set; }
-
-        /// <summary>
-        /// 上级用户
-        /// </summary>
-        [Display(Name = "上级用户")]
-        public string ParentUserName { get; set; }
-        #endregion //Property
     }
 }

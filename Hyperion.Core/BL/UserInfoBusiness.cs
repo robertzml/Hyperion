@@ -74,6 +74,21 @@ namespace Hyperion.Core.BL
             entity.Password = newPass;
             return this.baseDal.Update(entity);
         }
+
+        /// <summary>
+        /// 编辑用户
+        /// </summary>
+        /// <param name="entity">实体对象</param>
+        /// <returns></returns>
+        public override bool Update(UserInfo entity)
+        {
+            var user = this.baseDal.FindById(entity.Id);
+            user.Vendor = entity.Vendor;
+            user.PhoneNumber = entity.PhoneNumber;
+            user.Email = entity.Email;
+
+            return base.Update(user);
+        }
         #endregion //Method
     }
 }
