@@ -5,7 +5,7 @@
     ViewBag.Title = "故障维护信息";
 }
 
-<div class="row">
+<div class="row" id="app-alarmreport">
     <div class="col-md-12">
         <div class="portlet light bordered">
             <div class="portlet-title">
@@ -30,7 +30,7 @@
                                 @Html.DisplayNameFor(model => model.Id)
                             </td>
                             <td>
-                                @Html.DisplayFor(model => model.Id)
+                                {{ entity.Id }}
                             </td>
                         </tr>
                         <tr>
@@ -122,3 +122,23 @@
 <div class="modal-footer">
     <button type="button" data-dismiss="modal" class="btn blue btn-outline">关闭</button>
 </div>
+
+
+<script type="text/javascript">
+    var id = @Model.Id;
+
+    var app_alarmreport = new Vue({
+        el: '#app-alarmreport',
+        data: {
+            entity: {}
+        },
+        created: function () {
+            var vm = this;
+            axios.get('/api/alarmreport/' + id)
+                .then(function(response) {
+                    console.log(response);
+                    vm.entity = response.data;
+                });
+        }
+    });
+</script>
