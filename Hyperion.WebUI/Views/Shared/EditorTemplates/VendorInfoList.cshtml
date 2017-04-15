@@ -1,0 +1,13 @@
+﻿@model string
+
+@{
+    var vendors = CallerFactory<IVendorInfoService>.Instance.FindAll();
+}
+
+<select class="form-control" id="Vendor" name="Vendor">
+    <option value="">-- 请选择 --</option>
+    @foreach (var item in vendors)
+    {
+        <option value="@item.Name" @(Model == item.Name ? "selected='selected'" : "")>@item.Name</option>
+    }
+</select>

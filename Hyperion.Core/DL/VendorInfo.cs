@@ -24,12 +24,14 @@ namespace Hyperion.Core.DL
         /// <summary>
         /// 名称
         /// </summary>
+        [Required]
         [Display(Name = "名称")]
         public string Name { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
+        [DataType(DataType.MultilineText)]
         [Display(Name = "备注")]
         public string Description { get; set; }
         #endregion //Property

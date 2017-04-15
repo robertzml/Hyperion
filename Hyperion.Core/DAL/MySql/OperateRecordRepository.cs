@@ -97,7 +97,7 @@ namespace Hyperion.Core.DAL.MySQL
             string condition = "1 = 1";
             List<MySqlParameter> paras = new List<MySqlParameter>();
 
-            return base.FindWithPage(condition, paras, startPos, count);
+            return base.FindWithPage(condition, paras, "id", "DESC", startPos, count);
         }
         #endregion //Method
     }

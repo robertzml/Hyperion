@@ -8,6 +8,7 @@ using System.Web.Routing;
 namespace Hyperion.WebUI.Controllers
 {
     using Poseidon.Base.Framework;
+    using Poseidon.Base.System;
     using Poseidon.Common;
     using Hyperion.Caller.Facade;
     using Hyperion.Core.DL;
@@ -99,6 +100,7 @@ namespace Hyperion.WebUI.Controllers
         /// 管理用户列表
         /// </summary>
         /// <returns></returns>
+        [EnhancedAuthorize(Roles = "0")]
         [HttpGet]
         public ActionResult List()
         {
@@ -111,6 +113,7 @@ namespace Hyperion.WebUI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [EnhancedAuthorize(Roles = "0")]
         [HttpGet]
         public ActionResult Details(int id)
         {
@@ -119,6 +122,97 @@ namespace Hyperion.WebUI.Controllers
                 return HttpNotFound();
 
             return View(data);
+        }
+
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <returns></returns>
+        [EnhancedAuthorize(Roles = "0")]
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [EnhancedAuthorize(Roles = "0")]
+        [HttpPost]
+        public ActionResult Create(RegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    UserInfo entity = new UserInfo();
+                    entity.UserName = model.UserName;
+                    entity.Password = Hasher.MD5Encrypt(model.Password).ToUpper();
+                    entity.UserLevel = 1;
+                    entity.Vendor = model.Vendor;
+                    entity.PhoneNumber = model.PhoneNumber;
+                    entity.Email = model.Email;
+                    entity.ParentUserName = User.Identity.Name;
+                    entity.CreateDate = DateTime.Now;
+
+                    CallerFactory<IUserInfoService>.Instance.Create(entity);
+
+                    TempData["Message"] = "添加用户成功";
+                    return RedirectToAction("List");
+                }
+                catch (PoseidonException e)
+                {
+                    ModelState.AddModelError("", "添加用户失败：" + e.Message);
+                }
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// 编辑用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [EnhancedAuthorize(Roles = "0")]
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var data = CallerFactory<IUserInfoService>.Instance.FindById(id);
+            if (data == null)
+                return HttpNotFound();
+
+            return View(data);
+        }
+
+        /// <summary>
+        /// 编辑用户
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [EnhancedAuthorize(Roles = "0")]
+        [HttpPost]
+        public ActionResult Edit(UserInfo model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    CallerFactory<IUserInfoService>.Instance.Update(model);
+
+                    TempData["Message"] = "编辑账户成功";
+                    return RedirectToAction("List");
+                }
+                catch (PoseidonException e)
+                {
+                    ModelState.AddModelError("", "编辑账户失败：" + e.Message);
+                }
+            }
+
+            return View(model);
         }
         #endregion //Action
     }

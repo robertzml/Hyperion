@@ -13,6 +13,10 @@ namespace Hyperion.WebUI.Controllers
     public class HomeController : Controller
     {
         #region Action
+        /// <summary>
+        /// 主页
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();

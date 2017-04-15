@@ -137,9 +137,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FormsAuthenticationService.cs" />
     <Compile Include="Services\IFormsAuthenticationService.cs" />
+    <Compile Include="Services\ModelExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\global\css\components.min.css" />
@@ -153,6 +155,7 @@
     <Content Include="assets\global\img\loading-spinner-default.gif" />
     <Content Include="assets\global\img\loading-spinner-grey.gif" />
     <Content Include="assets\global\img\loading.gif" />
+    <Content Include="assets\global\img\logo.png" />
     <Content Include="assets\global\img\overlay-icon.png" />
     <Content Include="assets\global\img\portlet-collapse-icon-white.png" />
     <Content Include="assets\global\img\portlet-collapse-icon.png" />
@@ -169,6 +172,10 @@
     <Content Include="assets\global\img\syncfusion-icons.png" />
     <Content Include="assets\global\plugins\backstretch\jquery.backstretch.js" />
     <Content Include="assets\global\plugins\backstretch\jquery.backstretch.min.js" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\toastr.css" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\toastr.js" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\toastr.min.css" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\toastr.min.js" />
     <Content Include="assets\global\plugins\bootstrap\css\bootstrap.css" />
     <Content Include="assets\global\plugins\bootstrap\css\bootstrap.min.css" />
     <Content Include="assets\global\plugins\bootstrap\fonts\bootstrap\glyphicons-halflings-regular.svg" />
@@ -233,7 +240,6 @@
     <Content Include="assets\layouts\layout4\img\loading-spinner-grey.gif" />
     <Content Include="assets\layouts\layout4\img\loading.gif" />
     <Content Include="assets\layouts\layout4\img\logo-default.png" />
-    <Content Include="assets\layouts\layout4\img\logo-light.png" />
     <Content Include="assets\layouts\layout4\img\menu-toggler.png" />
     <Content Include="assets\layouts\layout4\img\remove-icon-small.png" />
     <Content Include="assets\layouts\layout4\img\search_icon_light.png" />
@@ -241,7 +247,7 @@
     <Content Include="assets\layouts\layout4\img\sidebar-toggle-light.png" />
     <Content Include="assets\layouts\layout4\scripts\layout.js" />
     <Content Include="assets\layouts\layout4\scripts\layout.min.js" />
-    <Content Include="assets\pages\css\login-5.css" />
+    <Content Include="assets\pages\css\login-5.min.css" />
     <Content Include="assets\pages\img\bg-opacity.png" />
     <Content Include="assets\pages\img\bg-white-lock.png" />
     <Content Include="assets\pages\img\bg-white.png" />
@@ -272,6 +278,8 @@
     <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.eot" />
     <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
     <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\README.md" />
+    <Content Include="assets\global\plugins\bootstrap-toastr\toastr.min.js.map" />
     <None Include="Properties\PublishProfiles\Hyperion.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\hyperion.js" />
@@ -288,6 +296,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\vue.js" />
+    <Content Include="Scripts\vue.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -318,6 +328,13 @@
     <Content Include="Views\User\ListByEquipment.cshtml" />
     <Content Include="Views\OperateRecord\List.cshtml" />
     <Content Include="Views\OperateRecord\Details.cshtml" />
+    <Content Include="Views\Equipment\Create.cshtml" />
+    <Content Include="Views\Equipment\Edit.cshtml" />
+    <Content Include="Views\VendorInfo\Create.cshtml" />
+    <Content Include="Views\VendorInfo\Edit.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\VendorInfoList.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,6 +16,14 @@
     vertical-align: middle;
 }
 
+.page-header.navbar .page-logo {
+    width: 350px;
+}
+
+.page-header.navbar .page-logo .logo-default {
+    margin-top: 15px;
+}
+
 .modal-dialog {
     margin-top: 90px;
 }

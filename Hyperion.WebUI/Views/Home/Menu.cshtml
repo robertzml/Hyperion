@@ -78,6 +78,8 @@
             </li>
         </ul>
     </li>
+    @if (User.IsInRole2("0"))
+    {
     <li class="nav-item left-nav-top">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="icon-user"></i>
@@ -93,5 +95,6 @@
             </li>
         </ul>
     </li>
+    }
 </ul>
 <!-- END SIDEBAR MENU -->
