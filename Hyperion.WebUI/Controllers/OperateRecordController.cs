@@ -54,7 +54,7 @@ namespace Hyperion.WebUI.Controllers
             int start = Convert.ToInt32(form["start"]);
             int length = Convert.ToInt32(form["length"]);
 
-            var records = CallerFactory<IOperateRecordService>.Instance.FindWithPage(start, length);
+            var records = CallerFactory<IOperateRecordService>.Instance.FindWithPage(start, length).OrderByDescending(r => r.LogTime);
             var count = CallerFactory<IOperateRecordService>.Instance.Count();
 
             var data = new

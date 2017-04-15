@@ -78,7 +78,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.SerialNumber)
                             </th>
-                            <th>
+                            <th data-filter="true">
                                 @Html.DisplayNameFor(model => model.AlarmCode)
                             </th>
                             <th>
@@ -96,7 +96,6 @@
                         </tr>
                     </tfoot>
                     <tbody>
-
                         @foreach (var item in Model)
                         {
                             <tr>
