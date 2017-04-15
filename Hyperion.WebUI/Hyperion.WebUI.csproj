@@ -153,6 +153,7 @@
     <Content Include="assets\global\img\loading-spinner-default.gif" />
     <Content Include="assets\global\img\loading-spinner-grey.gif" />
     <Content Include="assets\global\img\loading.gif" />
+    <Content Include="assets\global\img\logo.png" />
     <Content Include="assets\global\img\overlay-icon.png" />
     <Content Include="assets\global\img\portlet-collapse-icon-white.png" />
     <Content Include="assets\global\img\portlet-collapse-icon.png" />
@@ -237,7 +238,6 @@
     <Content Include="assets\layouts\layout4\img\loading-spinner-grey.gif" />
     <Content Include="assets\layouts\layout4\img\loading.gif" />
     <Content Include="assets\layouts\layout4\img\logo-default.png" />
-    <Content Include="assets\layouts\layout4\img\logo-light.png" />
     <Content Include="assets\layouts\layout4\img\menu-toggler.png" />
     <Content Include="assets\layouts\layout4\img\remove-icon-small.png" />
     <Content Include="assets\layouts\layout4\img\search_icon_light.png" />
@@ -294,6 +294,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\vue.js" />
+    <Content Include="Scripts\vue.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -326,6 +328,8 @@
     <Content Include="Views\OperateRecord\Details.cshtml" />
     <Content Include="Views\Equipment\Create.cshtml" />
     <Content Include="Views\Equipment\Edit.cshtml" />
+    <Content Include="Views\VendorInfo\Create.cshtml" />
+    <Content Include="Views\VendorInfo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

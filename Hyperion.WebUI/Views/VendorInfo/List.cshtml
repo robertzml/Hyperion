@@ -83,11 +83,17 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-sm btn-primary" href="@Url.Action("Details", new { controller = "VendorInfo", id = item.Id })" data-target="#ajax-modal" data-toggle="modal"> 查看 </a>
+                                    <a class="btn btn-sm yellow-casablanca" href="@Url.Action("Edit", new { controller = "VendorInfo", id = item.Id })"> 编辑 </a>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
+
+                <hr />
+                <p>
+                    <a class="btn btn-primary" href="@Url.Action("Create", new { controller = "VendorInfo" })">添加厂家</a>
+                </p>
             </div>
         </div>
         
