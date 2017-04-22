@@ -251,3 +251,12 @@ paket-files/
 .idea/
 *.sln.iml
 /Assembly
+
+.DS_Store
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/Hyperion.Vue/typings
+/Hyperion.Vue/typings.json
