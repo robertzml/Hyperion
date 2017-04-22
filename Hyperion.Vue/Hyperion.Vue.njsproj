@@ -68,12 +68,18 @@
     <Folder Include="static\" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\axios\" />
+    <Folder Include="typings\globals\bootstrap\" />
+    <Folder Include="typings\globals\jquery\" />
     <Folder Include="typings\globals\node\" />
     <Folder Include="typings\globals\ora\" />
     <Folder Include="typings\globals\vue\" />
     <Folder Include="typings\globals\webpack-merge\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="typings\globals\axios\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\ora\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\vue\index.d.ts" />

@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li class="active"><router-link :to="{ name: 'home' }">主页 <span class="sr-only">(current)</span></router-link></li>
             <li><a href="#">Reports</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
@@ -14,6 +14,7 @@
             <li><a href="">More navigation</a></li>
         </ul>
         <ul class="nav nav-sidebar">
+            <li><router-link :to="{ name: 'vendor' }">厂家管理</router-link></li>
             <li><a href="">Nav item again</a></li>
             <li><a href="">One more nav</a></li>
             <li><a href="">Another nav item</a></li>
