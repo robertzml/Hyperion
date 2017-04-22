@@ -15,7 +15,7 @@
         <!-- BEGIN PAGE BREADCRUMB -->
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="/">主页</a>
+                <router-link :to="{ name: 'home' }">主页</router-link>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -29,7 +29,19 @@
     
         <div class="row">
             <div class="col-md-12">
-                vendor
+                <ol>
+                    <li v-for="item in vendors">
+                        {{ item.Name }}
+                    </li>
+                </ol>
+                <table>
+                    <tbody>
+                        <tr v-for="item in vendors">
+                            <td>{{ item.Name }}</td>
+                            <td>{{ item.Description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -42,14 +54,16 @@ export default {
     name: 'vendor',
     data () {
         return {
-            title: '厂家列表'
+            title: '厂家列表',
+            vendors: []
         }
     },
     created: function () {
         var vm = this
-        axios.get('http://localhost:6024/api/vendor')
+        axios.get('http://localhost:6024/api/vendorinfo')
             .then(function (response) {
                 console.log(response)
+                vm.vendors = response.data
         })
     }
 }
