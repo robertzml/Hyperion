@@ -10,6 +10,7 @@ namespace Hyperion.WebAPI.Controllers
 {
     using Poseidon.Base.Framework;
     using Poseidon.Base.System;
+    using Hyperion.Caller.Facade;
     using Hyperion.Core.DL;
 
     /// <summary>
@@ -25,23 +26,24 @@ namespace Hyperion.WebAPI.Controllers
         /// <returns></returns>
         public IHttpActionResult Get()
         {
-            List<VendorInfo> data = new List<VendorInfo>();
-            data.Add(new VendorInfo { Id = 1, Name = "Mulan", Description = "First" });
-            data.Add(new VendorInfo { Id = 2, Name = "Aupu", Description = "Second" });
+            var data = CallerFactory<IVendorInfoService>.Instance.FindAll();
+
+            return Ok(data);
+        }
+
+        /// <summary>
+        /// 厂家信息
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns></returns>
+        public IHttpActionResult Get(int id)
+        {
+            var data = CallerFactory<IVendorInfoService>.Instance.FindById(id);
+            if (data == null)
+                return NotFound();
 
             return Ok(data);
         }
         #endregion //Action
-
-        // GET: api/VendorInfo/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/VendorInfo
-        public void Post([FromBody]string value)
-        {
-        }
     }
 }
