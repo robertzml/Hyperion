@@ -5,9 +5,9 @@
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
                 <h1>
-                    {{ title }}
-                    <small></small>
-                </h1>
+                        {{ title }}
+                        <small></small>
+                    </h1>
             </div>
             <!-- END PAGE TITLE -->
         </div>
@@ -44,19 +44,33 @@
                 </table>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>
+                <vendortable></vendortable>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import axios from 'axios'
+import { ClientTable, Event } from 'vue-tables-2'
 import { apihost } from '../config.js'
+import VendorTable from './VendorTable'
+
+Vue.use(ClientTable, {}, false)
 
 export default {
     name: 'vendor',
     data () {
         return {
             title: '厂家列表',
-            vendors: []
+            vendors: [],
+            columns: ['Id', 'Name', 'Description'],
+            tableData: [],
+            options: {}
         }
     },
     created: function () {
@@ -65,7 +79,11 @@ export default {
             .then(function (response) {
                 console.log(response)
                 vm.vendors = response.data
-        })
+                vm.tableData = response.data
+            })
+    },
+    components: {
+        VendorTable
     }
 }
 </script>
