@@ -49,6 +49,7 @@
 
 <script>
 import axios from 'axios'
+import { apihost } from '../config.js'
 
 export default {
     name: 'vendor',
@@ -60,7 +61,7 @@ export default {
     },
     created: function () {
         var vm = this
-        axios.get('http://localhost:6024/api/vendorinfo')
+        axios.get(apihost + 'vendorinfo')
             .then(function (response) {
                 console.log(response)
                 vm.vendors = response.data
