@@ -71,6 +71,8 @@
     <Compile Include="HomeTest.cs" />
     <Compile Include="RoomTest.cs" />
     <Compile Include="AlarmReportTest.cs" />
+    <Compile Include="MessageTest.cs" />
+    <Compile Include="HttpTest.cs" />
     <Compile Include="VendorTest.cs" />
     <Compile Include="UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +81,10 @@
     <ProjectReference Include="..\Hyperion.Caller\Hyperion.Caller.csproj">
       <Project>{5b4827c2-b993-4409-ba87-1473f61616f8}</Project>
       <Name>Hyperion.Caller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hyperion.ControlClient\Hyperion.ControlClient.csproj">
+      <Project>{6d538e46-d788-40a2-a2e9-7747e1975c73}</Project>
+      <Name>Hyperion.ControlClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hyperion.Core\Hyperion.Core.csproj">
       <Project>{885b9039-b005-4c46-bf63-67968ee861e1}</Project>
