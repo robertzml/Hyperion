@@ -44,10 +44,10 @@
                 </table>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
-                <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>
-                <vendortable></vendortable>
+                <vendorTable></vendorTable>
             </div>
         </div>
     </div>
@@ -56,14 +56,14 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
-import { ClientTable, Event } from 'vue-tables-2'
 import { apihost } from '../config.js'
-import VendorTable from './VendorTable'
-
-Vue.use(ClientTable, {}, false)
+import VendorTable from './VendorTable.vue'
 
 export default {
     name: 'vendor',
+    components: {
+        VendorTable
+    },
     data () {
         return {
             title: '厂家列表',
@@ -81,9 +81,6 @@ export default {
                 vm.vendors = response.data
                 vm.tableData = response.data
             })
-    },
-    components: {
-        VendorTable
     }
 }
 </script>

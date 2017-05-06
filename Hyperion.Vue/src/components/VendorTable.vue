@@ -1,6 +1,8 @@
 <template>
-    <vuetable ref="vuetable" api-url="http://vuetable.ratiw.net/api/users" :fields="['name', 'email', 'birthdate']" :css="css">
-    </vuetable>
+  <vuetable ref="vuetable"
+    api-url="http://vuetable.ratiw.net/api/users"
+    :fields="['name', 'email', 'birthdate']"
+  ></vuetable>
 </template>
 
 <script>
