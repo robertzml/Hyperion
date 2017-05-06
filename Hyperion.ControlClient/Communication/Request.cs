@@ -30,11 +30,6 @@ namespace Hyperion.ControlClient.Communication
 
             try
             {
-                //var content = new FormUrlEncodedContent(new[]
-                //{
-                //    new KeyValuePair<string, string>("", message)
-                //});
-
                 var content = new StringContent(message);
 
                 var result = await client.PostAsync(this.host, content);

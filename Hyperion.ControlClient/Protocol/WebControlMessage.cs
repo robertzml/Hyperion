@@ -85,6 +85,16 @@ namespace Hyperion.ControlClient.Protocol
 
             return message;
         }
+
+        /// <summary>
+        /// 设置控制动作
+        /// </summary>
+        /// <param name="tlv">控制动作</param>
+        public void SetAction(TLV tlv)
+        {
+            string content = tlv.ToString();
+            this.action = new TLV(tag: 0x12, value: content);
+        }
         #endregion //Method
     }
 }
