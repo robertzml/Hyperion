@@ -21,7 +21,31 @@ namespace Hyperion.ControlClient.Protocol
         /// 流水号
         /// </summary>
         protected int sequence;
+
+        /// <summary>
+        /// 消息编码
+        /// </summary>
+        protected int messageCode;
         #endregion //Field
+
+        #region Function
+        /// <summary>
+        /// 生成消息编码
+        /// </summary>
+        /// <param name="cell">信元内容</param>
+        /// <returns></returns>
+        protected TLV GenerateMessageCode(string cell)
+        {
+            var mtlv = new TLV(tag: this.messageCode, value: cell);
+            return mtlv;
+        }
+
+        /// <summary>
+        /// 生成信元报文
+        /// </summary>
+        /// <returns></returns>
+        protected abstract string GenerateCellMessage();
+        #endregion //Function
 
         #region Method
         /// <summary>
@@ -56,6 +80,21 @@ namespace Hyperion.ControlClient.Protocol
             set
             {
                 sequence = value;
+            }
+        }
+
+        /// <summary>
+        /// 消息编码
+        /// </summary>
+        public int MessageCode
+        {
+            get
+            {
+                return this.messageCode;
+            }
+            set
+            {
+                this.messageCode = value;
             }
         }
         #endregion //Property

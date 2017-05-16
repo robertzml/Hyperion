@@ -64,12 +64,24 @@ namespace Hyperion.ControlClient.Protocol
         private void InitData(string userId, string serialNumber)
         {
             this.sequence = 1;
+            this.messageCode = 0x30;
             this.accessType = new TLV(tag: 0x06, value: "2");
             this.loginType = new TLV(tag: 0x34, value: "4");
             this.userId = new TLV(tag: 0x01, value: userId);
             this.equipmentSerialNumber = new TLV(tag: 0x127, value: serialNumber);
             this.transactionId = new TLV(tag: 0x1A, value: "1");
             this.action = new TLV(tag: 0x12, value: "000100010");
+        }
+
+        /// <summary>
+        /// 生成信元报文
+        /// </summary>
+        /// <returns></returns>
+        protected override string GenerateCellMessage()
+        {
+            string cellCode = accessType.ToString() + loginType.ToString() + userId.ToString()
+                + equipmentSerialNumber.ToString() + transactionId.ToString() + action.ToString();
+            return cellCode;
         }
         #endregion //Function
 
@@ -80,8 +92,10 @@ namespace Hyperion.ControlClient.Protocol
         /// <returns></returns>
         public override string GetMessage()
         {
-            string message = this.version + this.sequence.ToString("X8") + accessType.ToString() + loginType.ToString() + userId.ToString()
-                + equipmentSerialNumber.ToString() + transactionId.ToString() + action.ToString();
+            var cellMessage = GenerateCellMessage();
+
+            var mtlv = GenerateMessageCode(cellMessage);
+            string message = this.version + this.sequence.ToString("X8") + mtlv.ToString();
 
             return message;
         }

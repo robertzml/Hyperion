@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Hyperion.ControlClient.Communication
 {
+    using Poseidon.Base.System;
+
     /// <summary>
     /// 控制请求类
     /// </summary>
@@ -22,8 +24,40 @@ namespace Hyperion.ControlClient.Communication
         /// 发送控制请求
         /// </summary>
         /// <param name="message">请求报文</param>
+        /// <returns>返回HTTP内容</returns>
+        //public async Task<string> Post(string message)
+        //{
+        //    HttpClient client = new HttpClient();
+        //    client.Timeout = new TimeSpan(0, 0, 15);
+
+        //    try
+        //    {
+        //        var content = new StringContent(message);
+
+        //        var result = await client.PostAsync(this.host, content);
+
+        //        var statusCode = result.StatusCode;
+
+        //        var resultContent = await result.Content.ReadAsStringAsync();
+
+        //        return resultContent;
+        //    }
+        //    catch (HttpRequestException e)
+        //    {
+        //        return $"Http Exception :{e.Message}";
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return $"Uncatched Exception: {e.Message}";
+        //    }
+        //}
+
+        /// <summary>
+        /// 发送控制请求
+        /// </summary>
+        /// <param name="message">请求报文</param>
         /// <returns></returns>
-        public async Task<string> Post(string message)
+        public async Task<HttpResponseMessage> Post(string message)
         {
             HttpClient client = new HttpClient();
             client.Timeout = new TimeSpan(0, 0, 15);
@@ -34,19 +68,15 @@ namespace Hyperion.ControlClient.Communication
 
                 var result = await client.PostAsync(this.host, content);
 
-                var statusCode = result.StatusCode;
-
-                var resultContent = await result.Content.ReadAsStringAsync();
-
-                return resultContent;
+                return result;
             }
             catch (HttpRequestException e)
             {
-                return $"Http Exception :{e.Message}";
+                throw new PoseidonException($"Http Exception: {e.Message}");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return $"Uncatched Exception: {e.Message}";
+                throw new PoseidonException($"Uncatched Exception: {e.Message}");
             }
         }
         #endregion //Method
