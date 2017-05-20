@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,8 +9,11 @@ namespace Hyperion.WebUI.Controllers
 {
     using Poseidon.Base.Framework;
     using Poseidon.Base.System;
+    using Poseidon.Common;
     using Hyperion.Caller.Facade;
     using Hyperion.Core.DL;
+    using Hyperion.ControlClient.Communication;
+    using Hyperion.ControlClient.Protocol;
 
     /// <summary>
     /// 设备管理控制器
@@ -36,6 +40,21 @@ namespace Hyperion.WebUI.Controllers
         /// <returns></returns>
         [HttpGet]
         public ActionResult Details(int id)
+        {
+            var data = CallerFactory<IEquipmentManagerService>.Instance.FindById(id);
+            if (data == null)
+                return HttpNotFound();
+
+            return View(data);
+        }
+
+        /// <summary>
+        /// 设备控制
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Control(int id)
         {
             var data = CallerFactory<IEquipmentManagerService>.Instance.FindById(id);
             if (data == null)
@@ -136,6 +155,57 @@ namespace Hyperion.WebUI.Controllers
             }
 
             return View(model);
+        }
+
+        /// <summary>
+        /// 停用设备
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public string Disable(int id)
+        {
+            Request request = new Request();
+            string result = "";
+
+            var equipment = CallerFactory<IEquipmentManagerService>.Instance.FindById(id);
+            string userId = Hasher.MD5Encrypt(User.Identity.Name);
+           
+            WebControlMessage controlMessage = new WebControlMessage(userId, equipment.SerialNumber);
+
+            //message.SetAction(new TLV(0x01, "0"));
+
+            var msg1 = controlMessage.GetMessage();
+
+            var task1 = Task.Run(() =>
+            {
+                var data = request.Post(msg1);
+                return data;
+            });
+
+            var result1 = task1.Result;
+            var content1 = result1.Content.ReadAsStringAsync().Result;
+            
+            WebControlAckMessage ackMessage = new WebControlAckMessage();
+            ackMessage.ParseAck(content1);
+            result += $"控制ACK:　{ackMessage.ServerResult.Value} \r\n";
+
+
+            QueryMessage query = new QueryMessage(userId, 1);
+            var msg2 = query.GetMessage();           
+
+            var task2 = Task.Run(() =>
+            {
+                var data = request.Post(msg2);
+                return data;
+            });
+
+            var result2 = task2.Result;
+            var content2 = result2.Content.ReadAsStringAsync().Result;
+
+            result += $"查询结果: {content2}";
+
+            return result;
         }
         #endregion //Action
     }

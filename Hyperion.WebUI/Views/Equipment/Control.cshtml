@@ -1,0 +1,87 @@
+﻿@model Hyperion.Core.DL.EquipmentManager
+
+@{
+    Layout = null;
+    ViewBag.Title = "设备控制";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-speech font-green-sharp"></i>
+                    <span class="caption-subject">@ViewBag.Title</span>
+                </div>
+                <div class="actions">
+                </div>
+            </div>
+            <div class="portlet-body">
+                <dl>
+                    <dt>ID</dt>
+                    <dd id="equipment-id">@Model.Id</dd>
+                    <dt>序列号</dt>
+                    <dd>@Model.SerialNumber</dd>
+                </dl>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        @using (Ajax.BeginForm("Enable", new { controller = "Equipment" }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "action-result" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.Id)
+
+                            <button type="submit" class="btn green-sharp">启用设备</button>
+                        }
+                    </div>
+                    <div class="col-md-2">
+                        @using (Ajax.BeginForm("Disable", new { controller = "Equipment" }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "action-result" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.Id)
+
+                            <button type="submit" class="btn grey-mint">停用设备</button>
+                        }
+                    </div>
+                </div>
+
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="action-result">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn blue btn-outline">关闭</button>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        //$('#disable-btn').click(function () {
+        //    var id = $('#equipment-id').text();
+        //    disableEquipment(id);
+        //    e.preventDefault();
+        //});
+
+        //function disableEquipment(id) {
+        //    $.ajax({
+        //        url: '/Equipment/Disable',
+        //        type: 'POST',
+        //        dataType: 'json',
+        //        data: { id: id },
+        //        success: function (data) {
+        //            if (data != null)
+        //                $('#action-result').html(data.Message);
+        //        }
+        //    });
+        //}
+    });
+   
+</script>
