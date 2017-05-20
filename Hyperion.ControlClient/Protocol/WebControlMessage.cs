@@ -77,29 +77,14 @@ namespace Hyperion.ControlClient.Protocol
         /// 生成信元报文
         /// </summary>
         /// <returns></returns>
-        protected override string GenerateCellMessage()
+        protected override void GenerateCellMessage()
         {
-            string cellCode = accessType.ToString() + loginType.ToString() + userId.ToString()
+            this.cellMessage = accessType.ToString() + loginType.ToString() + userId.ToString()
                 + equipmentSerialNumber.ToString() + transactionId.ToString() + action.ToString();
-            return cellCode;
         }
         #endregion //Function
 
         #region Method
-        /// <summary>
-        /// 生成报文
-        /// </summary>
-        /// <returns></returns>
-        public override string GetMessage()
-        {
-            var cellMessage = GenerateCellMessage();
-
-            var mtlv = GenerateMessageCode(cellMessage);
-            string message = this.version + this.sequence.ToString("X8") + mtlv.ToString();
-
-            return message;
-        }
-
         /// <summary>
         /// 设置控制动作
         /// </summary>

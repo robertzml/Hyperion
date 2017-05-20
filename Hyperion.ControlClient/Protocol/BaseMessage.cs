@@ -26,17 +26,21 @@ namespace Hyperion.ControlClient.Protocol
         /// 消息编码
         /// </summary>
         protected int messageCode;
+
+        /// <summary>
+        /// 信元报文
+        /// </summary>
+        protected string cellMessage;
         #endregion //Field
 
         #region Function
         /// <summary>
         /// 生成消息编码
         /// </summary>
-        /// <param name="cell">信元内容</param>
         /// <returns></returns>
-        protected TLV GenerateMessageCode(string cell)
+        protected TLV GenerateMessageCode()
         {
-            var mtlv = new TLV(tag: this.messageCode, value: cell);
+            var mtlv = new TLV(tag: this.messageCode, value: cellMessage);
             return mtlv;
         }
 
@@ -44,7 +48,24 @@ namespace Hyperion.ControlClient.Protocol
         /// 生成信元报文
         /// </summary>
         /// <returns></returns>
-        protected abstract string GenerateCellMessage();
+        protected abstract void GenerateCellMessage();
+
+        /// <summary>
+        /// 解析TLV
+        /// </summary>
+        /// <param name="message">消息内容</param>
+        /// <param name="tlvLength">返回TLV长度</param>
+        /// <returns></returns>
+        protected TLV ParseTLV(string message, out int tlvLength)
+        {
+            int head = Convert.ToInt32(message.Substring(0, 4), 16);
+            int length = Convert.ToInt32(message.Substring(4, 4), 16);
+            string code = message.Substring(8, length);
+
+            tlvLength = 8 + length;
+
+            return new TLV(tag: head, value: code);
+        }
         #endregion //Function
 
         #region Method
@@ -52,7 +73,14 @@ namespace Hyperion.ControlClient.Protocol
         /// 生成报文
         /// </summary>
         /// <returns></returns>
-        public abstract string GetMessage();
+        public virtual string GetMessage()
+        {
+            GenerateCellMessage();
+            var mtlv = GenerateMessageCode();
+
+            string message = this.version + this.sequence.ToString("X8") + mtlv.ToString();
+            return message;
+        }
         #endregion //Method
 
         #region Property
