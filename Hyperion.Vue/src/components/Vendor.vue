@@ -5,9 +5,9 @@
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
                 <h1>
-                        {{ title }}
-                        <small></small>
-                    </h1>
+                    {{ title }}
+                    <small></small>
+                </h1>
             </div>
             <!-- END PAGE TITLE -->
         </div>
