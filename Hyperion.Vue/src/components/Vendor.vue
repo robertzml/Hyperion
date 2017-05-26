@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import axios from 'axios'
 import { apihost } from '../config.js'
 import VendorTable from './VendorTable.vue'
@@ -68,9 +67,7 @@ export default {
         return {
             title: '厂家列表',
             vendors: [],
-            columns: ['Id', 'Name', 'Description'],
-            tableData: [],
-            options: {}
+            tableData: []
         }
     },
     created: function () {

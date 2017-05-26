@@ -14,11 +14,8 @@
   </div>
 </template>
 
-
 <script>
-import 'bootstrap/dist/css/bootstrap.css'
 import './assets/css/hyperion.css'
-import $ from 'jquery'
 import TopHead from './components/Head'
 import NavMenu from './components/NavMenu'
 
