@@ -36,9 +36,26 @@ namespace Hyperion.WebAPI.Controllers
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns></returns>
+        [HttpGet]
         public IHttpActionResult Get(string id)
         {
             var data = BusinessFactory<VendorBusiness>.Instance.FindById(id);
+            if (data == null)
+                return NotFound();
+
+            return Ok(data);
+        }
+
+        /// <summary>
+        /// 按代码查找厂家
+        /// </summary>
+        /// <param name="code">代码</param>
+        /// <returns></returns>
+        [Route("codes/{code}/vendor")]
+        [HttpGet]
+        public IHttpActionResult GetByCode(string code)
+        {
+            var data = BusinessFactory<VendorBusiness>.Instance.FindByCode(code);
             if (data == null)
                 return NotFound();
 

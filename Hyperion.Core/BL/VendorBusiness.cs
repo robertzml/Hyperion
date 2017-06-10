@@ -45,6 +45,16 @@ namespace Hyperion.Core.BL
         {
             return this.baseDal.FindOneByField("name", name);
         }
+
+        /// <summary>
+        /// 按代码查找厂家
+        /// </summary>
+        /// <param name="code">代码</param>
+        /// <returns></returns>
+        public Vendor FindByCode(string code)
+        {
+            return this.baseDal.FindOneByField("code", code);
+        }
         #endregion //Method
     }
 }

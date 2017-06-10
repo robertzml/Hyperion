@@ -42,7 +42,7 @@ namespace Hyperion.Core.DAL.MySQL
         {
             AlarmReport entity = new AlarmReport();
             entity.Id = Convert.ToInt32(row["id"]);
-            entity.SerialNumber = row["serialnumber"].ToString();
+            entity.SerialNumber = row["serial_number"].ToString();
             entity.AlarmCode = row["alarm_code"].ToString();
             entity.AlarmDescription = row["alarm_description"].ToString();
             entity.LogTime = Convert.ToDateTime(row["log_time"]);
@@ -59,7 +59,7 @@ namespace Hyperion.Core.DAL.MySQL
         {
             Hashtable table = new Hashtable();
             table.Add("id", entity.Id);
-            table.Add("serialnumber", entity.SerialNumber);
+            table.Add("serial_number", entity.SerialNumber);
             table.Add("alarm_code", entity.AlarmCode);
             table.Add("alarm_description", entity.AlarmDescription);
             table.Add("log_time", entity.LogTime);

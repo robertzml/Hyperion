@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Facade\IVendorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApiCaller\VendorService.cs" />
     <Compile Include="WinformCaller\VendorService.cs" />
   </ItemGroup>
   <ItemGroup>
