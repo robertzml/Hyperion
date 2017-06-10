@@ -56,10 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\AbstractDALMySql.cs" />
-    <Compile Include="BL\VendorInfoBusiness.cs" />
-    <Compile Include="DAL\MySQL\VendorInfoRepository.cs" />
-    <Compile Include="DL\VendorInfo.cs" />
-    <Compile Include="IDAL\IVendorInfoRepository.cs" />
+    <Compile Include="BL\VendorBusiness.cs" />
+    <Compile Include="DAL\MySQL\VendorRepository.cs" />
+    <Compile Include="DL\Vendor.cs" />
+    <Compile Include="IDAL\IVendorRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\HyperionConstant.cs" />
   </ItemGroup>

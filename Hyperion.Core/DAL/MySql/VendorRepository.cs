@@ -18,17 +18,17 @@ namespace Hyperion.Core.DAL.MySQL
     /// <summary>
     /// 厂家数据访问类
     /// </summary>
-    internal class VendorInfoRepository : AbstractDALMySql<VendorInfo>, IVendorInfoRepository
+    internal class VendorRepository : AbstractDALMySql<Vendor, string>, IVendorRepository
     {
         #region Constructor
-        public VendorInfoRepository() : base("vendor_info", "id")
+        public VendorRepository() : base("vendor", "id")
         {
             base.Init(ConnectionSource.Cache, Utility.HyperionConstant.ConnectionStringCacheKey);
         }
         #endregion //Constructor
 
         #region Function
-        protected override VendorInfo DataReaderToEntity(MySqlDataReader reader)
+        protected override Vendor DataReaderToEntity(MySqlDataReader reader)
         {
             throw new NotImplementedException();
         }
@@ -38,12 +38,14 @@ namespace Hyperion.Core.DAL.MySQL
         /// </summary>
         /// <param name="row">DataRow</param>
         /// <returns></returns>
-        protected override VendorInfo DataRowToEntity(DataRow row)
+        protected override Vendor DataRowToEntity(DataRow row)
         {
-            VendorInfo entity = new VendorInfo();
-            entity.Id = Convert.ToInt32(row["id"]);
-            entity.Name = row["vendor_name"].ToString();
-            entity.Description = row["vendor_desc"].ToString();
+            Vendor entity = new Vendor();
+            entity.Id = row["id"].ToString();
+            entity.Name = row["name"].ToString();
+            entity.Code = row["code"].ToString();
+            entity.Remark = row["remark"].ToString();
+            entity.Status = Convert.ToInt32(row["status"]);
 
             return entity;
         }
@@ -53,12 +55,14 @@ namespace Hyperion.Core.DAL.MySQL
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        protected override Hashtable EntityToHash(VendorInfo entity)
+        protected override Hashtable EntityToHash(Vendor entity)
         {
             Hashtable table = new Hashtable();
             table.Add("id", entity.Id);
-            table.Add("vendor_name", entity.Name);
-            table.Add("vendor_desc", entity.Description);
+            table.Add("name", entity.Name);
+            table.Add("code", entity.Code);
+            table.Add("remark", entity.Remark);
+            table.Add("status", entity.Status);
 
             return table;
         }

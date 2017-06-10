@@ -12,13 +12,13 @@ namespace Hyperion.Caller.Facade
     /// <summary>
     /// 厂家访问服务接口
     /// </summary>
-    public interface IVendorInfoService : IBaseService<VendorInfo, int>
+    public interface IVendorService : IBaseService<Vendor, string>
     {
         /// <summary>
         /// 按名称查找厂商
         /// </summary>
         /// <param name="name">名称</param>
         /// <returns></returns>
-        VendorInfo FindByName(string name);
+        Vendor FindByName(string name);
     }
 }

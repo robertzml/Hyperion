@@ -26,7 +26,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <returns></returns>
         public IHttpActionResult Get()
         {
-            var data = CallerFactory<IVendorInfoService>.Instance.FindAll();
+            var data = CallerFactory<IVendorService>.Instance.FindAll();
 
             return Ok(data);
         }
@@ -36,9 +36,9 @@ namespace Hyperion.WebAPI.Controllers
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns></returns>
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(string id)
         {
-            var data = CallerFactory<IVendorInfoService>.Instance.FindById(id);
+            var data = CallerFactory<IVendorService>.Instance.FindById(id);
             if (data == null)
                 return NotFound();
 

@@ -44,9 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Facade\IVendorInfoService.cs" />
+    <Compile Include="Facade\IVendorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinformCaller\VendorInfoService.cs" />
+    <Compile Include="WinformCaller\VendorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hyperion.Core\Hyperion.Core.csproj">

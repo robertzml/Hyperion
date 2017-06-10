@@ -13,15 +13,15 @@ namespace Hyperion.Core.BL
     /// <summary>
     /// 厂家业务类
     /// </summary>
-    public class VendorInfoBusiness : AbstractBusiness<VendorInfo, int>, IBaseBL<VendorInfo, int>
+    public class VendorBusiness : AbstractBusiness<Vendor, string>, IBaseBL<Vendor, string>
     {
         #region Constructor
         /// <summary>
         /// 厂家业务类
         /// </summary>
-        public VendorInfoBusiness()
+        public VendorBusiness()
         {
-            this.baseDal = RepositoryFactory<IVendorInfoRepository>.Instance;
+            this.baseDal = RepositoryFactory<IVendorRepository>.Instance;
         }
         #endregion //Constructor
 
@@ -31,9 +31,9 @@ namespace Hyperion.Core.BL
         /// </summary>
         /// <param name="name">名称</param>
         /// <returns></returns>
-        public VendorInfo FindByName(string name)
+        public Vendor FindByName(string name)
         {
-            return this.baseDal.FindOneByField("vendor_name", name);
+            return this.baseDal.FindOneByField("name", name);
         }
         #endregion //Method
     }

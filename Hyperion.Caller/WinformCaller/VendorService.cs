@@ -14,22 +14,22 @@ namespace Hyperion.Caller.WinformCaller
     /// <summary>
     /// 厂家访问服务类
     /// </summary>
-    internal class VendorInfoService : AbstractLocalService<VendorInfo, int>, IVendorInfoService
+    internal class VendorService : AbstractLocalService<Vendor, string>, IVendorService
     {
         #region Field
         /// <summary>
         /// 业务类对象
         /// </summary>
-        private VendorInfoBusiness bl = null;
+        private VendorBusiness bl = null;
         #endregion //Field
 
         #region Constructor
         /// <summary>
         /// 厂家访问服务类
         /// </summary>
-        public VendorInfoService() : base(BusinessFactory<VendorInfoBusiness>.Instance)
+        public VendorService() : base(BusinessFactory<VendorBusiness>.Instance)
         {
-            this.bl = this.baseBL as VendorInfoBusiness;
+            this.bl = this.baseBL as VendorBusiness;
         }
         #endregion //Constructor
 
@@ -39,7 +39,7 @@ namespace Hyperion.Caller.WinformCaller
         /// </summary>
         /// <param name="name">名称</param>
         /// <returns></returns>
-        public VendorInfo FindByName(string name)
+        public Vendor FindByName(string name)
         {
             return this.bl.FindByName(name);
         }

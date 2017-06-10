@@ -12,7 +12,7 @@ namespace Hyperion.Core.IDAL
     /// <summary>
     /// 厂家数据访问接口
     /// </summary>
-    internal interface IVendorInfoRepository : IBaseDAL<VendorInfo, int>
+    internal interface IVendorRepository : IBaseDAL<Vendor, string>
     {
     }
 }

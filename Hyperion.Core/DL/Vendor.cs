@@ -12,14 +12,14 @@ namespace Hyperion.Core.DL
     /// <summary>
     /// 厂家类
     /// </summary>
-    public class VendorInfo : IBaseEntity<int>
+    public class Vendor : IBaseEntity<string>
     {
         #region Property
         /// <summary>
         /// ID
         /// </summary>
         [Display(Name = "Id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 名称
@@ -29,11 +29,24 @@ namespace Hyperion.Core.DL
         public string Name { get; set; }
 
         /// <summary>
+        /// 代码
+        /// </summary>
+        [Required]
+        [Display(Name = "代码")]
+        public string Code { get; set; }
+
+        /// <summary>
         /// 备注
         /// </summary>
         [DataType(DataType.MultilineText)]
         [Display(Name = "备注")]
-        public string Description { get; set; }
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// 状态
+        /// </summary>
+        [Display(Name = "状态")]
+        public int Status { get; set; }
         #endregion //Property
     }
 }
