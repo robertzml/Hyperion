@@ -27,6 +27,16 @@ namespace Hyperion.Core.BL
 
         #region Method
         /// <summary>
+        /// 添加设备，采用自定义主键
+        /// </summary>
+        /// <param name="entity">实体对象</param>
+        /// <returns></returns>
+        public override Equipment Create(Equipment entity)
+        {
+            return base.Create(entity, false);
+        }
+
+        /// <summary>
         /// 按序列号查找设备
         /// </summary>
         /// <param name="serialName">序列号</param>

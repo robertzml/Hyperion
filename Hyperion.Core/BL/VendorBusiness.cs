@@ -27,6 +27,16 @@ namespace Hyperion.Core.BL
 
         #region Method
         /// <summary>
+        /// 添加厂家，采用自定义主键
+        /// </summary>
+        /// <param name="entity">实体对象</param>
+        /// <returns></returns>
+        public override Vendor Create(Vendor entity)
+        {
+            return base.Create(entity, false);
+        }
+
+        /// <summary>
         /// 按名称查找厂家
         /// </summary>
         /// <param name="name">名称</param>
