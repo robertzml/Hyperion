@@ -11,29 +11,29 @@ namespace Hyperion.Core.BL
     using Hyperion.Core.IDAL;
 
     /// <summary>
-    /// 厂家业务类
+    /// 设备业务类
     /// </summary>
-    public class VendorBusiness : AbstractBusiness<Vendor, string>, IBaseBL<Vendor, string>
+    public class EquipmentBusiness : AbstractBusiness<Equipment, string>, IBaseBL<Equipment, string>
     {
         #region Constructor
         /// <summary>
-        /// 厂家业务类
+        /// 设备业务类
         /// </summary>
-        public VendorBusiness()
+        public EquipmentBusiness()
         {
-            this.baseDal = RepositoryFactory<IVendorRepository>.Instance;
+            this.baseDal = RepositoryFactory<IEquipmentRepository>.Instance;
         }
         #endregion //Constructor
 
         #region Method
         /// <summary>
-        /// 按名称查找厂家
+        /// 按序列号查找设备
         /// </summary>
-        /// <param name="name">名称</param>
+        /// <param name="serialName">序列号</param>
         /// <returns></returns>
-        public Vendor FindByName(string name)
+        public Equipment FindBySerialName(string serialName)
         {
-            return this.baseDal.FindOneByField("name", name);
+            return this.baseDal.FindOneByField("serial_name", serialName);
         }
         #endregion //Method
     }

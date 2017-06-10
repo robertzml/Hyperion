@@ -10,14 +10,14 @@ namespace Hyperion.WebAPI.Controllers
 {
     using Poseidon.Base.Framework;
     using Poseidon.Base.System;
-    using Hyperion.Caller.Facade;
+    using Hyperion.Core.BL;
     using Hyperion.Core.DL;
 
     /// <summary>
     /// 厂家管理控制器
     /// </summary>
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class VendorInfoController : ApiController
+    public class VendorController : ApiController
     {
         #region Action
         /// <summary>
@@ -26,7 +26,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <returns></returns>
         public IHttpActionResult Get()
         {
-            var data = CallerFactory<IVendorService>.Instance.FindAll();
+            var data = BusinessFactory<VendorBusiness>.Instance.FindAll();
 
             return Ok(data);
         }
@@ -38,7 +38,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <returns></returns>
         public IHttpActionResult Get(string id)
         {
-            var data = CallerFactory<IVendorService>.Instance.FindById(id);
+            var data = BusinessFactory<VendorBusiness>.Instance.FindById(id);
             if (data == null)
                 return NotFound();
 

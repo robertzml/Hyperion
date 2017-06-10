@@ -175,7 +175,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\VendorInfoController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -232,10 +232,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hyperion.Caller\Hyperion.Caller.csproj">
-      <Project>{5b4827c2-b993-4409-ba87-1473f61616f8}</Project>
-      <Name>Hyperion.Caller</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hyperion.Core\Hyperion.Core.csproj">
       <Project>{885b9039-b005-4c46-bf63-67968ee861e1}</Project>
       <Name>Hyperion.Core</Name>
