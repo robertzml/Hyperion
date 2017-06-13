@@ -13,9 +13,9 @@ namespace Hyperion.UnitTest
     using Hyperion.Core.BL;
     using Hyperion.Core.DL;
 
-    public class AlarmReportTest
+    public class EquipmentStateTest
     {
-        public AlarmReportTest()
+        public EquipmentStateTest()
         {
             GlobalAction.Initialize();
         }
@@ -23,14 +23,15 @@ namespace Hyperion.UnitTest
         [Fact]
         public void TestCreate()
         {
-            EquipmentAlarm entity = new EquipmentAlarm();
-            entity.SerialNumber = "adbdsdss";
-            entity.AlarmCode = "03";
+            EquipmentState entity = new EquipmentState();
+            entity.SerialNumber = "ad34dss";
             entity.LogTime = DateTime.Now;
-
-            var result = BusinessFactory<EquipmentAlarmBusiness>.Instance.Create(entity);
-
-
+            entity.SwitchState = "1";
+            entity.HeatingTime = "234";
+            entity.HotWater = "44";
+            
+            var result = BusinessFactory<EquipmentStateBusiness>.Instance.Create(entity);
+          
             Assert.Equal(entity.SerialNumber, result.SerialNumber);
         }
     }
