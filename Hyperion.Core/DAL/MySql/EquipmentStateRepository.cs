@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,21 +12,23 @@ namespace Hyperion.Core.DAL.MySQL
     using Hyperion.Core.Abstract;
     using Hyperion.Core.DL;
     using Hyperion.Core.IDAL;
+    using System.Collections;
+    using System.Data;
 
     /// <summary>
-    /// 故障数据访问类
+    /// 设备状态数据访问类
     /// </summary>
-    internal class EquipmentAlarmRepository : AbstractDALMySql<EquipmentAlarm, long>, IEquipmentAlarmRepository
+    internal class EquipmentStateRepository : AbstractDALMySql<EquipmentState, long>, IEquipmentStateRepository
     {
         #region Constructor
-        public EquipmentAlarmRepository() : base("t_equipment_alarm", "id")
+        public EquipmentStateRepository() : base("t_equipment_state", "id")
         {
             base.Init(ConnectionSource.Cache, Utility.HyperionConstant.ConnectionStringCacheKey);
         }
         #endregion //Constructor
 
         #region Function
-        protected override EquipmentAlarm DataReaderToEntity(MySqlDataReader reader)
+        protected override EquipmentState DataReaderToEntity(MySqlDataReader reader)
         {
             throw new NotImplementedException();
         }
@@ -38,14 +38,18 @@ namespace Hyperion.Core.DAL.MySQL
         /// </summary>
         /// <param name="row">DataRow</param>
         /// <returns></returns>
-        protected override EquipmentAlarm DataRowToEntity(DataRow row)
+        protected override EquipmentState DataRowToEntity(DataRow row)
         {
-            EquipmentAlarm entity = new EquipmentAlarm();
+            EquipmentState entity = new EquipmentState();
             entity.Id = Convert.ToInt64(row["id"]);
             entity.SerialNumber = row["serial_number"].ToString();
-            entity.AlarmCode = row["alarm_code"].ToString();
-            entity.AlarmDescription = row["alarm_description"].ToString();
             entity.LogTime = Convert.ToDateTime(row["log_time"]);
+            entity.SwitchState = row["switch_state"].ToString();
+            entity.HeatingTime = row["heating_time"].ToString();
+            entity.HotWater = row["hotwater"].ToString();
+            entity.DurationMachine = row["duration_machine"].ToString();
+            entity.UseElectricity = row["use_electricity"].ToString();
+            entity.PowerSaving = row["power_saving"].ToString();
 
             return entity;
         }
@@ -55,33 +59,21 @@ namespace Hyperion.Core.DAL.MySQL
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        protected override Hashtable EntityToHash(EquipmentAlarm entity)
+        protected override Hashtable EntityToHash(EquipmentState entity)
         {
             Hashtable table = new Hashtable();
             table.Add("id", entity.Id);
             table.Add("serial_number", entity.SerialNumber);
-            table.Add("alarm_code", entity.AlarmCode);
-            table.Add("alarm_description", entity.AlarmDescription);
             table.Add("log_time", entity.LogTime);
+            table.Add("switch_state", entity.SwitchState);
+            table.Add("heating_time", entity.HeatingTime);
+            table.Add("hotwater", entity.HotWater);
+            table.Add("duration_machine", entity.DurationMachine);
+            table.Add("use_electricity", entity.UseElectricity);
+            table.Add("power_saving", entity.PowerSaving);
 
             return table;
         }
         #endregion //Function
-
-        #region Method
-        /// <summary>
-        /// 分页方式查找对象
-        /// </summary>
-        /// <param name="startPos">起始位置</param>
-        /// <param name="count">数量</param>
-        /// <returns></returns>
-        public IEnumerable<EquipmentAlarm> FindWithPage(int startPos, int count)
-        {
-            string condition = "1 = 1";
-            List<MySqlParameter> paras = new List<MySqlParameter>();
-
-            return base.FindWithPage(condition, paras, startPos, count);
-        }
-        #endregion //Method
     }
 }

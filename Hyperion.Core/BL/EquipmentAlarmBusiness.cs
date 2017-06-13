@@ -11,7 +11,7 @@ namespace Hyperion.Core.BL
     using Hyperion.Core.IDAL;
 
     /// <summary>
-    /// 故障业务类
+    /// 设备故障业务类
     /// </summary>
     public class EquipmentAlarmBusiness : AbstractBusiness<EquipmentAlarm, long>, IBaseBL<EquipmentAlarm, long>
     {
