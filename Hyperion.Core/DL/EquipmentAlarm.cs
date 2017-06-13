@@ -12,7 +12,7 @@ namespace Hyperion.Core.DL
     /// <summary>
     /// 故障消息类
     /// </summary>
-    public class AlarmReport : IBaseEntity<long>
+    public class EquipmentAlarm : IBaseEntity<long>
     {
         #region Property
         /// <summary>

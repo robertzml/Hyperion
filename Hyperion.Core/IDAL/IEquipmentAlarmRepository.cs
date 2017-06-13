@@ -12,7 +12,7 @@ namespace Hyperion.Core.IDAL
     /// <summary>
     /// 故障数据访问接口
     /// </summary>
-    internal interface IAlarmReportRepository : IBaseDAL<AlarmReport, long>
+    internal interface IEquipmentAlarmRepository : IBaseDAL<EquipmentAlarm, long>
     {
         /// <summary>
         /// 分页方式查找对象
@@ -20,6 +20,6 @@ namespace Hyperion.Core.IDAL
         /// <param name="startPos">起始位置</param>
         /// <param name="count">数量</param>
         /// <returns></returns>
-        IEnumerable<AlarmReport> FindWithPage(int startPos, int count);
+        IEnumerable<EquipmentAlarm> FindWithPage(int startPos, int count);
     }
 }

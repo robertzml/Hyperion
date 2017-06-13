@@ -13,15 +13,15 @@ namespace Hyperion.Core.BL
     /// <summary>
     /// 故障业务类
     /// </summary>
-    public class AlarmReportBusiness : AbstractBusiness<AlarmReport, long>, IBaseBL<AlarmReport, long>
+    public class EquipmentAlarmBusiness : AbstractBusiness<EquipmentAlarm, long>, IBaseBL<EquipmentAlarm, long>
     {
         #region Constructor
         /// <summary>
         /// 故障业务类
         /// </summary>
-        public AlarmReportBusiness()
+        public EquipmentAlarmBusiness()
         {
-            this.baseDal = RepositoryFactory<IAlarmReportRepository>.Instance;
+            this.baseDal = RepositoryFactory<IEquipmentAlarmRepository>.Instance;
         }
         #endregion //Constructor
 
@@ -32,9 +32,9 @@ namespace Hyperion.Core.BL
         /// <param name="startPos"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public IEnumerable<AlarmReport> FindWithPage(int startPos, int count)
+        public IEnumerable<EquipmentAlarm> FindWithPage(int startPos, int count)
         {
-            var dal = this.baseDal as IAlarmReportRepository;
+            var dal = this.baseDal as IEquipmentAlarmRepository;
 
             return dal.FindWithPage(startPos, count);
         }
@@ -44,7 +44,7 @@ namespace Hyperion.Core.BL
         /// </summary>
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
-        public IEnumerable<AlarmReport> FindByUser(int userId)
+        public IEnumerable<EquipmentAlarm> FindByUser(int userId)
         {
             return this.baseDal.FindListByField("userid", userId);
         }

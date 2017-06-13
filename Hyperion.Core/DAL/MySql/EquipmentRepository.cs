@@ -18,10 +18,10 @@ namespace Hyperion.Core.DAL.MySQL
     /// <summary>
     /// 设备数据访问类
     /// </summary>
-    internal class EquipmentRepository : AbstractDALMySql<Equipment, string>, IEquipmentRepository
+    internal class EquipmentRepository : AbstractDALMySql<Equipment, long>, IEquipmentRepository
     {
         #region Constructor
-        public EquipmentRepository() : base("equipment", "id")
+        public EquipmentRepository() : base("t_equipment", "id")
         {
             base.Init(ConnectionSource.Cache, Utility.HyperionConstant.ConnectionStringCacheKey);
         }
@@ -41,13 +41,17 @@ namespace Hyperion.Core.DAL.MySQL
         protected override Equipment DataRowToEntity(DataRow row)
         {
             Equipment entity = new Equipment();
-            entity.Id = row["id"].ToString();
+            entity.Id = Convert.ToInt64(row["id"]);
             entity.SerialNumber = row["serial_number"].ToString();
+            entity.Vendor = row["vendor"].ToString();
             entity.ControllerModel = row["controller_model"].ToString();
             entity.Version = row["version"].ToString();
-            entity.EquipmentModel = row["equipment_model"].ToString();
-            entity.Vendor = row["vendor"].ToString();
+            entity.Type = row["type"].ToString();
+            entity.FunctionCode = row["function_code"].ToString();
+            entity.UpgradeVersion = row["upgrade_version"].ToString();
             entity.CreateTime = Convert.ToDateTime(row["create_time"]);
+            entity.UpdateTime = Convert.ToDateTime(row["update_time"]);
+            entity.Online = Convert.ToInt32(row["online"]);
             entity.Remark = row["remark"].ToString();
             entity.Status = Convert.ToInt32(row["status"]);
 
@@ -64,11 +68,15 @@ namespace Hyperion.Core.DAL.MySQL
             Hashtable table = new Hashtable();
             table.Add("id", entity.Id);
             table.Add("serial_number", entity.SerialNumber);
+            table.Add("vendor", entity.Vendor);
             table.Add("controller_model", entity.ControllerModel);
             table.Add("version", entity.Version);
-            table.Add("equipment_model", entity.EquipmentModel);
-            table.Add("vendor", entity.Vendor);
+            table.Add("type", entity.Type);
+            table.Add("function_code", entity.FunctionCode);
+            table.Add("upgrade_version", entity.UpgradeVersion);
             table.Add("create_time", entity.CreateTime);
+            table.Add("update_time", entity.UpdateTime);
+            table.Add("online", entity.Online);
             table.Add("remark", entity.Remark);
             table.Add("status", entity.Status);
 

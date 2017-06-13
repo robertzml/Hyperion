@@ -23,12 +23,12 @@ namespace Hyperion.UnitTest
         [Fact]
         public void TestCreate()
         {
-            AlarmReport entity = new AlarmReport();
+            EquipmentAlarm entity = new EquipmentAlarm();
             entity.SerialNumber = "adbdsdss";
             entity.AlarmCode = "03";
             entity.LogTime = DateTime.Now;
 
-            var result = BusinessFactory<AlarmReportBusiness>.Instance.Create(entity);
+            var result = BusinessFactory<EquipmentAlarmBusiness>.Instance.Create(entity);
 
 
             Assert.Equal(entity.SerialNumber, result.SerialNumber);

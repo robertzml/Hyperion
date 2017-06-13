@@ -13,7 +13,7 @@ namespace Hyperion.Core.BL
     /// <summary>
     /// 设备业务类
     /// </summary>
-    public class EquipmentBusiness : AbstractBusiness<Equipment, string>, IBaseBL<Equipment, string>
+    public class EquipmentBusiness : AbstractBusiness<Equipment, long>, IBaseBL<Equipment, long>
     {
         #region Constructor
         /// <summary>
@@ -26,16 +26,6 @@ namespace Hyperion.Core.BL
         #endregion //Constructor
 
         #region Method
-        /// <summary>
-        /// 添加设备，采用自定义主键
-        /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <returns></returns>
-        public override Equipment Create(Equipment entity)
-        {
-            return base.Create(entity, false);
-        }
-
         /// <summary>
         /// 按序列号查找设备
         /// </summary>

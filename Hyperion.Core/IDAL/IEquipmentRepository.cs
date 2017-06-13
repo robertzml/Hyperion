@@ -11,7 +11,7 @@ namespace Hyperion.Core.IDAL
     /// <summary>
     /// 设备数据访问接口
     /// </summary>
-    internal interface IEquipmentRepository : IBaseDAL<Equipment, string>
+    internal interface IEquipmentRepository : IBaseDAL<Equipment, long>
     {
     }
 }

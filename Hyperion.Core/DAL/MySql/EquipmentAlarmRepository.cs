@@ -18,17 +18,17 @@ namespace Hyperion.Core.DAL.MySQL
     /// <summary>
     /// 故障数据访问类
     /// </summary>
-    internal class AlarmReportRepository : AbstractDALMySql<AlarmReport, long>, IAlarmReportRepository
+    internal class EquipmentAlarmRepository : AbstractDALMySql<EquipmentAlarm, long>, IEquipmentAlarmRepository
     {
         #region Constructor
-        public AlarmReportRepository() : base("alarm_report", "id")
+        public EquipmentAlarmRepository() : base("alarm_report", "id")
         {
             base.Init(ConnectionSource.Cache, Utility.HyperionConstant.ConnectionStringCacheKey);
         }
         #endregion //Constructor
 
         #region Function
-        protected override AlarmReport DataReaderToEntity(MySqlDataReader reader)
+        protected override EquipmentAlarm DataReaderToEntity(MySqlDataReader reader)
         {
             throw new NotImplementedException();
         }
@@ -38,9 +38,9 @@ namespace Hyperion.Core.DAL.MySQL
         /// </summary>
         /// <param name="row">DataRow</param>
         /// <returns></returns>
-        protected override AlarmReport DataRowToEntity(DataRow row)
+        protected override EquipmentAlarm DataRowToEntity(DataRow row)
         {
-            AlarmReport entity = new AlarmReport();
+            EquipmentAlarm entity = new EquipmentAlarm();
             entity.Id = Convert.ToInt32(row["id"]);
             entity.SerialNumber = row["serial_number"].ToString();
             entity.AlarmCode = row["alarm_code"].ToString();
@@ -55,7 +55,7 @@ namespace Hyperion.Core.DAL.MySQL
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns></returns>
-        protected override Hashtable EntityToHash(AlarmReport entity)
+        protected override Hashtable EntityToHash(EquipmentAlarm entity)
         {
             Hashtable table = new Hashtable();
             table.Add("id", entity.Id);
@@ -75,7 +75,7 @@ namespace Hyperion.Core.DAL.MySQL
         /// <param name="startPos">起始位置</param>
         /// <param name="count">数量</param>
         /// <returns></returns>
-        public IEnumerable<AlarmReport> FindWithPage(int startPos, int count)
+        public IEnumerable<EquipmentAlarm> FindWithPage(int startPos, int count)
         {
             string condition = "1 = 1";
             List<MySqlParameter> paras = new List<MySqlParameter>();

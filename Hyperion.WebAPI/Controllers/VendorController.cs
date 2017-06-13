@@ -51,7 +51,7 @@ namespace Hyperion.WebAPI.Controllers
         /// </summary>
         /// <param name="code">代码</param>
         /// <returns></returns>
-        [Route("codes/{code}/vendor")]
+        [Route("api/vendor/code/{code}")]
         [HttpGet]
         public IHttpActionResult GetByCode(string code)
         {

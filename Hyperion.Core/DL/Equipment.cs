@@ -12,14 +12,14 @@ namespace Hyperion.Core.DL
     /// <summary>
     /// 设备类
     /// </summary>
-    public class Equipment : IBaseEntity<string>
+    public class Equipment : IBaseEntity<long>
     {
         #region Property
         /// <summary>
         /// ID
         /// </summary>
         [Display(Name = "ID")]
-        public string Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// 序列号
@@ -27,6 +27,13 @@ namespace Hyperion.Core.DL
         [Required]
         [Display(Name = "序列号")]
         public string SerialNumber { get; set; }
+
+        /// <summary>
+        /// 厂家代码
+        /// </summary>
+        [Required]
+        [Display(Name = "厂家代码")]
+        public string Vendor { get; set; }
 
         /// <summary>
         /// 控制器型号
@@ -41,23 +48,40 @@ namespace Hyperion.Core.DL
         public string Version { get; set; }
 
         /// <summary>
-        /// 设备型号
+        /// 设备类型
         /// </summary>
-        [Display(Name = "设备型号")]
-        public string EquipmentModel { get; set; }
+        [Display(Name = "设备类型")]
+        public string Type { get; set; }
 
         /// <summary>
-        /// 厂家代码
+        /// 功能代码
         /// </summary>
-        [Required]
-        [Display(Name = "厂家代码")]
-        public string Vendor { get; set; }
+        [Display(Name = "功能代码")]
+        public string FunctionCode { get; set; }
+
+        /// <summary>
+        /// 版本升级
+        /// </summary>
+        [Display(Name = "版本升级")]
+        public string UpgradeVersion { get; set; }
 
         /// <summary>
         /// 初始时间
         /// </summary>
         [Display(Name = "初始时间")]
         public DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 更新时间
+        /// </summary>
+        [Display(Name = "更新时间")]
+        public DateTime UpdateTime { get; set; }
+
+        /// <summary>
+        /// 设备在线
+        /// </summary>
+        [Display(Name = "设备在线")]
+        public int Online { get; set; }
 
         /// <summary>
         /// 备注
