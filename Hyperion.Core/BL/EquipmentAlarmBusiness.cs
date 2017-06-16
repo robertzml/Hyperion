@@ -40,13 +40,13 @@ namespace Hyperion.Core.BL
         }
 
         /// <summary>
-        /// 按用户查找对象
+        /// 按序列号查找对象
         /// </summary>
-        /// <param name="userId">用户ID</param>
+        /// <param name="serialNumber">设备序列号</param>
         /// <returns></returns>
-        public IEnumerable<EquipmentAlarm> FindByUser(int userId)
+        public IEnumerable<EquipmentAlarm> FindBySerialNumber(string serialNumber)
         {
-            return this.baseDal.FindListByField("userid", userId);
+            return this.baseDal.FindListByField("serial_number", serialNumber);
         }
         #endregion //Method
     }

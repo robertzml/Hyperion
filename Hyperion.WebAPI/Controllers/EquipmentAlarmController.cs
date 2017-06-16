@@ -14,28 +14,28 @@ namespace Hyperion.WebAPI.Controllers
     using Hyperion.Core.DL;
 
     /// <summary>
-    /// 设备控制器
+    /// 设备报警控制器
     /// </summary>
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class EquipmentController : ApiController
+    public class EquipmentAlarmController : ApiController
     {
         #region Field
         /// <summary>
         /// 业务类对象
         /// </summary>
-        private EquipmentBusiness bl = null;
+        private EquipmentAlarmBusiness bl = null;
         #endregion //Field
 
         #region Constructor
-        public EquipmentController()
+        public EquipmentAlarmController()
         {
-            this.bl = BusinessFactory<EquipmentBusiness>.Instance;
+            this.bl = BusinessFactory<EquipmentAlarmBusiness>.Instance;
         }
         #endregion //Constructor
 
         #region Action
         /// <summary>
-        /// 获取设备列表
+        /// 获取设备报警列表
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -47,7 +47,7 @@ namespace Hyperion.WebAPI.Controllers
         }
 
         /// <summary>
-        /// 获取设备信息
+        /// 获取设备报警信息
         /// </summary>
         /// <param name="id">ID</param>
         /// <returns></returns>
@@ -62,23 +62,7 @@ namespace Hyperion.WebAPI.Controllers
         }
 
         /// <summary>
-        /// 获取设备信息
-        /// </summary>
-        /// <param name="serialNumber">设备序列号</param>
-        /// <returns></returns>
-        [Route("api/equipment/serialNumber/{serialNumber}")]
-        [HttpGet]
-        public IHttpActionResult Get(string serialNumber)
-        {
-            var data = this.bl.FindBySerialNumber(serialNumber);
-            if (data == null)
-                return NotFound();
-
-            return Ok(data);
-        }
-
-        /// <summary>
-        /// 获取设备信息
+        /// 获取设备状态信息
         /// </summary>
         /// <param name="serialNumber">设备序列号</param>
         /// <returns></returns>
@@ -86,21 +70,7 @@ namespace Hyperion.WebAPI.Controllers
         public IHttpActionResult GetBySerialNumber(string serialNumber)
         {
             var data = this.bl.FindBySerialNumber(serialNumber);
-            if (data == null)
-                return NotFound();
 
-            return Ok(data);
-        }
-
-        /// <summary>
-        /// 获取设备信息
-        /// </summary>
-        /// <param name="vendor">厂商</param>
-        /// <returns></returns>
-        [HttpGet]
-        public IHttpActionResult GetByVendor(string vendor)
-        {
-            var data = this.bl.FindByVendor(vendor);
             return Ok(data);
         }
         #endregion //Action
