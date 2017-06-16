@@ -24,7 +24,7 @@ namespace Hyperion.UnitTest
         public void TestCreate()
         {
             Equipment entity = new Equipment();
-            entity.SerialNumber = "ad34dss";
+            entity.SerialNumber = "qwerty";
             entity.Vendor = "Mulan";
             entity.CreateTime = DateTime.Now;
             entity.UpdateTime = entity.CreateTime;
@@ -35,6 +35,14 @@ namespace Hyperion.UnitTest
 
 
             Assert.Equal(entity.SerialNumber, result.SerialNumber);
+        }
+
+        [Fact]
+        public void TestFind()
+        {
+            var data = BusinessFactory<EquipmentBusiness>.Instance.FindAll();
+
+            Assert.Equal(1, data.Count());
         }
     }
 }

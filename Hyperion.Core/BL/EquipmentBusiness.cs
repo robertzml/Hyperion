@@ -29,11 +29,21 @@ namespace Hyperion.Core.BL
         /// <summary>
         /// 按序列号查找设备
         /// </summary>
-        /// <param name="serialName">序列号</param>
+        /// <param name="serialNumber">序列号</param>
         /// <returns></returns>
-        public Equipment FindBySerialName(string serialName)
+        public Equipment FindBySerialNumber(string serialNumber)
         {
-            return this.baseDal.FindOneByField("serial_name", serialName);
+            return this.baseDal.FindOneByField("serial_number", serialNumber);
+        }
+
+        /// <summary>
+        /// 按厂商查找设备
+        /// </summary>
+        /// <param name="vendor">厂商</param>
+        /// <returns></returns>
+        public IEnumerable<Equipment> FindByVendor(string vendor)
+        {
+            return this.baseDal.FindListByField("vendor", vendor);
         }
         #endregion //Method
     }

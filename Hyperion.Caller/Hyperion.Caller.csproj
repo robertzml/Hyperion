@@ -44,9 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Facade\IEquipmentService.cs" />
     <Compile Include="Facade\IVendorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApiCaller\EquipmentService.cs" />
     <Compile Include="WebApiCaller\VendorService.cs" />
+    <Compile Include="WinformCaller\EquipmentService.cs" />
     <Compile Include="WinformCaller\VendorService.cs" />
   </ItemGroup>
   <ItemGroup>
