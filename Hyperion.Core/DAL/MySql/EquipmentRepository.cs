@@ -85,7 +85,20 @@ namespace Hyperion.Core.DAL.MySQL
         #endregion //Function
 
         #region Method
+        //public override Equipment FindById(long id)
+        //{
+        //    string sql = string.Format("Select * From {0} Where ({1} = {2}{1})", this.tableName, this.primaryKey, parameterPrefix);
+        //    base.mysql.AddParameter(this.primaryKey, id);
 
+        //    var row = this.mysql.ExecuteRow(sql);
+        //    if (row == null)
+        //        return null;
+        //    else
+        //    {
+        //        var entity = DataRowToEntity(row);
+        //        return entity;
+        //    }
+        //}
         #endregion //Method
     }
 }

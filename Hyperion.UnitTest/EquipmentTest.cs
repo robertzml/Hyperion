@@ -103,24 +103,12 @@ namespace Hyperion.UnitTest
         {
             List<Task> tasks = new List<Task>();
 
-
             Stopwatch total = new Stopwatch();
 
             total.Start();
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 3; i++)
             {
-                var task = Task.Run(() =>
-                {
-                    Stopwatch st = new Stopwatch();
-                    st.Start();
-
-                    BusinessFactory<EquipmentBusiness>.Instance.FindById(i);
-
-                    st.Stop();
-
-                    output.WriteLine(string.Format("find time id is {0}, in {1} milliseconds", i, st.ElapsedMilliseconds));
-                });
-
+                var task = RunFind2(i);
                 tasks.Add(task);
             }
             Task.WaitAll(tasks.ToArray());
@@ -132,6 +120,45 @@ namespace Hyperion.UnitTest
         }
 
 
+        public Task RunFind2(int id)
+        {
+            var task = Task.Run(() =>
+            {
+                Stopwatch st = new Stopwatch();
+                st.Start();
+
+                var result = BusinessFactory<EquipmentBusiness>.Instance.FindById(id);
+
+                st.Stop();
+
+                Assert.Equal(id, result.Id);
+
+                output.WriteLine(string.Format("find time id is {0}, in {1} milliseconds", id, st.ElapsedMilliseconds));
+            });
+
+            return task;
+        }
+
+        public Task RunFind(int id)
+        {
+            var task = Task.Run(() =>
+            {
+                Stopwatch st = new Stopwatch();
+                st.Start();
+
+                var t = FindById(id);
+
+                var equipment = t.Result;
+
+                st.Stop();
+
+                output.WriteLine(string.Format("find time id is {0}, in {1} milliseconds", id, st.ElapsedMilliseconds));
+            });
+
+            return task;
+        }
+        
+
         [Fact]
         public void TestFindInThread()
         {
@@ -141,22 +168,10 @@ namespace Hyperion.UnitTest
             Stopwatch total = new Stopwatch();
 
             total.Start();
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 7; i++)
             {
-                var task = Task.Run(() =>
-                {
-                    Stopwatch st = new Stopwatch();
-                    st.Start();
-
-                    var t = FindById(i);
-
-                    var equipment = t.Result;
-
-                    st.Stop();
-
-                    output.WriteLine(string.Format("find time id is {0}, in {1} milliseconds", i, st.ElapsedMilliseconds));
-                });
-
+                var task = RunFind(i);
+                
                 tasks.Add(task);
             }
             Task.WaitAll(tasks.ToArray());
