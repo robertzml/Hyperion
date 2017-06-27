@@ -52,6 +52,12 @@ namespace Hyperion.UnitTest
             }
         }
 
+        public Equipment FindyInService(long id)
+        {
+            Hyperion.Caller.WebApiCaller.EquipmentService service = new Caller.WebApiCaller.EquipmentService();
+            return service.FindById(id);
+        }
+
         [Fact]
         public void TestCreate()
         {
@@ -106,7 +112,7 @@ namespace Hyperion.UnitTest
             Stopwatch total = new Stopwatch();
 
             total.Start();
-            for (int i = 1; i < 3; i++)
+            for (int i = 1; i < 10; i++)
             {
                 var task = RunFind2(i);
                 tasks.Add(task);
@@ -146,9 +152,10 @@ namespace Hyperion.UnitTest
                 Stopwatch st = new Stopwatch();
                 st.Start();
 
-                var t = FindById(id);
+                //var t = FindById(id);
+                //var equipment = t.Result;
 
-                var equipment = t.Result;
+                var equipment = FindyInService(id);
 
                 st.Stop();
 
@@ -168,7 +175,7 @@ namespace Hyperion.UnitTest
             Stopwatch total = new Stopwatch();
 
             total.Start();
-            for (int i = 1; i < 7; i++)
+            for (int i = 1; i < 5; i++)
             {
                 var task = RunFind(i);
                 

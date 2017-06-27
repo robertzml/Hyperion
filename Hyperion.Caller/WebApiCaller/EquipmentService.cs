@@ -13,47 +13,24 @@ namespace Hyperion.Caller.WebApiCaller
     using Hyperion.Core.DL;
     using Poseidon.Base.Framework;
 
-    internal class EquipmentService : IEquipmentService
+    /// <summary>
+    /// 设备访问服务类
+    /// </summary>
+    public class EquipmentService : AbstractApiService<Equipment, long>, IEquipmentService
     {
-        private string host = "http://localhost:6024/api/";
-
-        public long Count()
+        #region Constructor
+        /// <summary>
+        /// 设备访问服务类
+        /// </summary>
+        public EquipmentService() : base("equipment")
         {
-            throw new NotImplementedException();
+            this.host = "http://localhost:6024/api/";
+            //this.bl = this.baseBL as EquipmentBusiness;
         }
-
-        public long Count<Tvalue>(string field, Tvalue value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Equipment Create(Equipment entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Equipment Create(Equipment entity, bool generateKey)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Delete(Equipment entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Equipment> FindAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Equipment> FindAllNormal()
-        {
-            throw new NotImplementedException();
-        }
+        #endregion //Constructor
 
         #region Method
-        public async Task<Equipment> FindById(long id)
+        public async Task<Equipment> FindByIdAsync(long id)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -72,26 +49,6 @@ namespace Hyperion.Caller.WebApiCaller
 
                 return equipment;
             }
-        }
-
-        public IEnumerable<Equipment> FindListByField<Tvalue>(string field, Tvalue value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Equipment FindOneByField<Tvalue>(string field, Tvalue value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(Equipment entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Equipment IBaseService<Equipment, long>.FindById(long id)
-        {
-            throw new NotImplementedException();
         }
         #endregion //Method
     }
