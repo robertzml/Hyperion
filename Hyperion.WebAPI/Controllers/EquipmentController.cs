@@ -61,6 +61,14 @@ namespace Hyperion.WebAPI.Controllers
             return Ok(data);
         }
 
+        public IHttpActionResult GetByFake(long fake)
+        {
+            Equipment entity = new Equipment();
+            entity.Id = fake;
+
+            return Ok(entity);
+        }
+
         /// <summary>
         /// 获取设备信息
         /// </summary>

@@ -15,8 +15,10 @@ namespace Hyperion.UnitTest
         /// </summary>
         public static void Initialize()
         {
-            string cs = "server=192.168.0.116;user=hcDev;database=water_heater;port=3306;password=Molan@2017!@#;allow zero datetime=true";
-            Cache.Instance.Add("ConnectionString", cs);
+            //string cs = "server=192.168.0.116;user=hcDev;database=water_heater;port=3306;password=Molan@2017!@#;allow zero datetime=true";
+            //Cache.Instance.Add("ConnectionString", cs);
+
+            Cache.Instance.Add("DALPrefix", "MySQL");
         }
     }
 }

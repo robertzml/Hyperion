@@ -6,11 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyperion.UnitTest
 {
-    using Xunit;
-    using Xunit.Abstractions;
     using Poseidon.Base.Framework;
     using Poseidon.Base.System;
     using Poseidon.Common;
@@ -18,176 +17,221 @@ namespace Hyperion.UnitTest
     using Hyperion.Core.BL;
     using Hyperion.Core.DL;
 
+    /// <summary>
+    /// 设备测试
+    /// </summary>
+    [TestClass]
     public class EquipmentTest
     {
-        private readonly ITestOutputHelper output;
-
-
-        public EquipmentTest(ITestOutputHelper output)
+        #region Constructor
+        public EquipmentTest()
         {
-            this.output = output;
             GlobalAction.Initialize();
+
+            Cache.Instance.Add("CallerType", "webapi");
         }
+        #endregion //Constructor
 
-        public async Task<Equipment> FindById(long id)
+        #region Function
+        private Task FindFakeInTask(long id)
         {
-            string host = "http://localhost:6024/api/";
-
-            using (HttpClient client = new HttpClient())
+            var task = Task.Run(() =>
             {
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                Stopwatch st = new Stopwatch();
+                st.Start();
 
-                Equipment equipment = null;
-                string url = host + "equipment/" + id.ToString();
+                var result = CallerFactory<IEquipmentService>.Instance.GetByFake(id);
 
-                HttpResponseMessage response = await client.GetAsync(url);
+                st.Stop();
 
-                if (response.IsSuccessStatusCode)
-                {
-                    equipment = await response.Content.ReadAsAsync<Equipment>();
-                }
+                Assert.AreEqual(id, result.Id);
 
-                return equipment;
-            }
+                Console.WriteLine(string.Format("find id:{0}, in {1} milliseconds", id, st.ElapsedMilliseconds));
+            });
+
+            return task;
         }
 
-        public Equipment FindyInService(long id)
+        private Task FindOneInTask(long id)
         {
-            Hyperion.Caller.WebApiCaller.EquipmentService service = new Caller.WebApiCaller.EquipmentService();
-            return service.FindById(id);
-        }
-
-        [Fact]
-        public void TestCreate()
-        {
-            Equipment entity = new Equipment();
-            entity.SerialNumber = "qwerty";
-            entity.Vendor = "Mulan";
-            entity.CreateTime = DateTime.Now;
-            entity.UpdateTime = entity.CreateTime;
-            entity.Online = 1;
-            entity.Status = 0;
-
-            var result = BusinessFactory<EquipmentBusiness>.Instance.Create(entity);
-
-
-            Assert.Equal(entity.SerialNumber, result.SerialNumber);
-        }
-
-        [Fact]
-        public void TestFind()
-        {
-            var data = BusinessFactory<EquipmentBusiness>.Instance.FindAll();
-
-            Assert.Equal(1, data.Count());
-        }
-
-        [Fact]
-        public void TestCreateBatch()
-        {
-            int index = 0;
-            for (int i = 0; i < 10000; i++)
+            var task = Task.Run(() =>
             {
-                Equipment entity = new Equipment();
-                entity.SerialNumber = "abcedfg" + i.ToString();
-                entity.Vendor = i % 3 == 0 ? "Mulan" : "Aupu";
-                entity.CreateTime = DateTime.Now;
-                entity.UpdateTime = entity.CreateTime;
-                entity.Online = 1;
-                entity.Status = 0;
+                Stopwatch st = new Stopwatch();
+                st.Start();
 
-                var result = BusinessFactory<EquipmentBusiness>.Instance.Create(entity);
-                index = i;
-            }
+                var result = CallerFactory<IEquipmentService>.Instance.FindById(id);
 
-            Assert.Equal(9999, index);
+                st.Stop();
+
+                Assert.AreEqual(id, result.Id);
+
+                Console.WriteLine(string.Format("find id:{0}, in {1} milliseconds", id, st.ElapsedMilliseconds));
+            });
+
+            return task;
         }
 
-        [Fact]
-        public void TestFindInThread2()
+
+        private Task FindOneInAsync(long id)
         {
-            List<Task> tasks = new List<Task>();
+            var task = Task.Run(() =>
+            {
+                var result = CallerFactory<IEquipmentService>.Instance.FindByIdAsync(id).Result;
+
+                Assert.AreEqual(id, result.Id);
+
+                Console.WriteLine(string.Format("find id:{0}, number: {1}", id, result.SerialNumber));
+            });
+
+            return task;
+        }
+        #endregion //Function
+
+        #region Test
+        [TestMethod]
+        public void TestFindOne()
+        {
+            long id = 5;
+
+            var call = CallerFactory<IEquipmentService>.Instance;
+            var entity = call.FindById(id);
+
+            Assert.AreEqual("abcedfg2", entity.SerialNumber);
+        }
+
+        /// <summary>
+        /// 异步获取设备
+        /// </summary>
+        [TestMethod]
+        public void TestFindOneAsync()
+        {
+            long id = 2;
+
+            var call = CallerFactory<IEquipmentService>.GetInstance(CallerType.WebApi);
+            var entity = call.FindByIdAsync(id).Result;
+
+            Assert.AreEqual("qwerty", entity.SerialNumber);
+        }
+
+        /// <summary>
+        /// 顺序访问同步调用
+        /// </summary>
+        [TestMethod]
+        public void TestFindSeq()
+        {
+            long count = 10;
 
             Stopwatch total = new Stopwatch();
 
             total.Start();
-            for (int i = 1; i < 10; i++)
+            for (long i = 1; i <= count; i++)
             {
-                var task = RunFind2(i);
-                tasks.Add(task);
+                var entity = CallerFactory<IEquipmentService>.Instance.FindById(i);
+                Assert.AreEqual(i, entity.Id);
+                Console.WriteLine("equipment id is {0}, number is {1}", entity.Id, entity.SerialNumber);
             }
-            Task.WaitAll(tasks.ToArray());
 
             total.Stop();
-            output.WriteLine(string.Format("total time is {0} millisecond", total.ElapsedMilliseconds));
-
-            Assert.InRange(total.ElapsedMilliseconds, 0, 500000);
+            Console.WriteLine(string.Format("total time is {0} millisecond", total.ElapsedMilliseconds));
         }
 
-
-        public Task RunFind2(int id)
+        /// <summary>
+        /// 顺序访问异步调用
+        /// </summary>
+        [TestMethod]
+        public void TestFindSeqAsync()
         {
-            var task = Task.Run(() =>
+            long count = 10;
+
+            Stopwatch total = new Stopwatch();
+
+            total.Start();
+            for (long i = 1; i <= count; i++)
             {
-                Stopwatch st = new Stopwatch();
-                st.Start();
+                var entity = CallerFactory<IEquipmentService>.Instance.FindByIdAsync(i).Result;
+                Assert.AreEqual(i, entity.Id);
+                Console.WriteLine("equipment id is {0}, number is {1}", entity.Id, entity.SerialNumber);
+            }
 
-                var result = BusinessFactory<EquipmentBusiness>.Instance.FindById(id);
-
-                st.Stop();
-
-                Assert.Equal(id, result.Id);
-
-                output.WriteLine(string.Format("find time id is {0}, in {1} milliseconds", id, st.ElapsedMilliseconds));
-            });
-
-            return task;
+            total.Stop();
+            Console.WriteLine(string.Format("total time is {0} millisecond", total.ElapsedMilliseconds));
         }
 
-        public Task RunFind(int id)
+        /// <summary>
+        /// 顺序访问异步调用
+        /// </summary>
+        [TestMethod]
+        public void TestFindSeqAsyncInThread()
         {
-            var task = Task.Run(() =>
-            {
-                Stopwatch st = new Stopwatch();
-                st.Start();
+            long count = 10;
 
-                //var t = FindById(id);
-                //var equipment = t.Result;
+            Stopwatch total = new Stopwatch();
+            total.Start();
 
-                var equipment = FindyInService(id);
-
-                st.Stop();
-
-                output.WriteLine(string.Format("find time id is {0}, in {1} milliseconds", id, st.ElapsedMilliseconds));
-            });
-
-            return task;
-        }
-        
-
-        [Fact]
-        public void TestFindInThread()
-        {
             List<Task> tasks = new List<Task>();
             
+            for (long i = 1; i <= count; i++)
+            {
+                var task = FindOneInAsync(i);
+
+                tasks.Add(task);
+            }
+
+            Task.WaitAll(tasks.ToArray());
+
+            total.Stop();
+            Console.WriteLine(string.Format("total time is {0} millisecond", total.ElapsedMilliseconds));
+        }
+
+        /// <summary>
+        /// 并发读取设备,不访问数据库
+        /// </summary>
+        [TestMethod]
+        public void TestFindFakeInThread()
+        {
+            long count = 5;
+
+            List<Task> tasks = new List<Task>();
 
             Stopwatch total = new Stopwatch();
 
             total.Start();
-            for (int i = 1; i < 5; i++)
+            for (long i = 1; i <= count; i++)
             {
-                var task = RunFind(i);
-                
+                var task = FindFakeInTask(i);
+
                 tasks.Add(task);
             }
             Task.WaitAll(tasks.ToArray());
 
             total.Stop();
-            output.WriteLine(string.Format("total time is {0} millisecond", total.ElapsedMilliseconds));
-
-            Assert.InRange(total.ElapsedMilliseconds, 0, 500000);
+            Console.WriteLine(string.Format("total time is {0} millisecond", total.ElapsedMilliseconds));
         }
-        
+
+        /// <summary>
+        /// 并发读取设备
+        /// </summary>
+        [TestMethod]
+        public void TestFindOneInThread()
+        {
+            long count = 5;
+
+            List<Task> tasks = new List<Task>();
+
+            Stopwatch total = new Stopwatch();
+
+            total.Start();
+            for (long i = 1; i <= count; i++)
+            {
+                var task = FindOneInTask(i);
+
+                tasks.Add(task);
+            }
+            Task.WaitAll(tasks.ToArray());
+
+            total.Stop();
+            Console.WriteLine(string.Format("total time is {0} millisecond", total.ElapsedMilliseconds));
+        }
+        #endregion //Test
     }
 }

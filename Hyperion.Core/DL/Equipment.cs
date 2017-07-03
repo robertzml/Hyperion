@@ -84,12 +84,6 @@ namespace Hyperion.Core.DL
         public int Online { get; set; }
 
         /// <summary>
-        /// 备注
-        /// </summary>
-        [Display(Name = "备注")]
-        public string Remark { get; set; }
-
-        /// <summary>
         /// 状态
         /// </summary>
         [Display(Name = "状态")]

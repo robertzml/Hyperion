@@ -52,7 +52,6 @@ namespace Hyperion.Core.DAL.MySQL
             entity.CreateTime = Convert.ToDateTime(row["create_time"]);
             entity.UpdateTime = Convert.ToDateTime(row["update_time"]);
             entity.Online = Convert.ToInt32(row["online"]);
-            entity.Remark = row["remark"].ToString();
             entity.Status = Convert.ToInt32(row["status"]);
 
             return entity;
@@ -77,7 +76,6 @@ namespace Hyperion.Core.DAL.MySQL
             table.Add("create_time", entity.CreateTime);
             table.Add("update_time", entity.UpdateTime);
             table.Add("online", entity.Online);
-            table.Add("remark", entity.Remark);
             table.Add("status", entity.Status);
 
             return table;

@@ -32,5 +32,13 @@ namespace Hyperion.Caller.WinformCaller
             this.bl = this.baseBL as EquipmentBusiness;
         }
         #endregion //Constructor
+
+        #region Method
+
+        public Equipment GetByFake(long id)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion //Method
     }
 }

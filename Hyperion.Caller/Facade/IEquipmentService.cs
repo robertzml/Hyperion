@@ -14,5 +14,6 @@ namespace Hyperion.Caller.Facade
     /// </summary>
     public interface IEquipmentService : IBaseService<Equipment, long>
     {
+        Equipment GetByFake(long id);
     }
 }

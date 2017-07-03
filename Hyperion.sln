@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.Caller", "Hyperion
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.WebAPI", "Hyperion.WebAPI\Hyperion.WebAPI.csproj", "{C6DC7ED3-1198-485A-9097-5FFC3C8E2EC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.UnitTest", "Hyperion.UnitTest\Hyperion.UnitTest.csproj", "{7D3E0B84-FC0D-41B2-9442-601CAE7B9307}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.UnitTest", "Hyperion.UnitTest\Hyperion.UnitTest.csproj", "{BA8BBF55-0D91-4A4C-A35F-DDB90B8E4E72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{C6DC7ED3-1198-485A-9097-5FFC3C8E2EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6DC7ED3-1198-485A-9097-5FFC3C8E2EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6DC7ED3-1198-485A-9097-5FFC3C8E2EC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D3E0B84-FC0D-41B2-9442-601CAE7B9307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D3E0B84-FC0D-41B2-9442-601CAE7B9307}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D3E0B84-FC0D-41B2-9442-601CAE7B9307}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D3E0B84-FC0D-41B2-9442-601CAE7B9307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA8BBF55-0D91-4A4C-A35F-DDB90B8E4E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA8BBF55-0D91-4A4C-A35F-DDB90B8E4E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA8BBF55-0D91-4A4C-A35F-DDB90B8E4E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA8BBF55-0D91-4A4C-A35F-DDB90B8E4E72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
