@@ -61,30 +61,6 @@ namespace Hyperion.WebAPI.Controllers
             return Ok(data);
         }
 
-        public IHttpActionResult GetByFake(long fake)
-        {
-            Equipment entity = new Equipment();
-            entity.Id = fake;
-
-            return Ok(entity);
-        }
-
-        /// <summary>
-        /// 获取设备信息
-        /// </summary>
-        /// <param name="serialNumber">设备序列号</param>
-        /// <returns></returns>
-        [Route("api/equipment/serialNumber/{serialNumber}")]
-        [HttpGet]
-        public IHttpActionResult Get(string serialNumber)
-        {
-            var data = this.bl.FindBySerialNumber(serialNumber);
-            if (data == null)
-                return NotFound();
-
-            return Ok(data);
-        }
-
         /// <summary>
         /// 获取设备信息
         /// </summary>
