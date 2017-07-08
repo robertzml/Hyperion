@@ -21,7 +21,7 @@ namespace Hyperion.Core.BL
         /// </summary>
         public EquipmentBusiness()
         {
-            this.baseDal = RepositoryFactory<IEquipmentRepository>.GetInstance(DataBaseType.MySql);
+            this.baseDal = RepositoryFactory<IEquipmentRepository>.Instance;
         }
         #endregion //Constructor
 
