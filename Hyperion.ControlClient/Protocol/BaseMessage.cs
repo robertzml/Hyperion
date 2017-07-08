@@ -34,7 +34,7 @@ namespace Hyperion.ControlClient.Protocol
         /// <summary>
         /// 报文内容
         /// </summary>
-        protected string messageContent;
+        protected TLV messageContent;
 
         /// <summary>
         /// 消息编码
@@ -55,6 +55,7 @@ namespace Hyperion.ControlClient.Protocol
         protected TLV GenerateMessageContent()
         {
             var mtlv = new TLV(tag: this.infoCode, value: infoMessage);
+            this.messageContent = mtlv;
             return mtlv;
         }
 
@@ -62,7 +63,7 @@ namespace Hyperion.ControlClient.Protocol
         /// 生成消息报文
         /// </summary>
         /// <returns></returns>
-        protected abstract void GenerateInfoMessage();
+        protected abstract string GenerateInfoMessage();
 
         /// <summary>
         /// 解析TLV
@@ -107,10 +108,10 @@ namespace Hyperion.ControlClient.Protocol
         /// <returns></returns>
         public virtual string GetMessage()
         {
-            GenerateInfoMessage();
-            var mtlv = GenerateMessageContent();
+            this.infoMessage = GenerateInfoMessage();
+            GenerateMessageContent();
 
-            string message = this.version + this.sequence.ToString("X8") + mtlv.ToString();
+            string message = this.version + this.sequence.ToString("X8") + this.messageContent.ToString();
             return message;
         }
         #endregion //Method

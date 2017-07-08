@@ -33,7 +33,7 @@ namespace Hyperion.ControlClient.Protocol
         /// 生成信元报文
         /// </summary>
         /// <returns></returns>
-        protected override void GenerateInfoMessage()
+        protected override string GenerateInfoMessage()
         {
             throw new NotImplementedException();
         }

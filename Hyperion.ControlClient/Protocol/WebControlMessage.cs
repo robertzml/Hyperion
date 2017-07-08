@@ -70,17 +70,18 @@ namespace Hyperion.ControlClient.Protocol
             this.userId = new TLV(tag: 0x01, value: userId);
             this.equipmentSerialNumber = new TLV(tag: 0x127, value: serialNumber);
             this.transactionId = new TLV(tag: 0x1A, value: "1");
-            this.action = new TLV(tag: 0x12, value: "000100010");
+            this.action = new TLV(tag: 0x12, value: "000100010"); //设备关闭
         }
 
         /// <summary>
         /// 生成消息报文
         /// </summary>
         /// <returns></returns>
-        protected override void GenerateInfoMessage()
+        protected override string GenerateInfoMessage()
         {
-            this.infoMessage = accessType.ToString() + loginType.ToString() + userId.ToString()
+            string msg = accessType.ToString() + loginType.ToString() + userId.ToString()
                 + equipmentSerialNumber.ToString() + transactionId.ToString() + action.ToString();
+            return msg;
         }
         #endregion //Function
 

@@ -24,7 +24,7 @@ namespace Hyperion.ControlClient.Protocol
         #endregion //Field
 
         #region Function
-        protected override void GenerateInfoMessage()
+        protected override string GenerateInfoMessage()
         {
             throw new NotImplementedException();
         }

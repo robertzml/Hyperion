@@ -58,9 +58,10 @@ namespace Hyperion.ControlClient.Protocol
         /// 生成信元报文
         /// </summary>
         /// <returns></returns>
-        protected override void GenerateInfoMessage()
+        protected override string GenerateInfoMessage()
         {
-            this.infoMessage = accessType.ToString() + userId.ToString() + timeOut.ToString();
+            string msg = accessType.ToString() + userId.ToString() + timeOut.ToString();
+            return msg;
         }
         #endregion //Function
 
