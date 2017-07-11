@@ -52,7 +52,6 @@ namespace Hyperion.UnitTest
 
             var msg = message.GetMessage();
 
-
             var task = Task.Run(() =>
             {
                 Request request = new Request();
@@ -72,6 +71,31 @@ namespace Hyperion.UnitTest
             Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[ack.ServerResult.Value]}");
 
             Assert.AreEqual("F", ack.ServerResult.Value);
+        }
+
+        /// <summary>
+        /// 测试登录
+        /// </summary>
+        [TestMethod]
+        public void TestLogin()
+        {
+            LoginMessage message = new LoginMessage("17858655030", 0, 1, "1234567890", 1, 0);
+            var msg = message.GetMessage();
+            Console.WriteLine($"send message: {msg}");
+
+            var task = Task.Run(() =>
+            {
+                Request request = new Request();
+                var data = request.Post(msg);
+
+                return data;
+            });
+
+            var result = task.Result;
+            var response = result.Content.ReadAsStringAsync().Result;
+
+            Console.WriteLine($"response message: {response}");
+            Assert.IsTrue(response.Length > 0);
         }
         #endregion //Test
     }

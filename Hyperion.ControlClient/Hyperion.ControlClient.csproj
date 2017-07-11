@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\AnswerMessage.cs" />
     <Compile Include="Protocol\BaseMessage.cs" />
+    <Compile Include="Protocol\LoginMessage.cs" />
     <Compile Include="Protocol\QueryMessage.cs" />
     <Compile Include="Protocol\RegistrationAckMessage.cs" />
     <Compile Include="Protocol\RegistrationMessage.cs" />
