@@ -27,7 +27,7 @@ namespace Hyperion.ControlClient.Protocol
         protected readonly string version = "Homeconsole01.00";
 
         /// <summary>
-        /// 流水号
+        /// 流水号8位
         /// </summary>
         protected int sequence;
 

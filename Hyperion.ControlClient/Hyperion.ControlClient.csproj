@@ -53,6 +53,8 @@
     <Compile Include="Protocol\AnswerMessage.cs" />
     <Compile Include="Protocol\BaseMessage.cs" />
     <Compile Include="Protocol\QueryMessage.cs" />
+    <Compile Include="Protocol\RegistrationAckMessage.cs" />
+    <Compile Include="Protocol\RegistrationMessage.cs" />
     <Compile Include="Protocol\TLV.cs" />
     <Compile Include="Protocol\TLVCode.cs" />
     <Compile Include="Protocol\WebControlAckMessage.cs" />

@@ -15,7 +15,7 @@ namespace Hyperion.UnitTest
         #region Constructor
         public HttpTest()
         {
-            string host = "http://192.168.0.116/WEB/";
+            string host = "http://192.168.0.116:8080/APP";
             Cache.Instance.Add("EquipmentHost", host);
         }
         #endregion //Constructor
