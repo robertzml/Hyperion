@@ -82,6 +82,8 @@ namespace Hyperion.ControlClient.Protocol
                         var device = ParseDevice(tlv);
                         deviceListNode.DeviceNodes.Add(device);
                         break;
+                    default:
+                        throw new TLVException(tlv, "未知TLV类型");
                 }
 
                 index += tlv.TLVLength;

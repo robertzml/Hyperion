@@ -8,37 +8,38 @@ namespace Hyperion.ControlClient.Protocol
 {
     /// <summary>
     /// 登录报文
+    /// 0x03
     /// </summary>
     public class LoginMessage : BaseMessage
     {
         #region Field
         /// <summary>
-        /// 接入ID(用户名)
+        /// 接入ID(用户名)  0x01
         /// </summary>
         private TLV accessId;
 
         /// <summary>
-        /// 用户ID
+        /// 用户ID  0x1B
         /// </summary>
         private TLV userId;
 
         /// <summary>
-        /// 用户类型
+        /// 用户类型 0x07
         /// </summary>
         private TLV userType;
 
         /// <summary>
-        /// IMEI
+        /// IMEI 0x04
         /// </summary>
         private TLV imei;
 
         /// <summary>
-        /// 用户登录标识区分
+        /// 用户登录标识区分  0x1A
         /// </summary>
         private TLV userLoginType;
 
         /// <summary>
-        /// 取得设备列表及状态标志
+        /// 取得设备列表及状态标志 0x1C
         /// </summary>
         private TLV getStatus;
         #endregion //Field

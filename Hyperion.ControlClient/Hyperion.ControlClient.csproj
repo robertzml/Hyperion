@@ -51,9 +51,11 @@
     <Compile Include="Communication\ResponseContent.cs" />
     <Compile Include="Model\DeviceListNode.cs" />
     <Compile Include="Model\DeviceNode.cs" />
+    <Compile Include="Model\HouseNode.cs" />
     <Compile Include="Model\LoginDeviceNode.cs" />
     <Compile Include="Model\LoginHouseNode.cs" />
     <Compile Include="Model\LoginRoomNode.cs" />
+    <Compile Include="Model\RoomNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\AckMessage.cs" />
     <Compile Include="Protocol\AnswerMessage.cs" />

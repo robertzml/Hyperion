@@ -57,7 +57,106 @@ namespace Hyperion.ControlClient.Protocol
         }
 
         /// <summary>
-        /// 解析
+        /// 解析房屋
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        protected virtual HouseNode ParseHouse(TLV message)
+        {
+            if (message.Tag != 0x102)
+            {
+                throw new TLVException(message, 0x102, message.Tag);
+            }
+
+            HouseNode house = new HouseNode();
+            house.Rooms = new List<RoomNode>();
+
+            int index = 0;
+            string content = message.Value;
+
+            while (index < message.Length)
+            {
+                var tlv = ParseTLV(content, index);
+
+                switch (tlv.Tag)
+                {
+                    case 0x103:
+                        house.Number = Convert.ToInt32(tlv.Value, 16);
+                        break;
+                    case 0x104:
+                        house.Name = tlv.Value;
+                        break;
+                    case 0x106:
+                        house.Info = tlv.Value;
+                        break;
+                    case 0x107:
+                        house.Position = tlv.Value;
+                        break;
+                    case 0x110:
+                        house.RoomCount = Convert.ToInt32(tlv.Value, 16);
+                        break;
+                    case 0x111:
+                        var room = ParseRoom(tlv);
+                        house.Rooms.Add(room);
+                        break;
+                }
+
+                index += tlv.TLVLength;
+            }
+
+            return house;
+        }
+
+        /// <summary>
+        /// 解析Room
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        protected virtual RoomNode ParseRoom(TLV message)
+        {
+            if (message.Tag != 0x111)
+            {
+                throw new TLVException(message, 0x111, message.Tag);
+            }
+
+            RoomNode room = new RoomNode();
+            room.Devices = new List<DeviceNode>();
+
+            int index = 0;
+            string content = message.Value;
+
+            while (index < message.Length)
+            {
+                var tlv = ParseTLV(content, index);
+
+                switch (tlv.Tag)
+                {
+                    case 0x112:
+                        room.Number = Convert.ToInt32(tlv.Value, 16);
+                        break;
+                    case 0x113:
+                        room.Name = tlv.Value;
+                        break;
+                    case 0x114:
+                        room.Type = Convert.ToInt32(tlv.Value, 16);
+                        break;
+                    case 0x120:
+                        room.DeviceCount = Convert.ToInt32(tlv.Value, 16);
+                        break;
+                    case 0x121:
+                        var device = ParseDevice(tlv);
+                        room.Devices.Add(device);
+                        break;
+                }
+
+                index += tlv.TLVLength;
+            }
+
+            return room;
+        }
+
+        /// <summary>
+        /// 解析设备
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>

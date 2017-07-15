@@ -10,6 +10,7 @@ namespace Hyperion.ControlClient.Protocol
 
     /// <summary>
     /// 登录响应报文
+    /// 0x04
     /// </summary>
     public class LoginAckMessage : AckMessage
     {
@@ -204,11 +205,16 @@ namespace Hyperion.ControlClient.Protocol
         /// <param name="message">响应报文</param>
         public override void ParseAck(string message)
         {
-            int messageLength = ParseHead(message);
-            string content = message.Substring(this.version.Length + 16, messageLength);
+            ParseMessageContent(message);
 
+            if (this.messageContent.Tag != 0x04)
+            {
+                throw new TLVException(messageContent, 0x04, messageContent.Tag);
+            }
+         
             int index = 0;
-            while (index < messageLength)
+            string content = messageContent.Value;
+            while (index < messageContent.Length)
             {
                 var tlv = ParseTLV(content, index);
 
@@ -227,6 +233,11 @@ namespace Hyperion.ControlClient.Protocol
                             ParseHouse(content.Substring(index + tlv.TLVLength), Convert.ToInt32(this.houseCount.Value, 16));
                         }
                         break;
+                    case 0x102:
+
+                        break;
+                    //default:
+                    //    throw new TLVException(tlv, "未知TLV类型");
                 }
 
                 index += tlv.TLVLength;

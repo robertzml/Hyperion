@@ -8,6 +8,7 @@ namespace Hyperion.ControlClient.Protocol
 {
     /// <summary>
     /// 注册响应报文
+    /// 0x02
     /// </summary>
     public class RegistrationAckMessage : AckMessage
     {
@@ -29,23 +30,29 @@ namespace Hyperion.ControlClient.Protocol
         /// <param name="message">响应报文</param>
         public override void ParseAck(string message)
         {
-            int messageLength = ParseHead(message);
-            string content = message.Substring(this.version.Length + 16, messageLength);
+            ParseMessageContent(message);
 
-            int length = 0;
-            int index = 0;
-            while (index < messageLength)
+            if (this.messageContent.Tag != 0x02)
             {
-                var tlv = ParseTLV(content, index, out length);
+                throw new TLVException(messageContent, 0x02, messageContent.Tag);
+            }
+
+            int index = 0;
+            string content = messageContent.Value;
+            while (index < messageContent.Length)
+            {
+                var tlv = ParseTLV(content, index);
 
                 switch (tlv.Tag)
                 {
                     case 0x13:
                         this.serverResult = tlv;
                         break;
+                    default:
+                        throw new TLVException(tlv, "未知TLV类型");
                 }
 
-                index += length;
+                index += tlv.TLVLength;
             }
         }
         #endregion //Method
