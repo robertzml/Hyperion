@@ -96,6 +96,13 @@ namespace Hyperion.UnitTest
 
             Console.WriteLine($"response message: {response}");
             Assert.IsTrue(response.Length > 0);
+
+            LoginAckMessage ack = new LoginAckMessage();
+
+            ack.ParseAck(response);
+
+            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[ack.ServerResult.Value]}");
+            Assert.AreEqual("0", ack.ServerResult.Value);
         }
         #endregion //Test
     }

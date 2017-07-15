@@ -99,6 +99,21 @@ namespace Hyperion.ControlClient.Protocol
 
             return new TLV(tag: head, value: code);
         }
+
+        /// <summary>
+        /// 解析TLV
+        /// </summary>
+        /// <param name="message">消息内容</param>
+        /// <param name="pos">读取起始位置</param>
+        /// <returns></returns>
+        protected TLV ParseTLV(string message, int pos)
+        {
+            int head = Convert.ToInt32(message.Substring(pos, 4), 16);
+            int length = Convert.ToInt32(message.Substring(pos + 4, 4), 16);
+            string code = message.Substring(pos + 8, length);
+
+            return new TLV(tag: head, value: code);
+        }
         #endregion //Function
 
         #region Method

@@ -87,6 +87,17 @@ namespace Hyperion.ControlClient.Protocol
                 return this.value;
             }
         }
+
+        /// <summary>
+        /// TLV长度，包含头部
+        /// </summary>
+        public int TLVLength
+        {
+            get
+            {
+                return this.length + 8;
+            }
+        }
         #endregion //Property
     }
 }
