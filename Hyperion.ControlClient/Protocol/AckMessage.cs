@@ -69,7 +69,7 @@ namespace Hyperion.ControlClient.Protocol
             }
 
             HouseNode house = new HouseNode();
-            house.Rooms = new List<RoomNode>();
+            house.RoomNodes = new List<RoomNode>();
 
             int index = 0;
             string content = message.Value;
@@ -97,7 +97,7 @@ namespace Hyperion.ControlClient.Protocol
                         break;
                     case 0x111:
                         var room = ParseRoom(tlv);
-                        house.Rooms.Add(room);
+                        house.RoomNodes.Add(room);
                         break;
                 }
 
@@ -120,7 +120,7 @@ namespace Hyperion.ControlClient.Protocol
             }
 
             RoomNode room = new RoomNode();
-            room.Devices = new List<DeviceNode>();
+            room.DeviceNodes = new List<DeviceNode>();
 
             int index = 0;
             string content = message.Value;
@@ -145,7 +145,7 @@ namespace Hyperion.ControlClient.Protocol
                         break;
                     case 0x121:
                         var device = ParseDevice(tlv);
-                        room.Devices.Add(device);
+                        room.DeviceNodes.Add(device);
                         break;
                 }
 

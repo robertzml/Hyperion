@@ -34,6 +34,6 @@ namespace Hyperion.ControlClient.Model
         /// <summary>
         /// Device信元 0x121
         /// </summary>
-        public List<DeviceNode> Devices { get; set; }
+        public List<DeviceNode> DeviceNodes { get; set; }
     }
 }

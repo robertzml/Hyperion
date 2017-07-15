@@ -39,6 +39,6 @@ namespace Hyperion.ControlClient.Model
         /// <summary>
         /// Room信元 0x111
         /// </summary>
-        public List<RoomNode> Rooms { get; set; }
+        public List<RoomNode> RoomNodes { get; set; }
     }
 }

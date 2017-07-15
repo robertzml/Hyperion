@@ -29,7 +29,20 @@ namespace Hyperion.ControlClient.Protocol
         /// House列表
         /// </summary>
         private List<LoginHouseNode> houses = new List<LoginHouseNode>();
+
+        /// <summary>
+        /// 登录信元
+        /// </summary>
+        private LoginNode loginNode;
         #endregion //Field
+
+        #region Constructor
+        public LoginAckMessage()
+        {
+            this.loginNode = new LoginNode();
+            loginNode.HouseNodes = new List<HouseNode>();
+        }
+        #endregion //Constructor
 
         #region Function
         protected override string GenerateInfoMessage()
@@ -222,9 +235,10 @@ namespace Hyperion.ControlClient.Protocol
                 {
                     case 0x13:
                         this.serverResult = tlv;
+                        loginNode.ServerResult = Convert.ToInt32(tlv.Value, 16);
                         break;
                     case 0x019:
-                        this.userIndex = tlv;
+                        loginNode.UserIndex = Convert.ToInt32(tlv.Value, 16);                        
                         break;
                     case 0x101:
                         this.houseCount = tlv;
