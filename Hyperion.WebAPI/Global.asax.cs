@@ -26,6 +26,9 @@ namespace Hyperion.WebAPI
 
             string dalPrefix = AppConfig.GetAppSetting("DALPrefix");
             Cache.Instance.Add("DALPrefix", dalPrefix);
+
+            string equipmentHost = AppConfig.GetAppSetting("EquipmentHost");
+            Cache.Instance.Add("EquipmentHost", equipmentHost);
         }
     }
 }

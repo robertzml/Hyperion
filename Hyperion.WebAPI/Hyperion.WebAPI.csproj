@@ -174,6 +174,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\DeviceListMessageController.cs" />
     <Compile Include="Controllers\EquipmentAlarmController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\EquipmentStateController.cs" />
@@ -236,6 +237,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hyperion.ControlClient\Hyperion.ControlClient.csproj">
+      <Project>{c64dd946-9d65-44f0-89d2-e4730096c972}</Project>
+      <Name>Hyperion.ControlClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hyperion.Core\Hyperion.Core.csproj">
       <Project>{885b9039-b005-4c46-bf63-67968ee861e1}</Project>
       <Name>Hyperion.Core</Name>
