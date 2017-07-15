@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Hyperion.ControlClient.Protocol
 {
+    using Hyperion.ControlClient.Model;
+
     /// <summary>
     /// 响应报文
     /// </summary>
@@ -37,6 +39,74 @@ namespace Hyperion.ControlClient.Protocol
             var messageLength = Convert.ToInt32(messageHead.Substring(4, 4), 16);
 
             return messageLength;
+        }
+
+        /// <summary>
+        /// 解析报文内容，仅解出头部
+        /// </summary>
+        /// <param name="message">报文</param>
+        /// <returns></returns>
+        protected virtual void ParseMessageContent(string message)
+        {
+            var ackVersion = message.Substring(0, this.version.Length);
+            this.sequence = Convert.ToInt32(message.Substring(this.version.Length, 8), 16);
+
+            var head = ParseTLV(message, this.version.Length + 8);
+
+            this.messageContent = head;
+        }
+
+        /// <summary>
+        /// 解析
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        protected virtual DeviceNode ParseDevice(TLV message)
+        {
+            if (message.Tag != 0x121)
+            {
+                throw new TLVException(message, 0x121, message.Tag);
+            }
+
+            DeviceNode device = new DeviceNode();
+            int index = 0;
+            string content = message.Value;
+
+            while (index < message.Length)
+            {
+                var tlv = ParseTLV(content, index);
+
+                switch (tlv.Tag)
+                {
+                    case 0x123:
+                        device.Name = tlv.Value;
+                        break;
+                    case 0x124:
+                        device.Vendor = tlv.Value;
+                        break;
+                    case 0x125:
+                        device.Type = tlv.Value;
+                        break;
+                    case 0x126:
+                        device.Version = tlv.Value;
+                        break;
+                    case 0x127:
+                        device.SerialNumber = tlv.Value;
+                        break;
+                    case 0x128:
+                        device.Status = tlv;
+                        break;
+                    case 0x129:
+                        device.Online = Convert.ToInt32(tlv.Value, 16);
+                        break;
+                    default:
+                        throw new TLVException(tlv, "未知TLV类型");
+                }
+
+                index += tlv.TLVLength;
+            }
+
+            return device;
         }
         #endregion //Function
 

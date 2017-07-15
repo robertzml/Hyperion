@@ -24,6 +24,12 @@ namespace Hyperion.ControlClient.Protocol
         {
             this.tlv = tlv;            
         }
+
+        public TLVException(TLV tlv, string message) :
+            base(string.Format("协议解析失败, {0}", message))
+        {
+            this.tlv = tlv;
+        }
         #endregion //Constructor
     }
 }

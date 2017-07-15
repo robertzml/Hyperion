@@ -104,6 +104,40 @@ namespace Hyperion.UnitTest
             Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[ack.ServerResult.Value]}");
             Assert.AreEqual("0", ack.ServerResult.Value);
         }
+
+        /// <summary>
+        /// 测试设备列表
+        /// </summary>
+        [TestMethod]
+        public void TestDeviceList()
+        {
+            DeviceListMessage message = new DeviceListMessage(0, "17858655030", "1234567890", 4, 3);
+            var msg = message.GetMessage();
+            Console.WriteLine($"send message: {msg}");
+
+            var task = Task.Run(() =>
+            {
+                Request request = new Request();
+                var data = request.Post(msg);
+
+                return data;
+            });
+
+            var result = task.Result;
+            var response = result.Content.ReadAsStringAsync().Result;
+
+            Console.WriteLine($"response message: {response}");
+            Assert.IsTrue(response.Length > 0);
+
+            DeviceListAckMessage ack = new DeviceListAckMessage();
+
+            ack.ParseAck(response);
+
+            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[ack.ServerResult.Value]}");
+            Assert.AreEqual("0", ack.ServerResult.Value);
+
+            Assert.AreEqual(1, ack.DeviceListNode.DeviceCount);
+        }
         #endregion //Test
     }
 }

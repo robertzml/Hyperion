@@ -227,7 +227,6 @@ namespace Hyperion.ControlClient.Protocol
                             ParseHouse(content.Substring(index + tlv.TLVLength), Convert.ToInt32(this.houseCount.Value, 16));
                         }
                         break;
-
                 }
 
                 index += tlv.TLVLength;

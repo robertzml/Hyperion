@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="Communication\Request.cs" />
     <Compile Include="Communication\ResponseContent.cs" />
+    <Compile Include="Model\DeviceListNode.cs" />
+    <Compile Include="Model\DeviceNode.cs" />
     <Compile Include="Model\LoginDeviceNode.cs" />
     <Compile Include="Model\LoginHouseNode.cs" />
     <Compile Include="Model\LoginRoomNode.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="Protocol\AckMessage.cs" />
     <Compile Include="Protocol\AnswerMessage.cs" />
     <Compile Include="Protocol\BaseMessage.cs" />
+    <Compile Include="Protocol\DeviceListAckMessage.cs" />
     <Compile Include="Protocol\LoginAckMessage.cs" />
     <Compile Include="Protocol\LoginMessage.cs" />
     <Compile Include="Protocol\QueryMessage.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="Protocol\TLV.cs" />
     <Compile Include="Protocol\TLVCode.cs" />
     <Compile Include="Protocol\TLVException.cs" />
+    <Compile Include="Protocol\DeviceListMessage.cs" />
     <Compile Include="Protocol\WebControlAckMessage.cs" />
     <Compile Include="Protocol\WebControlMessage.cs" />
   </ItemGroup>
