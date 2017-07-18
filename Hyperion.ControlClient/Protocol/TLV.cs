@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,8 @@ namespace Hyperion.ControlClient.Protocol
     /// <summary>
     /// TLV信元类
     /// </summary>
+    [Serializable]
+    [DataContract]
     public class TLV
     {
         #region Field
@@ -58,6 +61,7 @@ namespace Hyperion.ControlClient.Protocol
         /// <summary>
         /// Tag
         /// </summary>
+        [DataMember]
         public int Tag
         {
             get
@@ -69,6 +73,7 @@ namespace Hyperion.ControlClient.Protocol
         /// <summary>
         /// 长度
         /// </summary>
+        [DataMember]
         public int Length
         {
             get
@@ -80,6 +85,7 @@ namespace Hyperion.ControlClient.Protocol
         /// <summary>
         /// 信元内容
         /// </summary>
+        [DataMember]
         public string Value
         {
             get
