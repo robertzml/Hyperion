@@ -180,6 +180,7 @@
     <Compile Include="Controllers\EquipmentStateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginMessageController.cs" />
+    <Compile Include="Controllers\LogoutMessageController.cs" />
     <Compile Include="Controllers\RegistrationMessageController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Global.asax.cs">

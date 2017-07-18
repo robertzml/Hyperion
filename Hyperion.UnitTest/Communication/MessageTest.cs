@@ -106,6 +106,38 @@ namespace Hyperion.UnitTest
         }
 
         /// <summary>
+        /// 注销测试
+        /// </summary>
+        [TestMethod]
+        public void TestLogout()
+        {
+            LogoutMessage message = new LogoutMessage(0, "17858655030", "1234567890");
+            var msg = message.GetMessage();
+            Console.WriteLine($"send message: {msg}");
+
+            var task = Task.Run(() =>
+            {
+                Request request = new Request();
+                var data = request.Post(msg);
+
+                return data;
+            });
+
+            var result = task.Result;
+            var response = result.Content.ReadAsStringAsync().Result;
+
+            Console.WriteLine($"response message: {response}");
+            Assert.IsTrue(response.Length > 0);
+
+            LogoutAckMessage ack = new LogoutAckMessage();
+
+            ack.ParseAck(response);
+
+            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[ack.ServerResult.Value]}");
+            Assert.AreEqual("0", ack.ServerResult.Value);
+        }
+
+        /// <summary>
         /// 测试设备列表
         /// </summary>
         [TestMethod]

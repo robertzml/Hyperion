@@ -65,6 +65,8 @@
     <Compile Include="Protocol\DeviceListAckMessage.cs" />
     <Compile Include="Protocol\LoginAckMessage.cs" />
     <Compile Include="Protocol\LoginMessage.cs" />
+    <Compile Include="Protocol\LogoutMessage.cs" />
+    <Compile Include="Protocol\LogoutAckMessage.cs" />
     <Compile Include="Protocol\QueryMessage.cs" />
     <Compile Include="Protocol\RegistrationAckMessage.cs" />
     <Compile Include="Protocol\RegistrationMessage.cs" />
