@@ -90,7 +90,66 @@ namespace Hyperion.ControlClient.Protocol
         #endregion //Field
 
         #region Constructor
+        /// <summary>
+        /// 增加设备
+        /// </summary>
+        /// <param name="accessId"></param>
+        /// <param name="imei"></param>
+        /// <param name="houseNumber"></param>
+        /// <param name="roomNumber"></param>
+        /// <param name="deviceName"></param>
+        /// <param name="deviceType"></param>
+        /// <param name="serialNumber"></param>
+        public UnifiedMessage(string accessId, string imei, int houseNumber, int roomNumber, string deviceName, string deviceType, string serialNumber)
+        {
+            this.sequence = 1;
+            this.infoCode = 0x07;
+            this.unifiedCode = new TLV(tag: 0x09, value: "6");
 
+            this.accessId = new TLV(tag: 0x01, value: accessId);
+            this.imei = new TLV(tag: 0x04, value: imei);
+            this.houseNumber = new TLV(tag: 0x103, value: houseNumber.ToString("X"));
+            this.roomNumber = new TLV(tag: 0x112, value: roomNumber.ToString("X"));
+            this.deviceName = new TLV(tag: 0x123, value: deviceName);
+            this.deviceType = new TLV(tag: 0x125, value: deviceType);
+            this.serialNumber = new TLV(tag: 0x127, value: serialNumber);
+        }
+
+        /// <summary>
+        /// 修改设备
+        /// </summary>
+        /// <param name="accessId"></param>
+        /// <param name="imei"></param>
+        /// <param name="deviceName"></param>
+        /// <param name="serialNumber"></param>
+        public UnifiedMessage(string accessId, string imei, string deviceName, string serialNumber)
+        {
+            this.sequence = 1;
+            this.infoCode = 0x07;
+            this.unifiedCode = new TLV(tag: 0x09, value: "7");
+
+            this.accessId = new TLV(tag: 0x01, value: accessId);
+            this.imei = new TLV(tag: 0x04, value: imei);
+            this.deviceName = new TLV(tag: 0x123, value: deviceName);
+            this.serialNumber = new TLV(tag: 0x127, value: serialNumber);
+        }
+
+        /// <summary>
+        /// 删除设备
+        /// </summary>
+        /// <param name="accessId"></param>
+        /// <param name="imei"></param>
+        /// <param name="serialNumber"></param>
+        public UnifiedMessage(string accessId, string imei, string serialNumber)
+        {
+            this.sequence = 1;
+            this.infoCode = 0x07;
+            this.unifiedCode = new TLV(tag: 0x09, value: "8");
+
+            this.accessId = new TLV(tag: 0x01, value: accessId);
+            this.imei = new TLV(tag: 0x04, value: imei);
+            this.serialNumber = new TLV(tag: 0x127, value: serialNumber);
+        }
         #endregion //Constructor
 
 

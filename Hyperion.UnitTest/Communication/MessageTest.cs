@@ -170,6 +170,108 @@ namespace Hyperion.UnitTest
 
             Assert.AreEqual(1, ack.DeviceListNode.DeviceCount);
         }
+
+        /// <summary>
+        /// 测试增加设备
+        /// </summary>
+        [TestMethod]
+        public void TestUnifiedAdd()
+        {
+            UnifiedMessage message = new UnifiedMessage("17858655030", "1234567890", 4, 3, "TEST", "0000", "qwerty");
+            var msg = message.GetMessage();
+            Console.WriteLine($"send message: {msg}");
+
+            var task = Task.Run(() =>
+            {
+                Request request = new Request();
+                var data = request.Post(msg);
+
+                return data;
+            });
+
+            var result = task.Result;
+            var response = result.Content.ReadAsStringAsync().Result;
+
+            Console.WriteLine($"response message: {response}");
+            Assert.IsTrue(response.Length > 0);
+
+            UnifiedAckMessage ack = new UnifiedAckMessage();
+
+            ack.ParseAck(response);
+
+            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[ack.ServerResult.Value]}");
+            Assert.AreEqual("0", ack.ServerResult.Value);
+
+            Assert.AreEqual("qwerty", ack.UnifiedNode.SerialNumber);
+        }
+
+        /// <summary>
+        /// 修改设备
+        /// </summary>
+        [TestMethod]
+        public void TestUnifiedEdit()
+        {
+            UnifiedMessage message = new UnifiedMessage("17858655030", "1234567890", "TEST07123", "qwerty");
+            var msg = message.GetMessage();
+            Console.WriteLine($"send message: {msg}");
+
+            var task = Task.Run(() =>
+            {
+                Request request = new Request();
+                var data = request.Post(msg);
+
+                return data;
+            });
+
+            var result = task.Result;
+            var response = result.Content.ReadAsStringAsync().Result;
+
+            Console.WriteLine($"response message: {response}");
+            Assert.IsTrue(response.Length > 0);
+
+            UnifiedAckMessage ack = new UnifiedAckMessage();
+
+            ack.ParseAck(response);
+
+            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[ack.ServerResult.Value]}");
+            Assert.AreEqual("0", ack.ServerResult.Value);
+
+            Assert.AreEqual(7, ack.UnifiedNode.UnifiedCode);
+        }
+
+        /// <summary>
+        /// 删除设备
+        /// </summary>
+        [TestMethod]
+        public void TestUnifiedDelete()
+        {
+            UnifiedMessage message = new UnifiedMessage("17858655030", "1234567890", "qwerty");
+            var msg = message.GetMessage();
+            Console.WriteLine($"send message: {msg}");
+
+            var task = Task.Run(() =>
+            {
+                Request request = new Request();
+                var data = request.Post(msg);
+
+                return data;
+            });
+
+            var result = task.Result;
+            var response = result.Content.ReadAsStringAsync().Result;
+
+            Console.WriteLine($"response message: {response}");
+            Assert.IsTrue(response.Length > 0);
+
+            UnifiedAckMessage ack = new UnifiedAckMessage();
+
+            ack.ParseAck(response);
+
+            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[ack.ServerResult.Value]}");
+            Assert.AreEqual("0", ack.ServerResult.Value);
+
+            Assert.AreEqual(8, ack.UnifiedNode.UnifiedCode);
+        }
         #endregion //Test
     }
 }
