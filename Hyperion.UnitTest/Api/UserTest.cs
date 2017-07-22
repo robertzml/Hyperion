@@ -43,10 +43,9 @@ namespace Hyperion.UnitTest.Api
                 string auth = Hasher.SHA1Encrypt(accessId + "Mu lan");
                 client.DefaultRequestHeaders.Add("auth", auth);
 
-                T entity = default(T);                
-                                
+                T entity = default(T);
+
                 HttpResponseMessage response = client.GetAsync(url).Result;
-                               
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -59,6 +58,27 @@ namespace Hyperion.UnitTest.Api
         #endregion //Function
 
         #region Test
+        /// <summary>
+        /// 注册测试
+        /// </summary>
+        [TestMethod]
+        public void TestRegister()
+        {
+            int registerType = 0;
+            string accessId = "15012340000";
+            long userId = 10;
+            int userType = 1;
+            string imei = "A1234567890";
+
+            string url = string.Format("{0}RegistrationMessage?registerType={1}&accessId={2}&userId={3}&userType={4}&imei={5}",
+                host, registerType, accessId, userId, userType, imei);
+
+            var node = GetEntity<string>(url, accessId);
+
+            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[node]}");
+            Assert.AreEqual(0, Convert.ToInt32(node, 16));
+        }
+
         /// <summary>
         /// 登录测试
         /// </summary>
@@ -79,6 +99,25 @@ namespace Hyperion.UnitTest.Api
 
             Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[node.ServerResult.ToString("X")]}");
             Assert.AreEqual(0, node.ServerResult);
+        }
+
+        /// <summary>
+        /// 注销测试
+        /// </summary>
+        [TestMethod]
+        public void TestLogout()
+        {
+            int accessType = 0;
+            string accessId = "17858655030";
+            string imei = "1234567890";
+
+            string url = string.Format("{0}LogoutMessage?accessType={1}&accessId={2}&imei={3}",
+                host, accessType, accessId, imei);
+
+            var node = GetEntity<string>(url, accessId);
+
+            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[node]}");
+            Assert.AreEqual(0, Convert.ToInt32(node, 16));
         }
         #endregion //Test
     }

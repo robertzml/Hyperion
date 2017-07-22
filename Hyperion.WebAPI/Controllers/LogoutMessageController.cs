@@ -9,9 +9,9 @@ using System.Web.Http.Cors;
 
 namespace Hyperion.WebAPI.Controllers
 {
-    using Hyperion.ControlClient.Communication;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
+    using Hyperion.WebAPI.Utility;
 
     /// <summary>
     /// 登录报文控制器
@@ -23,27 +23,31 @@ namespace Hyperion.WebAPI.Controllers
         /// <summary>
         /// 用户注销
         /// </summary>
+        /// <param name="accessType">接入类型</param>
+        /// <param name="accessId">接入ID</param>
+        /// <param name="imei">IMEI</param>
+        /// <returns></returns>
+        [AccessFilter]
         public HttpResponseMessage Get(int accessType, string accessId, string imei)
         {
-            LogoutMessage message = new LogoutMessage(accessType, accessId, imei);
-            var msg = message.GetMessage();
-
-            var task = Task.Run(() =>
+            try
             {
-                Request request = new Request();
-                var data = request.Post(msg);
+                LogoutMessage message = new LogoutMessage(accessType, accessId, imei);
+                var msg = message.GetMessage();
 
-                return data;
-            });
+                EquipmentServerAction act = new EquipmentServerAction();
+                var result = act.RequestToServer(msg);
 
-            var result = task.Result;
-            var content = result.Content.ReadAsStringAsync().Result;
+                LogoutAckMessage ack = new LogoutAckMessage();
+                ack.ParseAck(result);
 
-            LogoutAckMessage ack = new LogoutAckMessage();
-            ack.ParseAck(content);
-
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.ServerResult.Value);
-            return response;
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.ServerResult.Value);
+                return response;
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
         #endregion //Action
     }

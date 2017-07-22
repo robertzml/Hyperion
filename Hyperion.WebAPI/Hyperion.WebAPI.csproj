@@ -185,6 +185,7 @@
     <Compile Include="Controllers\RegistrationMessageController.cs" />
     <Compile Include="Controllers\UnifiedMessageController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
+    <Compile Include="Filter\AccessFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

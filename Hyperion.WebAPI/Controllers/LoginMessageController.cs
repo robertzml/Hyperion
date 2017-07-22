@@ -32,37 +32,37 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="userLoginType">用户登录标识</param>
         /// <param name="getStatus">取得设备列表</param>
         /// <returns></returns>
+        [AccessFilter]
         public HttpResponseMessage Get(string accessId, long userId, int userType, string imei, int userLoginType, int getStatus)
         {
-            if (!Request.Headers.Contains("auth"))
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.BadRequest.DisplayName());
-            else
-            {
-                var auth = Request.Headers.GetValues("auth").First();
+            //if (!Request.Headers.Contains("auth"))
+            //    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.BadRequest.DisplayName());
+            //else
+            //{
+            //    var auth = Request.Headers.GetValues("auth").First();
 
-                if (auth != Hasher.SHA1Encrypt(accessId + HyperionConstant.Salt))
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.AuthFailed.DisplayName());
+            //    if (auth != Hasher.SHA1Encrypt(accessId + HyperionConstant.Salt))
+            //        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.AuthFailed.DisplayName());
+            //}
+
+            try
+            {
+                LoginMessage message = new LoginMessage(accessId, userId, userType, imei, userLoginType, getStatus);
+                var msg = message.GetMessage();
+
+                EquipmentServerAction act = new EquipmentServerAction();
+                var result = act.RequestToServer(msg);
+
+                LoginAckMessage ack = new LoginAckMessage();
+                ack.ParseAck(result);
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.LoginNode);
+                return response;
             }
-
-            LoginMessage message = new LoginMessage(accessId, userId, userType, imei, userLoginType, getStatus);
-            var msg = message.GetMessage();
-
-            var task = Task.Run(() =>
+            catch(Exception e)
             {
-                Request request = new Request();
-                var data = request.Post(msg);
-
-                return data;
-            });
-
-            var result = task.Result;
-            var content = result.Content.ReadAsStringAsync().Result;
-
-            LoginAckMessage ack = new LoginAckMessage();
-            ack.ParseAck(content);
-
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.LoginNode);
-            return response;
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
         #endregion //Action
     }

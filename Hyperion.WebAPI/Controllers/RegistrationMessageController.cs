@@ -9,11 +9,9 @@ using System.Web.Http.Cors;
 
 namespace Hyperion.WebAPI.Controllers
 {
-    using Hyperion.ControlClient.Communication;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
-    using Poseidon.Base.Framework;
-    using Poseidon.Base.System;
+    using Hyperion.WebAPI.Utility;
 
     /// <summary>
     /// 注册报文控制器
@@ -23,29 +21,35 @@ namespace Hyperion.WebAPI.Controllers
     {
         #region Action
         /// <summary>
-        /// 获取设备列表
+        /// 用户注册
         /// </summary>
+        /// <param name="registerType">注册类型</param>
+        /// <param name="accessId">接入ID</param>
+        /// <param name="userId">用户ID</param>
+        /// <param name="userType">用户类型</param>
+        /// <param name="imei">IMEI</param>
+        /// <returns></returns>
+        [AccessFilter]
         public HttpResponseMessage Get(int registerType, string accessId, long userId, int userType, string imei)
         {
-            RegistrationMessage message = new RegistrationMessage(registerType, accessId, userId, userType, imei);
-            var msg = message.GetMessage();
-
-            var task = Task.Run(() =>
+            try
             {
-                Request request = new Request();
-                var data = request.Post(msg);
+                RegistrationMessage message = new RegistrationMessage(registerType, accessId, userId, userType, imei);
+                var msg = message.GetMessage();
 
-                return data;
-            });
+                EquipmentServerAction act = new EquipmentServerAction();
+                var result = act.RequestToServer(msg);
 
-            var result = task.Result;
-            var content = result.Content.ReadAsStringAsync().Result;
+                RegistrationAckMessage ack = new RegistrationAckMessage();
+                ack.ParseAck(result);
 
-            RegistrationAckMessage ack = new RegistrationAckMessage();
-            ack.ParseAck(content);
-
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.ServerResult.Value);
-            return response;
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.ServerResult.Value);
+                return response;
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
         #endregion //Action
     }
