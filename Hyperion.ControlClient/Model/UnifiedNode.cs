@@ -14,6 +14,11 @@ namespace Hyperion.ControlClient.Model
     public class UnifiedNode
     {
         /// <summary>
+        /// 设备返回结果
+        /// </summary>
+        public int ServerResult { get; set; }
+
+        /// <summary>
         /// 统一操作码 0x09
         /// </summary>
         public int UnifiedCode { get; set; }

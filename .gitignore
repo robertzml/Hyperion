@@ -260,3 +260,4 @@ yarn-debug.log*
 yarn-error.log*
 /Hyperion.Vue/typings
 /Hyperion.Vue/typings.json
+/Hyperion.WebAPI/App_Data

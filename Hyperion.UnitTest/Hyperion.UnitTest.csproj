@@ -68,6 +68,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Api\UserTest.cs" />
     <Compile Include="Communication\HttpTest.cs" />
     <Compile Include="Communication\MessageTest.cs" />
     <Compile Include="Model\EquipmentTest.cs" />
@@ -91,6 +92,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

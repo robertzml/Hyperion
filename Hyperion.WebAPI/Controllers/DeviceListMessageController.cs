@@ -12,6 +12,7 @@ namespace Hyperion.WebAPI.Controllers
     using Hyperion.ControlClient.Communication;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
+    using Hyperion.WebAPI.Utility;
     using Poseidon.Base.Framework;
     using Poseidon.Base.System;
 
@@ -30,19 +31,11 @@ namespace Hyperion.WebAPI.Controllers
             DeviceListMessage message = new DeviceListMessage(accessType, accessId, imei, houseNumber, roomNumber);
             var msg = message.GetMessage();
 
-            var task = Task.Run(() =>
-            {
-                Request request = new Request();
-                var data = request.Post(msg);
-
-                return data;
-            });
-
-            var result = task.Result;
-            var content = result.Content.ReadAsStringAsync().Result;
+            EquipmentServerAction act = new EquipmentServerAction();
+            var result = act.RequestToServer(msg);
 
             DeviceListAckMessage ack = new DeviceListAckMessage();
-            ack.ParseAck(content);
+            ack.ParseAck(result);
 
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.DeviceListNode);
             return response;
