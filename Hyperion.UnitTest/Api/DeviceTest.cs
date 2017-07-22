@@ -23,7 +23,8 @@ namespace Hyperion.UnitTest.Api
         #region Constructor
         public DeviceTest()
         {
-            this.host = "http://localhost:6024/api/";
+            //this.host = "http://localhost:6024/api/";
+            this.host = "http://192.168.0.111:8030/api/";
         }
         #endregion //Construcor
 
