@@ -12,8 +12,6 @@ namespace Hyperion.WebAPI.Controllers
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
     using Hyperion.WebAPI.Utility;
-    using Poseidon.Base.Framework;
-    using Poseidon.Base.System;
 
     /// <summary>
     /// 统一操作控制器
@@ -33,19 +31,27 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="deviceType">设备类型</param>
         /// <param name="serialNumber">设备序列号</param>
         /// <returns></returns>
+        [AccessFilter]
         public HttpResponseMessage GetAdd(string accessId, string imei, int houseNumber, int roomNumber, string deviceName, string deviceType, string serialNumber)
         {
-            UnifiedMessage message = new UnifiedMessage(accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber);
-            var msg = message.GetMessage();
+            try
+            {
+                UnifiedMessage message = new UnifiedMessage(accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber);
+                var msg = message.GetMessage();
 
-            EquipmentServerAction act = new EquipmentServerAction();
-            var result = act.RequestToServer(msg);
+                EquipmentServerAction act = new EquipmentServerAction();
+                var result = act.RequestToServer(msg);
 
-            DeviceListAckMessage ack = new DeviceListAckMessage();
-            ack.ParseAck(result);
+                UnifiedAckMessage ack = new UnifiedAckMessage();
+                ack.ParseAck(result);
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.DeviceListNode);
-            return response;
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.UnifiedNode);
+                return response;
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
 
         /// <summary>
@@ -56,19 +62,27 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="deviceName">设备名称</param>
         /// <param name="serialNumber">设备序列号</param>
         /// <returns></returns>
+        [AccessFilter]
         public HttpResponseMessage GetEdit(string accessId, string imei, string deviceName, string serialNumber)
         {
-            UnifiedMessage message = new UnifiedMessage(accessId, imei, deviceName, serialNumber);
-            var msg = message.GetMessage();
+            try
+            {
+                UnifiedMessage message = new UnifiedMessage(accessId, imei, deviceName, serialNumber);
+                var msg = message.GetMessage();
 
-            EquipmentServerAction act = new EquipmentServerAction();
-            var result = act.RequestToServer(msg);
+                EquipmentServerAction act = new EquipmentServerAction();
+                var result = act.RequestToServer(msg);
 
-            DeviceListAckMessage ack = new DeviceListAckMessage();
-            ack.ParseAck(result);
+                UnifiedAckMessage ack = new UnifiedAckMessage();
+                ack.ParseAck(result);
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.DeviceListNode);
-            return response;
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.UnifiedNode);
+                return response;
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
 
         /// <summary>
@@ -78,19 +92,27 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="imei">IMEI</param>
         /// <param name="serialNumber">设备序列号</param>
         /// <returns></returns>
+        [AccessFilter]
         public HttpResponseMessage GetDelete(string accessId, string imei, string serialNumber)
         {
-            UnifiedMessage message = new UnifiedMessage(accessId, imei, serialNumber);
-            var msg = message.GetMessage();
+            try
+            {
+                UnifiedMessage message = new UnifiedMessage(accessId, imei, serialNumber);
+                var msg = message.GetMessage();
 
-            EquipmentServerAction act = new EquipmentServerAction();
-            var result = act.RequestToServer(msg);
+                EquipmentServerAction act = new EquipmentServerAction();
+                var result = act.RequestToServer(msg);
 
-            DeviceListAckMessage ack = new DeviceListAckMessage();
-            ack.ParseAck(result);
+                UnifiedAckMessage ack = new UnifiedAckMessage();
+                ack.ParseAck(result);
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.DeviceListNode);
-            return response;
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.UnifiedNode);
+                return response;
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
         #endregion //Action
     }

@@ -35,16 +35,6 @@ namespace Hyperion.WebAPI.Controllers
         [AccessFilter]
         public HttpResponseMessage Get(string accessId, long userId, int userType, string imei, int userLoginType, int getStatus)
         {
-            //if (!Request.Headers.Contains("auth"))
-            //    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.BadRequest.DisplayName());
-            //else
-            //{
-            //    var auth = Request.Headers.GetValues("auth").First();
-
-            //    if (auth != Hasher.SHA1Encrypt(accessId + HyperionConstant.Salt))
-            //        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.AuthFailed.DisplayName());
-            //}
-
             try
             {
                 LoginMessage message = new LoginMessage(accessId, userId, userType, imei, userLoginType, getStatus);
@@ -59,7 +49,7 @@ namespace Hyperion.WebAPI.Controllers
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.LoginNode);
                 return response;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
             }

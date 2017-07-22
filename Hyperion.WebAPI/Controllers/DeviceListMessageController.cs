@@ -9,12 +9,9 @@ using System.Web.Http.Cors;
 
 namespace Hyperion.WebAPI.Controllers
 {
-    using Hyperion.ControlClient.Communication;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
     using Hyperion.WebAPI.Utility;
-    using Poseidon.Base.Framework;
-    using Poseidon.Base.System;
 
     /// <summary>
     /// 设备列表报文控制器
@@ -26,19 +23,33 @@ namespace Hyperion.WebAPI.Controllers
         /// <summary>
         /// 获取设备列表
         /// </summary>
+        /// <param name="accessType">接入类型</param>
+        /// <param name="accessId">接入ID</param>
+        /// <param name="imei">IMEI</param>
+        /// <param name="houseNumber">House序号</param>
+        /// <param name="roomNumber">Room序号</param>
+        /// <returns></returns>
+        [AccessFilter]
         public HttpResponseMessage Get(int accessType, string accessId, string imei, int houseNumber, int roomNumber)
         {
-            DeviceListMessage message = new DeviceListMessage(accessType, accessId, imei, houseNumber, roomNumber);
-            var msg = message.GetMessage();
+            try
+            {
+                DeviceListMessage message = new DeviceListMessage(accessType, accessId, imei, houseNumber, roomNumber);
+                var msg = message.GetMessage();
 
-            EquipmentServerAction act = new EquipmentServerAction();
-            var result = act.RequestToServer(msg);
+                EquipmentServerAction act = new EquipmentServerAction();
+                var result = act.RequestToServer(msg);
 
-            DeviceListAckMessage ack = new DeviceListAckMessage();
-            ack.ParseAck(result);
+                DeviceListAckMessage ack = new DeviceListAckMessage();
+                ack.ParseAck(result);
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.DeviceListNode);
-            return response;
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.DeviceListNode);
+                return response;
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
         #endregion //Action
     }

@@ -68,6 +68,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Api\DeviceTest.cs" />
     <Compile Include="Api\UserTest.cs" />
     <Compile Include="Communication\HttpTest.cs" />
     <Compile Include="Communication\MessageTest.cs" />

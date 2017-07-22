@@ -12,7 +12,7 @@ namespace Hyperion.ControlClient.Model
     public class DeviceListNode
     {
         /// <summary>
-        /// 设备返回结果
+        /// 设备返回结果 0x13
         /// </summary>
         public int ServerResult { get; set; }
 

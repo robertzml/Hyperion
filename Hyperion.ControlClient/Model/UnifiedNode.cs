@@ -14,7 +14,7 @@ namespace Hyperion.ControlClient.Model
     public class UnifiedNode
     {
         /// <summary>
-        /// 设备返回结果
+        /// 设备返回结果 0x13
         /// </summary>
         public int ServerResult { get; set; }
 
@@ -23,7 +23,7 @@ namespace Hyperion.ControlClient.Model
         /// </summary>
         public int UnifiedCode { get; set; }
 
-        // <summary>
+        /// <summary>
         /// House序号 0x103
         /// </summary>
         public int HouseNumber { get; set; }
