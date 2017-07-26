@@ -54,6 +54,7 @@
     <Compile Include="Model\DeviceNode.cs" />
     <Compile Include="Model\HouseNode.cs" />
     <Compile Include="Model\LoginNode.cs" />
+    <Compile Include="Model\RegistrationNode.cs" />
     <Compile Include="Model\RoomNode.cs" />
     <Compile Include="Model\UnifiedNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

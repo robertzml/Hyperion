@@ -43,7 +43,7 @@ namespace Hyperion.WebAPI.Controllers
                 RegistrationAckMessage ack = new RegistrationAckMessage();
                 ack.ParseAck(result);
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.ServerResult.Value);
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.RegistrationNode);
                 return response;
             }
             catch (Exception e)

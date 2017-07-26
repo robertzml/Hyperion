@@ -6,12 +6,28 @@ using System.Threading.Tasks;
 
 namespace Hyperion.ControlClient.Protocol
 {
+    using Hyperion.ControlClient.Model;
+
     /// <summary>
     /// 注册响应报文
     /// 0x02
     /// </summary>
     public class RegistrationAckMessage : AckMessage
     {
+        #region Field
+        /// <summary>
+        /// 用户设备列表信元
+        /// </summary>
+        private RegistrationNode registrationNode;
+        #endregion //Field
+
+        #region Constructor
+        public RegistrationAckMessage()
+        {
+            this.registrationNode = new RegistrationNode();
+        }
+        #endregion //Constructor
+
         #region Function
         /// <summary>
         /// 生成信元报文
@@ -47,6 +63,7 @@ namespace Hyperion.ControlClient.Protocol
                 {
                     case 0x13:
                         this.serverResult = tlv;
+                        registrationNode.ServerResult = Convert.ToInt32(tlv.Value, 16);
                         break;
                     default:
                         throw new TLVException(tlv, "未知TLV类型");
@@ -56,5 +73,23 @@ namespace Hyperion.ControlClient.Protocol
             }
         }
         #endregion //Method
+
+        #region Property
+        /// <summary>
+        /// 注册响应信元
+        /// </summary>
+        public RegistrationNode RegistrationNode
+        {
+            get
+            {
+                return registrationNode;
+            }
+
+            set
+            {
+                registrationNode = value;
+            }
+        }
+        #endregion //Property
     }
 }

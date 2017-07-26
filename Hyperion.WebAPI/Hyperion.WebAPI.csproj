@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44315</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -185,6 +185,7 @@
     <Compile Include="Controllers\UnifiedMessageController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Filter\AccessFilterAttribute.cs" />
+    <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

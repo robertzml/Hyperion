@@ -32,6 +32,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="userLoginType">用户登录标识</param>
         /// <param name="getStatus">取得设备列表</param>
         /// <returns></returns>
+        [RequireHttps]
         [AccessFilter]
         public HttpResponseMessage Get(string accessId, long userId, int userType, string imei, int userLoginType, int getStatus)
         {
