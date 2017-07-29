@@ -15,15 +15,5 @@ namespace Hyperion.ControlClient.Model
         /// 设备返回结果
         /// </summary>
         public int ServerResult { get; set; }
-
-        /// <summary>
-        /// 登录结果
-        /// </summary>
-        public int Code { get; set; }
-
-        /// <summary>
-        /// 消息
-        /// </summary>
-        public string Message { get; set; }
     }
 }

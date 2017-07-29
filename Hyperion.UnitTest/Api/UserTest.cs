@@ -242,9 +242,33 @@ namespace Hyperion.UnitTest.Api
                 host, registerType, accessId, password, phone, userType, imsi, imei, validateCode, osType);
 
             var node = GetEntity<RegistrationNode>(url, accessId);
-            Console.WriteLine("ack result:{0}, message:{1}, code:{2}", TLVCode.ServerReturnCode[node.ServerResult.ToString("X")], node.Message, node.Code);
+            Console.WriteLine("ack result:{0}, message:{1}, code:{2}", TLVCode.ServerReturnCode[node.ServerResult.ToString("X")]);
 
             Assert.AreEqual(0, node.ServerResult);
+        }
+
+        [TestMethod]
+        public void TestLogin2()
+        {            
+            //string accessId = "15012340000";
+            string accessId = "呵呵呵";
+            string password = "1234567";         
+            int userType = 1;        
+            string imei = "ZML12345";          
+            int userLoginType = 1;
+            int getStatus = 0;
+            int osType = 1;
+
+            string url = string.Format("{0}LoginMessage?accessId={1}&password={2}&osType={3}&userType={4}&imei={5}&userLoginType={6}&getStatus={7}",
+                host, accessId, password, osType, userType, imei, userLoginType, getStatus);
+
+            var node = GetString(url, accessId);
+            Console.WriteLine(node);
+            var obj = JsonConvert.DeserializeObject<dynamic>(node);
+
+            int code = obj.BizStatus.Code;
+
+            Assert.AreEqual(1, code);
         }
         #endregion //Test
     }

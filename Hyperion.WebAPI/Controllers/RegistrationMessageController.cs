@@ -13,6 +13,7 @@ namespace Hyperion.WebAPI.Controllers
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
     using Hyperion.WebAPI.Utility;
+    using Hyperion.WebAPI.Models;
 
     /// <summary>
     /// 注册报文控制器
@@ -61,20 +62,15 @@ namespace Hyperion.WebAPI.Controllers
         /// <returns>
         /// { Message: "", Code: 1 }
         /// </returns>
+        [AccessFilter]
         public HttpResponseMessage GetVerifyCode(string phone, string accessId)
         {
             try
             {
                 RegisterRequest request = new RegisterRequest();
-                dynamic data = request.GetVerifyCode(phone);
+                var data = request.GetVerifyCode(phone);
 
-                var result = new
-                {
-                    Message = Convert.ToString(data.status.message),
-                    Code = Convert.ToInt32(data.status.code)
-                };
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, result);
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, data);
                 return response;
             }
             catch (Exception e)
@@ -99,6 +95,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <remarks>
         /// 先在业务服务器注册，再在设备服务注册
         /// </remarks>
+        [AccessFilter]
         public HttpResponseMessage GetRegister(int registerType, string accessId, string password, string phone, int userType, string imsi, string imei, string validateCode, int osType)
         {
             try
@@ -106,9 +103,11 @@ namespace Hyperion.WebAPI.Controllers
                 RegisterRequest request = new RegisterRequest();
                 dynamic obj = request.Register(accessId, password, phone, userType, imsi, imei, validateCode, osType);
 
-                int code = obj.status.code;
+                RegisterModel registerModel = new RegisterModel();
+                registerModel.Code = obj.result.code;
+                registerModel.Message = obj.result.message;
 
-                if (code == 1)
+                if (registerModel.Code == 1)
                 {
                     int userId = obj.result.accountId;
 
@@ -121,21 +120,16 @@ namespace Hyperion.WebAPI.Controllers
                     RegistrationAckMessage ack = new RegistrationAckMessage();
                     ack.ParseAck(result);
 
+                    registerModel.ServerResult = ack.RegistrationNode.ServerResult;
 
-                    ack.RegistrationNode.Code = 1;
-                    ack.RegistrationNode.Message = obj.status.message;
-
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.RegistrationNode);
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, registerModel);
                     return response;
                 }
                 else
                 {
-                    RegistrationNode node = new RegistrationNode();
-                    node.ServerResult = 1;
-                    node.Code = code;
-                    node.Message = obj.status.message;
+                    registerModel.ServerResult = 1;
 
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, node);
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, registerModel);
                     return response;
                 }
             }

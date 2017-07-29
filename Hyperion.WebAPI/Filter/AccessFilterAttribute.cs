@@ -25,6 +25,9 @@ namespace Hyperion.WebAPI
         /// <param name="actionContext"></param>
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
+#if DEBUG
+
+#else
             if (!actionContext.Request.Headers.Contains("auth"))
             {
                 actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.BadRequest.DisplayName());
@@ -44,7 +47,7 @@ namespace Hyperion.WebAPI
                         actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.AuthFailed.DisplayName());
                 }
             }
-
+#endif
             base.OnActionExecuting(actionContext);
         }
         #endregion //Method

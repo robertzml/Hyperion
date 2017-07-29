@@ -10,10 +10,12 @@ using System.Web.Http.Cors;
 namespace Hyperion.WebAPI.Controllers
 {
     using Poseidon.Common;
+    using Hyperion.BizAdapter.Protocol;
     using Hyperion.ControlClient.Communication;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
     using Hyperion.WebAPI.Utility;
+    using Hyperion.WebAPI.Models;
 
     /// <summary>
     /// 登录报文控制器
@@ -49,6 +51,63 @@ namespace Hyperion.WebAPI.Controllers
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.LoginNode);
                 return response;
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="accessId">接入ID</param>
+        /// <param name="password">密码</param>
+        /// <param name="osType">操作系统类型</param>
+        /// <param name="userType">用户类型</param>
+        /// <param name="imei">IMEI</param>
+        /// <param name="userLoginType">用户登录标识</param>
+        /// <param name="getStatus">取得设备列表</param>
+        /// <returns></returns>
+        [AccessFilter]
+        public HttpResponseMessage Get2(string accessId, string password, int osType, int userType, string imei, int userLoginType, int getStatus)
+        {
+            try
+            {
+                LoginRequest request = new LoginRequest();
+                dynamic obj = request.Login(accessId, password, osType, userLoginType);
+
+                LoginModel model = new LoginModel();
+                model.BizStatus = new BizAdapter.Model.ServerStatus();
+                model.BizStatus.Code = obj.status.code;
+                model.BizStatus.Message = obj.status.message;
+
+                if (model.BizStatus.Code == 1)
+                {
+                    model.LoginResult = new BizAdapter.Model.LoginResult();
+                    model.LoginResult.UserId = obj.result.accountId;
+                    model.LoginResult.Phone = obj.result.phone;
+                    model.LoginResult.Picture = obj.result.picture;
+
+                    LoginMessage message = new LoginMessage(accessId, model.LoginResult.UserId, userType, imei, userLoginType, getStatus);
+                    var msg = message.GetMessage();
+
+                    EquipmentServerAction act = new EquipmentServerAction();
+                    var result = act.RequestToServer(msg);
+
+                    LoginAckMessage ack = new LoginAckMessage();
+                    ack.ParseAck(result);
+
+                    model.LoginNode = ack.LoginNode;
+
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, model);
+                    return response;
+                }
+                else
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, model);
+                    return response;
+                }
             }
             catch (Exception e)
             {

@@ -27,29 +27,24 @@ namespace Hyperion.UnitTest.Biz
         }
         #endregion //Constructor
 
+        #region Test
         [TestMethod]
         public void TestLogin()
         {
-            //string url = host + "freemall/accountToApp/login?userName=呵呵呵&password=1234567&phoneType=0&loginType=1";
+            string username = "呵呵呵";
+            string password = "1234567";
+            int ostype = 1;
+            int loginType = 1;
 
-            //var task = Task.Run(() =>
-            //{
-            //    var data = Get(url);
-            //    return data;
-            //});
+            LoginRequest request = new LoginRequest();
+            dynamic obj = request.Login(username, password, ostype, loginType);
 
-            //var result = task.Result;
-            //Console.WriteLine(result);
-            //Assert.IsFalse(string.IsNullOrEmpty(result));
+            Console.WriteLine(obj.status.message);
 
-            //dynamic newValue = JsonConvert.DeserializeObject<dynamic>(result);
+            int code = obj.status.code;
 
-            //Console.WriteLine(newValue.status.message);
-
-            //int code = newValue.status.code; // newValue["status"]["code"];
-
-            //Console.WriteLine(code.ToString());
-            //Assert.AreEqual(1, code);
+            Assert.AreEqual(1, code);
         }
+        #endregion //Test
     }
 }

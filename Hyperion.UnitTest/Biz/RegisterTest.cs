@@ -60,11 +60,11 @@ namespace Hyperion.UnitTest.Biz
             string phone = "18806186009";
 
             RegisterRequest request = new RegisterRequest();
-            dynamic obj = request.GetVerifyCode(phone);
+            var obj = request.GetVerifyCode(phone);
 
-            Console.WriteLine(obj.status.message);
+            Console.WriteLine(obj.Message);
 
-            int code = obj.status.code;
+            int code = obj.Code;
             Assert.AreEqual(1, code);
         }
 
@@ -89,11 +89,11 @@ namespace Hyperion.UnitTest.Biz
             int ostype = 0;
 
             RegisterRequest request = new RegisterRequest();
-            dynamic obj = request.Register(username, password, phone, accountType, imsi, imei, validateCode, ostype);
+            var obj = request.Register(username, password, phone, accountType, imsi, imei, validateCode, ostype);
 
-            Console.WriteLine(obj.status.message);
+            Console.WriteLine(obj.Message);
 
-            int code = obj.status.code;
+            int code = obj.Code;
             Assert.AreEqual(1, code);
         }
         #endregion //Test

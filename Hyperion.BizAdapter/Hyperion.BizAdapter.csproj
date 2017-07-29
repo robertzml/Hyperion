@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\LoginResult.cs" />
+    <Compile Include="Model\ServerStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\BaseRequest.cs" />
     <Compile Include="Protocol\LoginRequest.cs" />
