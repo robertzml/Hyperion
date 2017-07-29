@@ -9,6 +9,7 @@ using System.Web.Http.Cors;
 
 namespace Hyperion.WebAPI.Controllers
 {
+    using Hyperion.BizAdapter.Protocol;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
     using Hyperion.WebAPI.Utility;
@@ -44,6 +45,34 @@ namespace Hyperion.WebAPI.Controllers
                 ack.ParseAck(result);
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.RegistrationNode);
+                return response;
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// 获取验证码
+        /// </summary>
+        /// <param name="phone">手机号</param>
+        /// <param name="accessId">手机号</param>
+        /// <returns></returns>
+        public HttpResponseMessage GetVerifyCode(string phone, string accessId)
+        {
+            try
+            {
+                RegisterRequest request = new RegisterRequest();
+                dynamic data = request.GetVerifyCode(phone);
+
+                var result = new
+                {
+                    Message = Convert.ToString(data.status.message),
+                    Code = Convert.ToInt32(data.status.code)
+                };
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, result);
                 return response;
             }
             catch (Exception e)

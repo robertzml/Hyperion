@@ -247,6 +247,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hyperion.BizAdapter\Hyperion.BizAdapter.csproj">
+      <Project>{0cad252a-f181-493f-be13-03774bec8bb1}</Project>
+      <Name>Hyperion.BizAdapter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hyperion.ControlClient\Hyperion.ControlClient.csproj">
       <Project>{c64dd946-9d65-44f0-89d2-e4730096c972}</Project>
       <Name>Hyperion.ControlClient</Name>

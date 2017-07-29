@@ -37,16 +37,17 @@ namespace Hyperion.ControlClient.Communication
         /// <returns></returns>
         public async Task<HttpResponseMessage> Post(string message)
         {
-            HttpClient client = new HttpClient();
-            client.Timeout = new TimeSpan(0, 0, 15);
-
             try
             {
-                var content = new StringContent(message);
+                using (HttpClient client = new HttpClient())
+                {
+                    client.Timeout = new TimeSpan(0, 0, 15);
+                    var content = new StringContent(message);
 
-                var result = await client.PostAsync(this.host, content);
+                    var result = await client.PostAsync(this.host, content);
 
-                return result;
+                    return result;
+                }
             }
             catch (HttpRequestException e)
             {

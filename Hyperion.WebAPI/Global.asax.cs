@@ -29,6 +29,9 @@ namespace Hyperion.WebAPI
 
             string equipmentHost = AppConfig.GetAppSetting("EquipmentHost");
             Cache.Instance.Add("EquipmentHost", equipmentHost);
+
+            string bizHost = AppConfig.GetAppSetting("BizHost");
+            Cache.Instance.Add("BizHost", bizHost);
         }
     }
 }

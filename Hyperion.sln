@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.UnitTest", "Hyperi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.ControlClient", "Hyperion.ControlClient\Hyperion.ControlClient.csproj", "{C64DD946-9D65-44F0-89D2-E4730096C972}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperion.BizAdapter", "Hyperion.BizAdapter\Hyperion.BizAdapter.csproj", "{0CAD252A-F181-493F-BE13-03774BEC8BB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C64DD946-9D65-44F0-89D2-E4730096C972}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C64DD946-9D65-44F0-89D2-E4730096C972}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C64DD946-9D65-44F0-89D2-E4730096C972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CAD252A-F181-493F-BE13-03774BEC8BB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CAD252A-F181-493F-BE13-03774BEC8BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CAD252A-F181-493F-BE13-03774BEC8BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CAD252A-F181-493F-BE13-03774BEC8BB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

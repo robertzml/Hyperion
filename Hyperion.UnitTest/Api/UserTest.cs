@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hyperion.UnitTest.Api
 {
-    using Poseidon.Common;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
-    using System.Security.Cryptography.X509Certificates;
-    using System.Net;
+    using Poseidon.Common;
 
     /// <summary>
     /// 用户测试
@@ -27,8 +28,8 @@ namespace Hyperion.UnitTest.Api
         #region Constructor
         public UserTest()
         {
-            //this.host = "http://localhost:6024/api/";
-            this.host = "http://192.168.0.111:8030/api/";
+            this.host = "http://localhost:6024/api/";
+            //this.host = "http://192.168.0.111:8030/api/";
 
             //this.sslhost = "https://localhost:44315/api/";
             this.sslhost = "https://192.168.0.111:4432/api/";
@@ -67,7 +68,7 @@ namespace Hyperion.UnitTest.Api
         protected T GetEntitySSL<T>(string url, string accessId)
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-       
+
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -83,6 +84,29 @@ namespace Hyperion.UnitTest.Api
                 if (response.IsSuccessStatusCode)
                 {
                     entity = response.Content.ReadAsAsync<T>().Result;
+                }
+
+                return entity;
+            }
+        }
+
+        protected string GetString(string url, string accessId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string auth = Hasher.SHA1Encrypt(accessId + "Mu lan");
+                client.DefaultRequestHeaders.Add("auth", auth);
+
+                string entity = "";
+
+                HttpResponseMessage response = client.GetAsync(url).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    entity = response.Content.ReadAsStringAsync().Result;
                 }
 
                 return entity;
@@ -174,6 +198,27 @@ namespace Hyperion.UnitTest.Api
 
             Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[node]}");
             Assert.AreEqual(0, Convert.ToInt32(node, 16));
+        }
+
+        /// <summary>
+        /// 获取验证码测试
+        /// </summary>
+        [TestMethod]
+        public void TestGetCode()
+        {
+            string phone = "18806186009";
+            string accessId = "18806186009";
+            string url = string.Format("{0}RegistrationMessage?phone={1}&accessId={2}",
+                host, phone, accessId);
+
+            var node = GetString(url, accessId);
+            Console.WriteLine($"ack result: {node}");
+            Assert.IsFalse(string.IsNullOrEmpty(node));
+
+            var obj = JsonConvert.DeserializeObject<dynamic>(node);
+            int code = obj.Code;
+
+            Assert.AreEqual(1, code);
         }
         #endregion //Test
     }

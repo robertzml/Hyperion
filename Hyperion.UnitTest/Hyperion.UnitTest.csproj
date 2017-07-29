@@ -35,8 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Poseidon.Base">
@@ -70,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Api\DeviceTest.cs" />
     <Compile Include="Api\UserTest.cs" />
+    <Compile Include="Biz\RegisterTest.cs" />
     <Compile Include="Communication\HttpTest.cs" />
     <Compile Include="Communication\MessageTest.cs" />
     <Compile Include="Model\EquipmentTest.cs" />
@@ -77,6 +79,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hyperion.BizAdapter\Hyperion.BizAdapter.csproj">
+      <Project>{0cad252a-f181-493f-be13-03774bec8bb1}</Project>
+      <Name>Hyperion.BizAdapter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hyperion.Caller\Hyperion.Caller.csproj">
       <Project>{5b4827c2-b993-4409-ba87-1473f61616f8}</Project>
       <Name>Hyperion.Caller</Name>
@@ -91,6 +97,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
