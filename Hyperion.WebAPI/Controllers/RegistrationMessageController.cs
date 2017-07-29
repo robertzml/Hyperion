@@ -58,7 +58,9 @@ namespace Hyperion.WebAPI.Controllers
         /// </summary>
         /// <param name="phone">手机号</param>
         /// <param name="accessId">手机号</param>
-        /// <returns></returns>
+        /// <returns>
+        /// { Message: "", Code: 1 }
+        /// </returns>
         public HttpResponseMessage GetVerifyCode(string phone, string accessId)
         {
             try
@@ -74,6 +76,68 @@ namespace Hyperion.WebAPI.Controllers
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, result);
                 return response;
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// 用户注册
+        /// </summary>
+        /// <param name="registerType">注册类型</param>
+        /// <param name="accessId">接入ID</param>
+        /// <param name="password">密码</param>
+        /// <param name="phone">手机号</param>
+        /// <param name="userType">用户类型</param>
+        /// <param name="imsi">IMSI</param>
+        /// <param name="imei">IMEI</param>
+        /// <param name="validateCode">验证码</param>
+        /// <param name="osType">操作系统类型</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// 先在业务服务器注册，再在设备服务注册
+        /// </remarks>
+        public HttpResponseMessage GetRegister(int registerType, string accessId, string password, string phone, int userType, string imsi, string imei, string validateCode, int osType)
+        {
+            try
+            {
+                RegisterRequest request = new RegisterRequest();
+                dynamic obj = request.Register(accessId, password, phone, userType, imsi, imei, validateCode, osType);
+
+                int code = obj.status.code;
+
+                if (code == 1)
+                {
+                    int userId = obj.result.accountId;
+
+                    RegistrationMessage message = new RegistrationMessage(registerType, accessId, userId, userType, imei);
+                    var msg = message.GetMessage();
+
+                    EquipmentServerAction act = new EquipmentServerAction();
+                    var result = act.RequestToServer(msg);
+
+                    RegistrationAckMessage ack = new RegistrationAckMessage();
+                    ack.ParseAck(result);
+
+
+                    ack.RegistrationNode.Code = 1;
+                    ack.RegistrationNode.Message = obj.status.message;
+
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.RegistrationNode);
+                    return response;
+                }
+                else
+                {
+                    RegistrationNode node = new RegistrationNode();
+                    node.ServerResult = 1;
+                    node.Code = code;
+                    node.Message = obj.status.message;
+
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, node);
+                    return response;
+                }
             }
             catch (Exception e)
             {

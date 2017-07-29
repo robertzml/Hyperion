@@ -206,8 +206,8 @@ namespace Hyperion.UnitTest.Api
         [TestMethod]
         public void TestGetCode()
         {
-            string phone = "18806186009";
-            string accessId = "18806186009";
+            string phone = "";
+            string accessId = "";
             string url = string.Format("{0}RegistrationMessage?phone={1}&accessId={2}",
                 host, phone, accessId);
 
@@ -219,6 +219,32 @@ namespace Hyperion.UnitTest.Api
             int code = obj.Code;
 
             Assert.AreEqual(1, code);
+        }
+
+        /// <summary>
+        /// 注册测试2
+        /// </summary>
+        [TestMethod]
+        public void TestRegister2()
+        {
+            int registerType = 0;
+            //string accessId = "15012340000";
+            string accessId = "zml123";
+            string password = "123456";
+            string phone = "";
+            int userType = 1;
+            string imsi = "2334";
+            string imei = "ZML12345";
+            string validateCode = "295518";
+            int osType = 1;
+
+            string url = string.Format("{0}RegistrationMessage?registerType={1}&accessId={2}&password={3}&phone={4}&userType={5}&imsi={6}&imei={7}&validateCode={8}&osType={9}",
+                host, registerType, accessId, password, phone, userType, imsi, imei, validateCode, osType);
+
+            var node = GetEntity<RegistrationNode>(url, accessId);
+            Console.WriteLine("ack result:{0}, message:{1}, code:{2}", TLVCode.ServerReturnCode[node.ServerResult.ToString("X")], node.Message, node.Code);
+
+            Assert.AreEqual(0, node.ServerResult);
         }
         #endregion //Test
     }

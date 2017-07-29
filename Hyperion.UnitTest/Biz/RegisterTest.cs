@@ -1,12 +1,15 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace Hyperion.UnitTest.Biz
 {
+    using Hyperion.BizAdapter.Protocol;
+    using Poseidon.Common;
+
     /// <summary>
     /// 注册测试
     /// </summary>
@@ -20,7 +23,7 @@ namespace Hyperion.UnitTest.Biz
         #region Constructor
         public RegisterTest()
         {
-
+            Cache.Instance.Add("BizHost", host);
         }
         #endregion //Constructor
 
@@ -48,51 +51,49 @@ namespace Hyperion.UnitTest.Biz
         #endregion //Function
 
         #region Test
+        /// <summary>
+        /// 获取验证码测试
+        /// </summary>
         [TestMethod]
         public void TestVerifyCode()
         {
-            string url = this.host + "freemall/accountToApp/getVerifyCode?phone=18806186009";
+            string phone = "18806186009";
 
-            var task = Task.Run(() =>
-            {
-                var data = Get(url);
-                return data;
-            });
+            RegisterRequest request = new RegisterRequest();
+            dynamic obj = request.GetVerifyCode(phone);
 
-            var result = task.Result;
-            Console.WriteLine(result);
-            Assert.IsFalse(string.IsNullOrEmpty(result));
+            Console.WriteLine(obj.status.message);
 
-            dynamic newValue = JsonConvert.DeserializeObject<dynamic>(result);
-
-
-            Console.WriteLine(newValue.status.message);
-
-            Assert.AreEqual(1, newValue.status.code);            
+            int code = obj.status.code;
+            Assert.AreEqual(1, code);
         }
 
+        /// <summary>
+        /// 注册测试
+        /// </summary>
         [TestMethod]
-        public void TestLogin()
+        public void TestRegister()
         {
-            string url = host + "freemall/accountToApp/login?userName=呵呵呵&password=1234567&phoneType=0&loginType=1";
+            /*
+           http://192.168.0.111:9000/freemall/accountToApp/register?userName=123456&password=123456&
+           phone=18806186009&accountType=1&imsi=1114555&imei=458956&validateCode=075724&OsType=0
+           */
 
-            var task = Task.Run(() =>
-            {
-                var data = Get(url);
-                return data;
-            });
+            string username = "123456";
+            string password = "123456";
+            string phone = "18806186009";
+            int accountType = 1;
+            string imsi = "1114555";
+            string imei = "458956";
+            string validateCode = "803705";
+            int ostype = 0;
 
-            var result = task.Result;
-            Console.WriteLine(result);
-            Assert.IsFalse(string.IsNullOrEmpty(result));
+            RegisterRequest request = new RegisterRequest();
+            dynamic obj = request.Register(username, password, phone, accountType, imsi, imei, validateCode, ostype);
 
-            dynamic newValue = JsonConvert.DeserializeObject<dynamic>(result);
-            
-            Console.WriteLine(newValue.status.message);
+            Console.WriteLine(obj.status.message);
 
-            int code = newValue.status.code; // newValue["status"]["code"];
-            
-            Console.WriteLine(code.ToString());
+            int code = obj.status.code;
             Assert.AreEqual(1, code);
         }
         #endregion //Test

@@ -72,6 +72,7 @@
     <Compile Include="Api\DeviceTest.cs" />
     <Compile Include="Api\UserTest.cs" />
     <Compile Include="Biz\RegisterTest.cs" />
+    <Compile Include="Biz\LoginTest.cs" />
     <Compile Include="Communication\HttpTest.cs" />
     <Compile Include="Communication\MessageTest.cs" />
     <Compile Include="Model\EquipmentTest.cs" />
