@@ -249,12 +249,12 @@ namespace Hyperion.UnitTest.Api
 
         [TestMethod]
         public void TestLogin2()
-        {            
+        {
             //string accessId = "15012340000";
             string accessId = "呵呵呵";
-            string password = "1234567";         
-            int userType = 1;        
-            string imei = "ZML12345";          
+            string password = "1234567";
+            int userType = 1;
+            string imei = "ZML12345";
             int userLoginType = 1;
             int getStatus = 0;
             int osType = 1;

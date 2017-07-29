@@ -70,6 +70,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Api\DeviceTest.cs" />
+    <Compile Include="Api\LoginTest.cs" />
+    <Compile Include="Api\RegisterTest.cs" />
     <Compile Include="Api\UserTest.cs" />
     <Compile Include="Biz\RegisterTest.cs" />
     <Compile Include="Biz\LoginTest.cs" />

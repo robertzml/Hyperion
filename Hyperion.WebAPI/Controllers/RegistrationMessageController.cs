@@ -104,8 +104,8 @@ namespace Hyperion.WebAPI.Controllers
                 dynamic obj = request.Register(accessId, password, phone, userType, imsi, imei, validateCode, osType);
 
                 RegisterModel registerModel = new RegisterModel();
-                registerModel.Code = obj.result.code;
-                registerModel.Message = obj.result.message;
+                registerModel.Code = obj.status.code;
+                registerModel.Message = obj.status.message;
 
                 if (registerModel.Code == 1)
                 {
