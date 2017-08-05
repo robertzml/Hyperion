@@ -45,6 +45,21 @@ namespace Hyperion.UnitTest.Biz
 
             Assert.AreEqual(1, code);
         }
+
+        [TestMethod]
+        public void TestLogout()
+        {
+            string username = "呵呵呵";
+
+            LogoutRequest request = new LogoutRequest();
+            dynamic obj = request.Logout(username);
+
+            Console.WriteLine(obj);
+
+            int code = obj.status.code;
+
+            Assert.AreEqual(1, code);
+        }
         #endregion //Test
     }
 }

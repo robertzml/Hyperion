@@ -11,8 +11,6 @@ namespace Hyperion.WebAPI.Controllers
 {
     using Poseidon.Common;
     using Hyperion.BizAdapter.Protocol;
-    using Hyperion.ControlClient.Communication;
-    using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
     using Hyperion.WebAPI.Utility;
     using Hyperion.WebAPI.Models;

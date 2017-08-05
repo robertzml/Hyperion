@@ -15,5 +15,10 @@ namespace Hyperion.ControlClient.Model
         /// 设备返回结果
         /// </summary>
         public int ServerResult { get; set; }
+
+        /// <summary>
+        /// 用户内部INDEX 0x19
+        /// </summary>
+        public long UserIndex { get; set; }
     }
 }

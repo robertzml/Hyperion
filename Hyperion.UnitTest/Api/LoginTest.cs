@@ -21,8 +21,8 @@ namespace Hyperion.UnitTest.Api
         #region Constructor
         public LoginTest()
         {
-            //this.host = "http://localhost:6024/api/";
-            this.host = "http://192.168.0.111:8030/api/";
+            this.host = "http://localhost:6024/api/";
+            //this.host = "http://192.168.0.111:8030/api/";
 
             //this.sslhost = "https://localhost:44315/api/";
             this.sslhost = "https://192.168.0.111:4432/api/";
@@ -62,7 +62,7 @@ namespace Hyperion.UnitTest.Api
         public void TestLogin()
         {
             //string accessId = "15012340000";
-            string accessId = "呵呵呵";
+            string accessId = "%E5%91%B5%E5%91%B5%E5%91%B5";
             string password = "1234567";
             int userType = 1;
             string imei = "ZML12345";
@@ -78,6 +78,28 @@ namespace Hyperion.UnitTest.Api
             var obj = JsonConvert.DeserializeObject<dynamic>(node);
 
             int code = obj.BizStatus.Code;
+
+            Assert.AreEqual(1, code);
+        }
+
+        /// <summary>
+        /// 注销测试
+        /// </summary>
+        [TestMethod]
+        public void TestLogout()
+        {
+            int accessType = 0;
+            string accessId = "zml12345";
+            string imei = "23345";
+
+            string url = string.Format("{0}LogoutMessage?accessType={1}&accessId={2}&imei={3}",
+               host, accessType, accessId, imei);
+
+            var node = GetString(url, accessId);
+            Console.WriteLine(node);
+            var obj = JsonConvert.DeserializeObject<dynamic>(node);
+
+            int code = obj.Code;
 
             Assert.AreEqual(1, code);
         }

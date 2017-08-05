@@ -65,6 +65,9 @@ namespace Hyperion.ControlClient.Protocol
                         this.serverResult = tlv;
                         registrationNode.ServerResult = Convert.ToInt32(tlv.Value, 16);
                         break;
+                    case 0x19:
+                        registrationNode.UserIndex = Convert.ToInt64(tlv.Value, 16);
+                        break;
                     default:
                         throw new TLVException(tlv, "未知TLV类型");
                 }

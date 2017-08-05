@@ -9,9 +9,11 @@ using System.Web.Http.Cors;
 
 namespace Hyperion.WebAPI.Controllers
 {
+    using Hyperion.BizAdapter.Protocol;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
     using Hyperion.WebAPI.Utility;
+    using Hyperion.WebAPI.Models;
 
     /// <summary>
     /// 登录报文控制器
@@ -32,17 +34,36 @@ namespace Hyperion.WebAPI.Controllers
         {
             try
             {
-                LogoutMessage message = new LogoutMessage(accessType, accessId, imei);
-                var msg = message.GetMessage();
+                LogoutRequest request = new LogoutRequest();
+                dynamic obj = request.Logout(accessId);
 
-                EquipmentServerAction act = new EquipmentServerAction();
-                var result = act.RequestToServer(msg);
+                LogoutModel model = new LogoutModel();
+                model.Code = obj.status.code;
+                model.Message = obj.status.message;
 
-                LogoutAckMessage ack = new LogoutAckMessage();
-                ack.ParseAck(result);
+                if (model.Code == 1)
+                {
+                    LogoutMessage message = new LogoutMessage(accessType, accessId, imei);
+                    var msg = message.GetMessage();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.ServerResult.Value);
-                return response;
+                    EquipmentServerAction act = new EquipmentServerAction();
+                    var result = act.RequestToServer(msg);
+
+                    LogoutAckMessage ack = new LogoutAckMessage();
+                    ack.ParseAck(result);
+
+                    model.ServerResult = Convert.ToInt32(ack.ServerResult.Value, 16);
+
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, model);
+                    return response;
+                }
+                else
+                {
+                    model.ServerResult = 1;
+
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, model);
+                    return response;
+                }
             }
             catch (Exception e)
             {

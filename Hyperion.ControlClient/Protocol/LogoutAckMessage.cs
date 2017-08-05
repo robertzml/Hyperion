@@ -12,6 +12,13 @@ namespace Hyperion.ControlClient.Protocol
     /// </summary>
     public class LogoutAckMessage : AckMessage
     {
+        #region Field
+        /// <summary>
+        /// 接入ID 0x01
+        /// </summary>
+        private string accessId;
+        #endregion //Field
+
         #region Function
         /// <summary>
         /// 生成信元报文
@@ -47,6 +54,9 @@ namespace Hyperion.ControlClient.Protocol
                 {
                     case 0x13:
                         this.serverResult = tlv;
+                        break;
+                    case 0x01:
+                        this.accessId = tlv.Value;
                         break;
                     default:
                         throw new TLVException(tlv, "未知TLV类型");

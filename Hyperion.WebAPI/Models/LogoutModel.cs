@@ -6,9 +6,9 @@ using System.Web;
 namespace Hyperion.WebAPI.Models
 {
     /// <summary>
-    /// 注册响应模型
+    /// 注销响应模型
     /// </summary>
-    public class RegisterModel
+    public class LogoutModel
     {
         /// <summary>
         /// 业务返回结果
