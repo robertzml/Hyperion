@@ -6,11 +6,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Description;
 
 namespace Hyperion.WebAPI.Controllers
 {
     using Poseidon.Common;
     using Hyperion.BizAdapter.Protocol;
+    using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
     using Hyperion.WebAPI.Utility;
     using Hyperion.WebAPI.Models;
@@ -68,6 +70,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="getStatus">取得设备列表</param>
         /// <returns></returns>
         [AccessFilter]
+        [ResponseType(typeof(LoginModel))]
         public HttpResponseMessage Get2(string accessId, string password, int osType, int userType, string imei, int userLoginType, int getStatus)
         {
             try
