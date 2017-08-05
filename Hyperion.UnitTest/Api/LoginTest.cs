@@ -21,8 +21,8 @@ namespace Hyperion.UnitTest.Api
         #region Constructor
         public LoginTest()
         {
-            this.host = "http://localhost:6024/api/";
-            //this.host = "http://192.168.0.111:8030/api/";
+            //this.host = "http://localhost:6024/api/";
+            this.host = "http://192.168.0.111:8030/api/";
 
             //this.sslhost = "https://localhost:44315/api/";
             this.sslhost = "https://192.168.0.111:4432/api/";
@@ -62,10 +62,10 @@ namespace Hyperion.UnitTest.Api
         public void TestLogin()
         {
             //string accessId = "15012340000";
-            string accessId = "%E5%91%B5%E5%91%B5%E5%91%B5";
-            string password = "1234567";
+            string accessId = "zml12345";
+            string password = "123456";
             int userType = 1;
-            string imei = "ZML12345";
+            string imei = "ZML1234567";
             int userLoginType = 1;
             int getStatus = 0;
             int osType = 1;

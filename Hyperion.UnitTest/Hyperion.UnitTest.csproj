@@ -72,6 +72,7 @@
     <Compile Include="Api\DeviceTest.cs" />
     <Compile Include="Api\LoginTest.cs" />
     <Compile Include="Api\RegisterTest.cs" />
+    <Compile Include="Api\ThreadTest.cs" />
     <Compile Include="Api\UserTest.cs" />
     <Compile Include="Biz\RegisterTest.cs" />
     <Compile Include="Biz\LoginTest.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Model\EquipmentTest.cs" />
     <Compile Include="GlobalAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hyperion.BizAdapter\Hyperion.BizAdapter.csproj">

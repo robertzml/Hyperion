@@ -32,7 +32,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="imei">IMEI</param>
         /// <returns></returns>
         [AccessFilter]
-        public HttpResponseMessage Get(int registerType, string accessId, long userId, int userType, string imei)
+        private HttpResponseMessage Get(int registerType, string accessId, long userId, int userType, string imei)
         {
             try
             {

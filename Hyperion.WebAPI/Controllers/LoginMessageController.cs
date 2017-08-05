@@ -34,7 +34,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <returns></returns>
         [RequireHttps]
         [AccessFilter]
-        public HttpResponseMessage Get(string accessId, long userId, int userType, string imei, int userLoginType, int getStatus)
+        private HttpResponseMessage Get(string accessId, long userId, int userType, string imei, int userLoginType, int getStatus)
         {
             try
             {
