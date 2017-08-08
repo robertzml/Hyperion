@@ -71,8 +71,8 @@ namespace Hyperion.ControlClient.Protocol
             this.accessType = new TLV(tag: 0x08, value: accessType.ToString());
             this.accessId = new TLV(tag: 0x01, value: accessId);
             this.imei = new TLV(tag: 0x04, value: imei);
-            this.houseNumber = new TLV(tag: 0x103, value: houseNumber.ToString());
-            this.roomNumber = new TLV(tag: 0x112, value: roomNumber.ToString());
+            this.houseNumber = new TLV(tag: 0x103, value: houseNumber.ToString("X"));
+            this.roomNumber = new TLV(tag: 0x112, value: roomNumber.ToString("X"));
         }
 
         /// <summary>

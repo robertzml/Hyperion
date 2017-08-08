@@ -30,41 +30,19 @@ namespace Hyperion.UnitTest.Api
         #endregion //Construcor
 
         #region Function
-        protected string GetString(string url, string accessId)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                string auth = Hasher.SHA1Encrypt(accessId + "Mu lan");
-                client.DefaultRequestHeaders.Add("auth", auth);
-
-                string entity = "";
-
-                HttpResponseMessage response = client.GetAsync(url).Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    entity = response.Content.ReadAsStringAsync().Result;
-                }
-
-                return entity;
-            }
-        }
         #endregion //Function
 
         #region Test
         [TestMethod]
         public void TestGetCode()
         {
-            string phone = "";
-            string accessId = "";
+            string phone = "15995202790";
+            string accessId = "15995202790";
             string url = string.Format("{0}RegistrationMessage?phone={1}&accessId={2}",
                 host, phone, accessId);
 
-            var node = GetString(url, accessId);
-            Console.WriteLine($"result: {node}");
+            var node = TestUtility.GetString(url, accessId);
+            Console.WriteLine(node);
 
             var obj = JsonConvert.DeserializeObject<dynamic>(node);
             int code = obj.Code;
@@ -80,19 +58,19 @@ namespace Hyperion.UnitTest.Api
         {
             int registerType = 0;
             //string accessId = "15012340000";
-            string accessId = "123456aa";
+            string accessId = "zml1";
             string password = "123456";
-            string phone = "18852547810";
+            string phone = "15995202790";
             int userType = 1;
             string imsi = "0";
             string imei = "9B3BEEC3-C83F-4D51-8F08-21D682D6E4ED";
-            string validateCode = "138112";
+            string validateCode = "060029";
             int osType = 2;
 
             string url = string.Format("{0}RegistrationMessage?registerType={1}&accessId={2}&password={3}&phone={4}&userType={5}&imsi={6}&imei={7}&validateCode={8}&osType={9}",
                 host, registerType, accessId, password, phone, userType, imsi, imei, validateCode, osType);
 
-            var node = GetString(url, accessId);
+            var node = TestUtility.GetString(url, accessId);
             Console.WriteLine(node);
 
             Assert.IsFalse(string.IsNullOrEmpty(node));

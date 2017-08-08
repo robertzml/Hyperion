@@ -152,7 +152,6 @@ namespace Hyperion.ControlClient.Protocol
         }
         #endregion //Constructor
 
-
         #region Method
         /// <summary>
         /// 生成消息报文

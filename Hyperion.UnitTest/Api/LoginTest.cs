@@ -30,28 +30,6 @@ namespace Hyperion.UnitTest.Api
         #endregion //Construcor
 
         #region Function
-        protected string GetString(string url, string accessId)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                string auth = Hasher.SHA1Encrypt(accessId + "Mu lan");
-                client.DefaultRequestHeaders.Add("auth", auth);
-
-                string entity = "";
-
-                HttpResponseMessage response = client.GetAsync(url).Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    entity = response.Content.ReadAsStringAsync().Result;
-                }
-
-                return entity;
-            }
-        }
         #endregion //Function
 
         #region Test
@@ -62,10 +40,10 @@ namespace Hyperion.UnitTest.Api
         public void TestLogin()
         {
             //string accessId = "15012340000";
-            string accessId = "zml12345";
+            string accessId = "zml1";
             string password = "123456";
             int userType = 1;
-            string imei = "ZML1234567";
+            string imei = "9B3BEEC3-C83F-4D51-8F08-21D682D6E4ED";
             int userLoginType = 1;
             int getStatus = 0;
             int osType = 1;
@@ -73,7 +51,7 @@ namespace Hyperion.UnitTest.Api
             string url = string.Format("{0}LoginMessage?accessId={1}&password={2}&osType={3}&userType={4}&imei={5}&userLoginType={6}&getStatus={7}",
                 host, accessId, password, osType, userType, imei, userLoginType, getStatus);
 
-            var node = GetString(url, accessId);
+            var node = TestUtility.GetString(url, accessId);
             Console.WriteLine(node);
             var obj = JsonConvert.DeserializeObject<dynamic>(node);
 
@@ -89,13 +67,13 @@ namespace Hyperion.UnitTest.Api
         public void TestLogout()
         {
             int accessType = 0;
-            string accessId = "zml12345";
-            string imei = "23345";
+            string accessId = "zml1";
+            string imei = "9B3BEEC3-C83F-4D51-8F08-21D682D6E4ED";
 
             string url = string.Format("{0}LogoutMessage?accessType={1}&accessId={2}&imei={3}",
                host, accessType, accessId, imei);
 
-            var node = GetString(url, accessId);
+            var node = TestUtility.GetString(url, accessId);
             Console.WriteLine(node);
             var obj = JsonConvert.DeserializeObject<dynamic>(node);
 
