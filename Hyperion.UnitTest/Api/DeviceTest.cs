@@ -146,6 +146,59 @@ namespace Hyperion.UnitTest.Api
             Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[node.ServerResult.ToString("X")]}");
             Assert.AreEqual(0, node.ServerResult);
         }
+
+        /// <summary>
+        /// 设备列表长连接测试
+        /// </summary>
+        [TestMethod]
+        public void DeviceListPersisTest()
+        {
+            string accessId = "zml1";
+            string imei = "9B3BEEC3-C83F-4D51-8F08-21D682D6E4ED";
+            int houseNumber = 15;
+            int roomNumber = 14;
+            string deviceName = "TEST1";
+            string deviceType = "0000";
+            string serialNumber = "abcedfg0";
+
+            string url = string.Format("{0}UnifiedMessage?accessId={1}&imei={2}&houseNumber={3}&roomNumber={4}&deviceName={5}&deviceType={6}&serialNumber={7}",
+                host, accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber);
+
+
+            HttpClient client = new HttpClient();
+
+            //client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            string auth = Hasher.SHA1Encrypt(accessId + "Mu lan");
+            client.DefaultRequestHeaders.Add("auth", auth);
+
+            string entity = "";
+
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                entity = response.Content.ReadAsStringAsync().Result;
+            }
+            Console.WriteLine(entity);
+
+            Assert.IsFalse(string.IsNullOrEmpty(entity));
+
+
+            //second 
+            string result2 = "";
+            response = client.GetAsync(url).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                result2 = response.Content.ReadAsStringAsync().Result;
+            }
+
+            Console.WriteLine(result2);
+            Assert.IsFalse(string.IsNullOrEmpty(result2));
+
+            //client.Dispose
+        }
         #endregion //Test
     }
 }

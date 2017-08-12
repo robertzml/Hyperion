@@ -39,7 +39,6 @@ namespace Hyperion.UnitTest.Api
         [TestMethod]
         public void TestLogin()
         {
-            //string accessId = "15012340000";
             string accessId = "zml1";
             string password = "123456";
             int userType = 1;
