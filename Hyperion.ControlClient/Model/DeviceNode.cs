@@ -13,6 +13,19 @@ namespace Hyperion.ControlClient.Model
     /// </summary>
     public class DeviceNode
     {
+        #region Constructor
+        public DeviceNode()
+        {
+            this.Name = "";
+            this.Vendor = "";
+            this.Type = "";
+            this.Version = "";
+            this.SerialNumber = "";
+            this.HasStatus = 0;
+        }
+        #endregion //Constructor
+
+        #region Property
         /// <summary>
         /// 设备名称 0x123
         /// </summary>
@@ -39,6 +52,11 @@ namespace Hyperion.ControlClient.Model
         public string SerialNumber { get; set; }
 
         /// <summary>
+        /// 表示是否包含状态 0:不包含 1:包含
+        /// </summary>
+        public int HasStatus { get; set; }
+
+        /// <summary>
         /// 设备状态 0x128
         /// </summary>
         public TLV Status { get; set; }
@@ -47,5 +65,6 @@ namespace Hyperion.ControlClient.Model
         /// 在线状态 0x129
         /// </summary>
         public int Online { get; set; }
+        #endregion //Property
     }
 }

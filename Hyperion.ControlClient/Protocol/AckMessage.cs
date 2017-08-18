@@ -193,6 +193,7 @@ namespace Hyperion.ControlClient.Protocol
                         device.SerialNumber = tlv.Value;
                         break;
                     case 0x128:
+                        device.HasStatus = 1;
                         device.Status = tlv;
                         break;
                     case 0x129:
