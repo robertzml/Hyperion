@@ -44,8 +44,7 @@ namespace Hyperion.Core.DAL.MySQL
             entity.Id = Convert.ToInt64(row["id"]);
             entity.SerialNumber = row["serial_number"].ToString();
             entity.AlarmCode = row["alarm_code"].ToString();
-            entity.AlarmDescription = row["alarm_description"].ToString();
-            entity.LogTime = Convert.ToDateTime(row["log_time"]);
+            entity.AlarmTime = Convert.ToDateTime(row["alarm_time"]);
 
             return entity;
         }
@@ -61,8 +60,7 @@ namespace Hyperion.Core.DAL.MySQL
             table.Add("id", entity.Id);
             table.Add("serial_number", entity.SerialNumber);
             table.Add("alarm_code", entity.AlarmCode);
-            table.Add("alarm_description", entity.AlarmDescription);
-            table.Add("log_time", entity.LogTime);
+            table.Add("alarm_time", entity.AlarmTime);
 
             return table;
         }

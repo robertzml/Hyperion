@@ -34,40 +34,34 @@ namespace Hyperion.Core.DL
         public DateTime LogTime { get; set; }
 
         /// <summary>
-        /// 开关状态
-        /// </summary>
-        [Display(Name = "开关状态")]
-        public string SwitchState { get; set; }
-
-        /// <summary>
         /// 累计加热时间
         /// </summary>
         [Display(Name = "累计加热时间")]
-        public string HeatingTime { get; set; }
+        public string CummlativeHeatingTime { get; set; }
 
         /// <summary>
         /// 累计热水用量
         /// </summary>
         [Display(Name = "累计热水用量")]
-        public string HotWater { get; set; }
+        public string CummlativeHeatWater { get; set; }
 
         /// <summary>
         /// 累计通电时间
         /// </summary>
         [Display(Name = "累计通电时间")]
-        public string DurationMachine { get; set; }
+        public string CummlativeDurationMachine { get; set; }
 
         /// <summary>
         /// 累计使用电量
         /// </summary>
         [Display(Name = "累计使用电量")]
-        public string UseElectricity { get; set; }
+        public string CummlativeUseElectricity { get; set; }
 
         /// <summary>
         /// 累计节省电量
         /// </summary>
         [Display(Name = "累计节省电量")]
-        public string PowerSaving { get; set; }
+        public string CummlativeElectricitySaving { get; set; }
         #endregion //Property
     }
 }

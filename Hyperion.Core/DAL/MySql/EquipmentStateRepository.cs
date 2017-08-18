@@ -44,12 +44,11 @@ namespace Hyperion.Core.DAL.MySQL
             entity.Id = Convert.ToInt64(row["id"]);
             entity.SerialNumber = row["serial_number"].ToString();
             entity.LogTime = Convert.ToDateTime(row["log_time"]);
-            entity.SwitchState = row["switch_state"].ToString();
-            entity.HeatingTime = row["heating_time"].ToString();
-            entity.HotWater = row["hotwater"].ToString();
-            entity.DurationMachine = row["duration_machine"].ToString();
-            entity.UseElectricity = row["use_electricity"].ToString();
-            entity.PowerSaving = row["power_saving"].ToString();
+            entity.CummlativeHeatingTime = row["cummlative_heat_time"].ToString();
+            entity.CummlativeHeatWater = row["cummlative_heat_water"].ToString();
+            entity.CummlativeDurationMachine = row["cummlative_duration_machine"].ToString();
+            entity.CummlativeUseElectricity = row["cummlative_use_electricity"].ToString();
+            entity.CummlativeElectricitySaving = row["cummlative_electricity_saving"].ToString();
 
             return entity;
         }
@@ -65,12 +64,11 @@ namespace Hyperion.Core.DAL.MySQL
             table.Add("id", entity.Id);
             table.Add("serial_number", entity.SerialNumber);
             table.Add("log_time", entity.LogTime);
-            table.Add("switch_state", entity.SwitchState);
-            table.Add("heating_time", entity.HeatingTime);
-            table.Add("hotwater", entity.HotWater);
-            table.Add("duration_machine", entity.DurationMachine);
-            table.Add("use_electricity", entity.UseElectricity);
-            table.Add("power_saving", entity.PowerSaving);
+            table.Add("cummlative_heat_time", entity.CummlativeHeatingTime);
+            table.Add("cummlative_heat_water", entity.CummlativeHeatWater);
+            table.Add("cummlative_duration_machine", entity.CummlativeDurationMachine);
+            table.Add("cummlative_use_electricity", entity.CummlativeUseElectricity);
+            table.Add("cummlative_electricity_saving", entity.CummlativeElectricitySaving);
 
             return table;
         }

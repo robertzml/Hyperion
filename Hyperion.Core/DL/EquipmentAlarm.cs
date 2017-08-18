@@ -34,16 +34,10 @@ namespace Hyperion.Core.DL
         public string AlarmCode { get; set; }
 
         /// <summary>
-        /// 故障说明
-        /// </summary>
-        [Display(Name = "故障说明")]
-        public string AlarmDescription { get; set; }
-
-        /// <summary>
         /// 记录时间
         /// </summary>
         [Display(Name = "记录时间")]
-        public DateTime LogTime { get; set; }
+        public DateTime AlarmTime { get; set; }
         #endregion //Property
     }
 }
