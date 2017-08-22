@@ -39,12 +39,12 @@ namespace Hyperion.UnitTest.Api
         [TestMethod]
         public void TestLogin()
         {
-            string accessId = "zml1";
+            string accessId = "123456aaa";
             string password = "123456";
             int userType = 1;
-            string imei = "9B3BEEC3-C83F-4D51-8F08-21D682D6E4ED";
+            string imei = "EFF17490-1D6E-41B0-BC12-ED8192A473B7";
             int userLoginType = 1;
-            int getStatus = 0;
+            int getStatus = 1;
             int osType = 1;
 
             string url = string.Format("{0}LoginMessage?accessId={1}&password={2}&osType={3}&userType={4}&imei={5}&userLoginType={6}&getStatus={7}",

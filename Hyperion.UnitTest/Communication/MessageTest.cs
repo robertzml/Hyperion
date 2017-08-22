@@ -79,7 +79,7 @@ namespace Hyperion.UnitTest
         [TestMethod]
         public void TestLogin()
         {
-            LoginMessage message = new LoginMessage("17858655030", 0, 1, "1234567890", 1, 0);
+            LoginMessage message = new LoginMessage("123456aaa", 39, 1, "EFF17490-1D6E-41B0-BC12-ED8192A473B7", 1, 1);
             var msg = message.GetMessage();
             Console.WriteLine($"send message: {msg}");
 
