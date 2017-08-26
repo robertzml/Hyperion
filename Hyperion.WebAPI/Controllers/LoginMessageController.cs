@@ -10,6 +10,7 @@ using System.Web.Http.Description;
 
 namespace Hyperion.WebAPI.Controllers
 {
+    using log4net;
     using Poseidon.Common;
     using Hyperion.BizAdapter.Protocol;
     using Hyperion.ControlClient.Model;
@@ -112,6 +113,8 @@ namespace Hyperion.WebAPI.Controllers
             }
             catch (Exception e)
             {
+                var logger = LogManager.GetLogger(typeof(LoginMessageController));
+                logger.Error(e.Message);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
             }
         }

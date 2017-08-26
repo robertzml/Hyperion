@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -10,6 +11,8 @@ using System.Web.Routing;
 namespace Hyperion.WebAPI
 {
     using Poseidon.Common;
+    using log4net;
+    using log4net.Config;
 
     public class WebApiApplication : System.Web.HttpApplication
     {
@@ -32,6 +35,9 @@ namespace Hyperion.WebAPI
 
             string bizHost = AppConfig.GetAppSetting("BizHost");
             Cache.Instance.Add("BizHost", bizHost);
+
+            var logCfg = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config");
+            XmlConfigurator.ConfigureAndWatch(logCfg);
         }
     }
 }
