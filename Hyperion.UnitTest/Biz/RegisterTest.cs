@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Hyperion.UnitTest.Biz
@@ -95,6 +96,19 @@ namespace Hyperion.UnitTest.Biz
 
             int code = obj.Code;
             Assert.AreEqual(1, code);
+        }
+
+        [TestMethod]
+        public void TestChn()
+        {
+            string username = "abc";
+
+            byte[] bytes = Encoding.UTF8.GetBytes(username);
+            var myString = Encoding.UTF8.GetString(bytes);
+            Console.WriteLine(myString);
+           
+            var result2 = Hasher.SHA1Encrypt("%E5%93%88%E5%93%88%E5%93%88" + "Mu lan");
+            Console.WriteLine(result2);
         }
         #endregion //Test
     }

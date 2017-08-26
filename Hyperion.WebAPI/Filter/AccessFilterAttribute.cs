@@ -26,27 +26,25 @@ namespace Hyperion.WebAPI
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
 #if DEBUG
+            //if (!actionContext.Request.Headers.Contains("auth"))
+            //{
+            //    actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.BadRequest.DisplayName());
+            //}
+            //else
+            //{
+            //    if (!actionContext.ActionArguments.ContainsKey("accessId"))
+            //    {
+            //        actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.AuthFailed.DisplayName());
+            //    }
+            //    else
+            //    {
+            //        var auth = actionContext.Request.Headers.GetValues("auth").First();
+            //        string accessId = actionContext.ActionArguments["accessId"].ToString();
 
-#else
-            if (!actionContext.Request.Headers.Contains("auth"))
-            {
-                actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.BadRequest.DisplayName());
-            }
-            else
-            {
-                if (!actionContext.ActionArguments.ContainsKey("accessId"))
-                {
-                    actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.AuthFailed.DisplayName());
-                }
-                else
-                {
-                    var auth = actionContext.Request.Headers.GetValues("auth").First();
-                    string accessId = actionContext.ActionArguments["accessId"].ToString();
-
-                    if (auth != Hasher.SHA1Encrypt(accessId + HyperionConstant.Salt))
-                        actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.AuthFailed.DisplayName());
-                }
-            }
+            //        if (auth != Hasher.SHA1Encrypt(accessId + HyperionConstant.Salt))
+            //            actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, HttpErrorMessage.AuthFailed.DisplayName());
+            //    }
+            //}
 #endif
             base.OnActionExecuting(actionContext);
         }
