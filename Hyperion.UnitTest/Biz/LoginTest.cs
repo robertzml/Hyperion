@@ -35,9 +35,10 @@ namespace Hyperion.UnitTest.Biz
             string password = "1234567";
             int ostype = 1;
             int loginType = 1;
+            string imei = "asdf";
 
             LoginRequest request = new LoginRequest();
-            dynamic obj = request.Login(username, password, ostype, loginType);
+            dynamic obj = request.Login(username, password, ostype, loginType, imei);
 
             Console.WriteLine(obj.status.message);
 

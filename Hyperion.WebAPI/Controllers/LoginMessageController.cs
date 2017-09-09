@@ -77,7 +77,7 @@ namespace Hyperion.WebAPI.Controllers
             try
             {
                 LoginRequest request = new LoginRequest();
-                dynamic obj = request.Login(accessId, password, osType, userLoginType);
+                dynamic obj = request.Login(accessId, password, osType, userLoginType, imei);
 
                 LoginModel model = new LoginModel();
                 model.BizStatus = new BizAdapter.Model.ServerStatus();

@@ -28,11 +28,12 @@ namespace Hyperion.BizAdapter.Protocol
         /// <param name="password">密码</param>
         /// <param name="osType">操作系统类型</param>
         /// <param name="loginType">登录方式</param>
+        /// <param name="imei">IMEI</param>
         /// <returns></returns>
-        public dynamic Login(string userName, string password, int osType, int loginType)
+        public dynamic Login(string userName, string password, int osType, int loginType, string imei)
         {
-            string url = string.Format("{0}{1}login?userName={2}&password={3}&phoneType={4}&loginType={5}",
-                host, contolller, userName, password, osType, loginType);
+            string url = string.Format("{0}{1}login?userName={2}&password={3}&phoneType={4}&loginType={5}&imei={6}",
+                host, contolller, userName, password, osType, loginType, imei);
 
             var content = Get(url);
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);
