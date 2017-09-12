@@ -199,6 +199,9 @@ namespace Hyperion.ControlClient.Protocol
                     case 0x129:
                         device.Online = Convert.ToInt32(tlv.Value, 16);
                         break;
+                    case 0x12B:
+                        device.MainboardSerialNumber = tlv.Value;
+                        break;
                     default:
                         throw new TLVException(tlv, "未知TLV类型");
                 }

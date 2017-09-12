@@ -65,6 +65,11 @@ namespace Hyperion.ControlClient.Model
         /// 在线状态 0x129
         /// </summary>
         public int Online { get; set; }
+
+        /// <summary>
+        /// 主板序列号 0x12B
+        /// </summary>
+        public string MainboardSerialNumber { get; set; }
         #endregion //Property
     }
 }

@@ -92,6 +92,9 @@ namespace Hyperion.ControlClient.Protocol
                     case 0x129:
                         unifiedNode.Online = Convert.ToInt32(tlv.Value, 16);
                         break;
+                    case 0x12B:
+                        unifiedNode.MainboardSerialNumber = tlv.Value;
+                        break;
                     default:
                         throw new TLVException(tlv, "未知TLV类型");
                 }
