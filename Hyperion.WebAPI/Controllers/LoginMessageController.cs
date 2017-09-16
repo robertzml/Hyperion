@@ -84,7 +84,7 @@ namespace Hyperion.WebAPI.Controllers
                 model.BizStatus.Code = obj.status.code;
                 model.BizStatus.Message = obj.status.message;
 
-                if (model.BizStatus.Code == 1)
+                if (model.BizStatus.Code == 0)
                 {
                     model.LoginResult = new BizAdapter.Model.LoginResult();
                     model.LoginResult.UserId = obj.result.accountId;

@@ -41,7 +41,7 @@ namespace Hyperion.WebAPI.Controllers
                 model.Code = obj.status.code;
                 model.Message = obj.status.message;
 
-                if (model.Code == 1)
+                if (model.Code == 0)
                 {
                     LogoutMessage message = new LogoutMessage(accessType, accessId, imei);
                     var msg = message.GetMessage();

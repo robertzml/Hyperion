@@ -107,7 +107,7 @@ namespace Hyperion.WebAPI.Controllers
                 registerModel.Code = obj.status.code;
                 registerModel.Message = obj.status.message;
 
-                if (registerModel.Code == 1)
+                if (registerModel.Code == 0)
                 {
                     int userId = obj.result.accountId;
 
