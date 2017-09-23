@@ -54,9 +54,9 @@ namespace Hyperion.UnitTest.Api
             Console.WriteLine(node);
             var obj = JsonConvert.DeserializeObject<dynamic>(node);
 
-            int code = obj.bizStatus.code;
+            int code = obj.bizstatus.code;
 
-            Assert.AreEqual(1, code);
+            Assert.AreEqual(0, code);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Hyperion.UnitTest.Api
         public void TestLogout()
         {
             int accessType = 0;
-            string accessId = "zml1";
+            string accessId = "123456a";
             string imei = "9B3BEEC3-C83F-4D51-8F08-21D682D6E4ED";
 
             string url = string.Format("{0}LogoutMessage?accessType={1}&accessId={2}&imei={3}",
@@ -76,9 +76,9 @@ namespace Hyperion.UnitTest.Api
             Console.WriteLine(node);
             var obj = JsonConvert.DeserializeObject<dynamic>(node);
 
-            int code = obj.Code;
+            int code = obj.code;
 
-            Assert.AreEqual(1, code);
+            Assert.AreEqual(0, code);
         }
         #endregion //Test
     }

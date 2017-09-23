@@ -113,7 +113,7 @@ namespace Hyperion.WebAPI.Controllers
 
                 if (registerModel.code == 0)
                 {
-                    int userId = obj.result.accountId;
+                    int userId = obj.result.accountid;
 
                     RegistrationMessage message = new RegistrationMessage(registerType, accessId, userId, userType, imei);
                     var msg = message.GetMessage();

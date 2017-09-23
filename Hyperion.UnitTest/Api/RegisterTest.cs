@@ -21,8 +21,8 @@ namespace Hyperion.UnitTest.Api
         #region Constructor
         public RegisterTest()
         {
-            //this.host = "http://localhost:6024/api/";
-            this.host = "http://192.168.0.111:8030/api/";
+            this.host = "http://localhost:6024/api/";
+            //this.host = "http://192.168.0.111:8030/api/";
 
             //this.sslhost = "https://localhost:44315/api/";
             this.sslhost = "https://192.168.0.111:4432/api/";
@@ -45,9 +45,9 @@ namespace Hyperion.UnitTest.Api
             Console.WriteLine(node);
 
             var obj = JsonConvert.DeserializeObject<dynamic>(node);
-            int code = obj.Code;
+            int code = obj.code;
 
-            Assert.AreEqual(1, code);
+            Assert.AreEqual(0, code);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Hyperion.UnitTest.Api
             int userType = 1;
             string imsi = "0";
             string imei = "9B3BEEC3-C83F-4D51-8F08-21D682D6E4ED";
-            string validateCode = "060029";
+            string validateCode = "839968";
             int osType = 2;
 
             string url = string.Format("{0}RegistrationMessage?registerType={1}&accessId={2}&password={3}&phone={4}&userType={5}&imsi={6}&imei={7}&validateCode={8}&osType={9}",
