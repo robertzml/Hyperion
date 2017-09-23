@@ -14,9 +14,9 @@ namespace Hyperion.ControlClient.Model
         #region Constructor
         public HouseNode()
         {
-            this.Name = "";
-            this.Info = "";
-            this.Position = "";
+            this.name = "";
+            this.info = "";
+            this.position = "";
         }
         #endregion //Constructor
 
@@ -24,32 +24,32 @@ namespace Hyperion.ControlClient.Model
         /// <summary>
         /// House序号 0x103
         /// </summary>
-        public int Number { get; set; }
+        public int number { get; set; }
 
         /// <summary>
         /// House名称 0x104
         /// </summary>
-        public string Name { get; set; }
+        public string name { get; set; }
 
         /// <summary>
         /// House信息 0x106
         /// </summary>
-        public string Info { get; set; }
+        public string info { get; set; }
 
         /// <summary>
         /// House位置 0x107
         /// </summary>
-        public string Position { get; set; }
+        public string position { get; set; }
 
         /// <summary>
         /// Room数量 0x110
         /// </summary>
-        public int RoomCount { get; set; }
+        public int roomcount { get; set; }
 
         /// <summary>
         /// Room信元 0x111
         /// </summary>
-        public List<RoomNode> RoomNodes { get; set; }
+        public List<RoomNode> roomnodes { get; set; }
         #endregion //Property
     }
 }

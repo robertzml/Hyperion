@@ -14,26 +14,26 @@ namespace Hyperion.ControlClient.Model
         /// <summary>
         /// Room序号 0x112
         /// </summary>
-        public int Number { get; set; }
+        public int number { get; set; }
 
         /// <summary>
         /// Room名称 0x113
         /// </summary>
-        public string Name { get; set; }
+        public string name { get; set; }
 
         /// <summary>
         /// Room类型 0x114
         /// </summary>
-        public int Type { get; set; }
+        public int type { get; set; }
 
         /// <summary>
         /// Device数量 0x120
         /// </summary>
-        public int DeviceCount { get; set; }
+        public int devicecount { get; set; }
 
         /// <summary>
         /// Device信元 0x121
         /// </summary>
-        public List<DeviceNode> DeviceNodes { get; set; }
+        public List<DeviceNode> devicenodes { get; set; }
     }
 }

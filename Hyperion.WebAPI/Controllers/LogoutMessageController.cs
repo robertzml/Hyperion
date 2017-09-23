@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Description;
 
 namespace Hyperion.WebAPI.Controllers
 {
@@ -30,6 +31,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="imei">IMEI</param>
         /// <returns></returns>
         [AccessFilter]
+        [ResponseType(typeof(LogoutModel))]
         public HttpResponseMessage Get(int accessType, string accessId, string imei)
         {
             try

@@ -63,9 +63,9 @@ namespace Hyperion.UnitTest.Biz
             RegisterRequest request = new RegisterRequest();
             var obj = request.GetVerifyCode(phone);
 
-            Console.WriteLine(obj.Message);
+            Console.WriteLine(obj.message);
 
-            int code = obj.Code;
+            int code = obj.code;
             Assert.AreEqual(1, code);
         }
 

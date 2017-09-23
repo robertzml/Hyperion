@@ -80,18 +80,19 @@ namespace Hyperion.WebAPI.Controllers
                 dynamic obj = request.Login(accessId, password, osType, userLoginType, imei);
 
                 LoginModel model = new LoginModel();
-                model.BizStatus = new BizAdapter.Model.ServerStatus();
-                model.BizStatus.Code = obj.status.code;
-                model.BizStatus.Message = obj.status.message;
+                model.bizstatus = new BizAdapter.Model.ServerStatus();
+                model.bizstatus.code = obj.status.code;
+                model.bizstatus.message = obj.status.message;
 
-                if (model.BizStatus.Code == 0)
+                if (model.bizstatus.code == 0)
                 {
-                    model.LoginResult = new BizAdapter.Model.LoginResult();
-                    model.LoginResult.UserId = obj.result.accountId;
-                    model.LoginResult.Phone = obj.result.phone;
-                    model.LoginResult.Picture = obj.result.picture;
+                    model.loginresult = new BizAdapter.Model.LoginResult();
+                    model.loginresult.userid = obj.result.accountid;
+                    model.loginresult.phone = obj.result.phone;
+                    model.loginresult.picture = obj.result.picture;
+                    model.loginresult.walletid = obj.result.walletid;
 
-                    LoginMessage message = new LoginMessage(accessId, model.LoginResult.UserId, userType, imei, userLoginType, getStatus);
+                    LoginMessage message = new LoginMessage(accessId, model.loginresult.userid, userType, imei, userLoginType, getStatus);
                     var msg = message.GetMessage();
 
                     EquipmentServerAction act = new EquipmentServerAction();
@@ -100,7 +101,7 @@ namespace Hyperion.WebAPI.Controllers
                     LoginAckMessage ack = new LoginAckMessage();
                     ack.ParseAck(result);
 
-                    model.LoginNode = ack.LoginNode;
+                    model.loginnode = ack.LoginNode;
 
                     HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, model);
                     return response;

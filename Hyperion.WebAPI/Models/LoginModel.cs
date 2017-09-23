@@ -16,16 +16,16 @@ namespace Hyperion.WebAPI.Models
         /// <summary>
         /// 业务服务状态
         /// </summary>
-        public ServerStatus BizStatus { get; set; }
+        public ServerStatus bizstatus { get; set; }
 
         /// <summary>
         /// 业务返回对象
         /// </summary>
-        public LoginResult LoginResult { get; set; }
+        public LoginResult loginresult { get; set; }
 
         /// <summary>
         /// 设备返回对象
         /// </summary>
-        public LoginNode LoginNode { get; set; }
+        public LoginNode loginnode { get; set; }
     }
 }

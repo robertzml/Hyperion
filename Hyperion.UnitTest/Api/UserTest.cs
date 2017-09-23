@@ -155,8 +155,8 @@ namespace Hyperion.UnitTest.Api
 
             var node = GetEntity<LoginNode>(url, accessId);
 
-            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[node.ServerResult.ToString("X")]}");
-            Assert.AreEqual(0, node.ServerResult);
+            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[node.serverresult.ToString("X")]}");
+            Assert.AreEqual(0, node.serverresult);
         }
 
         /// <summary>
@@ -177,8 +177,8 @@ namespace Hyperion.UnitTest.Api
 
             var node = GetEntitySSL<LoginNode>(url, accessId);
 
-            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[node.ServerResult.ToString("X")]}");
-            Assert.AreEqual(0, node.ServerResult);
+            Console.WriteLine($"ack result: {TLVCode.ServerReturnCode[node.serverresult.ToString("X")]}");
+            Assert.AreEqual(0, node.serverresult);
         }
 
         /// <summary>

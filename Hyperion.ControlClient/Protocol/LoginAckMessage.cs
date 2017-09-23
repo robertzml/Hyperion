@@ -25,7 +25,7 @@ namespace Hyperion.ControlClient.Protocol
         public LoginAckMessage()
         {
             this.loginNode = new LoginNode();
-            loginNode.HouseNodes = new List<HouseNode>();
+            loginNode.housenodes = new List<HouseNode>();
         }
         #endregion //Constructor
 
@@ -60,17 +60,17 @@ namespace Hyperion.ControlClient.Protocol
                 {
                     case 0x13:
                         this.serverResult = tlv;
-                        loginNode.ServerResult = Convert.ToInt32(tlv.Value, 16);
+                        loginNode.serverresult = Convert.ToInt32(tlv.Value, 16);
                         break;
                     case 0x019:
-                        loginNode.UserIndex = Convert.ToInt32(tlv.Value, 16);
+                        loginNode.userindex = Convert.ToInt32(tlv.Value, 16);
                         break;
                     case 0x101:
-                        loginNode.HouseCount = Convert.ToInt32(tlv.Value, 16);
+                        loginNode.housecount = Convert.ToInt32(tlv.Value, 16);
                         break;
                     case 0x102:
                         var house = ParseHouse(tlv);
-                        loginNode.HouseNodes.Add(house);
+                        loginNode.housenodes.Add(house);
                         break;
                     default:
                         throw new TLVException(tlv, "未知TLV类型");

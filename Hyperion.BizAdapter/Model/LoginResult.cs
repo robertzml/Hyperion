@@ -14,16 +14,21 @@ namespace Hyperion.BizAdapter.Model
         /// <summary>
         /// 用户ID
         /// </summary>
-        public int UserId { get; set; }
+        public int userid { get; set; }
 
         /// <summary>
         /// 手机号
         /// </summary>
-        public string Phone { get; set; }
+        public string phone { get; set; }
 
         /// <summary>
         /// 头像
         /// </summary>
-        public string Picture { get; set; }
+        public string picture { get; set; }
+
+        /// <summary>
+        /// 钱包ID
+        /// </summary>
+        public string walletid { get; set; }
     }
 }

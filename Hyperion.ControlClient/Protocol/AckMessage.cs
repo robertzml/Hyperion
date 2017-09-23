@@ -69,7 +69,7 @@ namespace Hyperion.ControlClient.Protocol
             }
 
             HouseNode house = new HouseNode();
-            house.RoomNodes = new List<RoomNode>();
+            house.roomnodes = new List<RoomNode>();
 
             int index = 0;
             string content = message.Value;
@@ -81,23 +81,23 @@ namespace Hyperion.ControlClient.Protocol
                 switch (tlv.Tag)
                 {
                     case 0x103:
-                        house.Number = Convert.ToInt32(tlv.Value, 16);
+                        house.number = Convert.ToInt32(tlv.Value, 16);
                         break;
                     case 0x104:
-                        house.Name = tlv.Value;
+                        house.name = tlv.Value;
                         break;
                     case 0x106:
-                        house.Info = tlv.Value;
+                        house.info = tlv.Value;
                         break;
                     case 0x107:
-                        house.Position = tlv.Value;
+                        house.position = tlv.Value;
                         break;
                     case 0x110:
-                        house.RoomCount = Convert.ToInt32(tlv.Value, 16);
+                        house.roomcount = Convert.ToInt32(tlv.Value, 16);
                         break;
                     case 0x111:
                         var room = ParseRoom(tlv);
-                        house.RoomNodes.Add(room);
+                        house.roomnodes.Add(room);
                         break;
                 }
 
@@ -120,7 +120,7 @@ namespace Hyperion.ControlClient.Protocol
             }
 
             RoomNode room = new RoomNode();
-            room.DeviceNodes = new List<DeviceNode>();
+            room.devicenodes = new List<DeviceNode>();
 
             int index = 0;
             string content = message.Value;
@@ -132,20 +132,20 @@ namespace Hyperion.ControlClient.Protocol
                 switch (tlv.Tag)
                 {
                     case 0x112:
-                        room.Number = Convert.ToInt32(tlv.Value, 16);
+                        room.number = Convert.ToInt32(tlv.Value, 16);
                         break;
                     case 0x113:
-                        room.Name = tlv.Value;
+                        room.name = tlv.Value;
                         break;
                     case 0x114:
-                        room.Type = Convert.ToInt32(tlv.Value, 16);
+                        room.type = Convert.ToInt32(tlv.Value, 16);
                         break;
                     case 0x120:
-                        room.DeviceCount = Convert.ToInt32(tlv.Value, 16);
+                        room.devicecount = Convert.ToInt32(tlv.Value, 16);
                         break;
                     case 0x121:
                         var device = ParseDevice(tlv);
-                        room.DeviceNodes.Add(device);
+                        room.devicenodes.Add(device);
                         break;
                 }
 

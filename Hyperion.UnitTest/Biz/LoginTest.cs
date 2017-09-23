@@ -17,7 +17,7 @@ namespace Hyperion.UnitTest.Biz
     public class LoginTest
     {
         #region Field
-        private string host = "http://192.168.0.111:9000/";
+        private string host = "http://192.168.0.111:7000/";
         #endregion //Field
 
         #region Constructor
@@ -31,8 +31,8 @@ namespace Hyperion.UnitTest.Biz
         [TestMethod]
         public void TestLogin()
         {
-            string username = "呵呵呵";
-            string password = "1234567";
+            string username = "guanhao";
+            string password = "123456";
             int ostype = 1;
             int loginType = 1;
             string imei = "asdf";

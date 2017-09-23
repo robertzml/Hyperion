@@ -35,8 +35,8 @@ namespace Hyperion.BizAdapter.Protocol
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);
 
             ServerStatus status = new ServerStatus();
-            status.Code = obj.status.code;
-            status.Message = obj.status.message;
+            status.code = obj.status.code;
+            status.message = obj.status.message;
 
             return status;
         }

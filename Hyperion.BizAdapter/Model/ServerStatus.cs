@@ -14,11 +14,11 @@ namespace Hyperion.BizAdapter.Model
         /// <summary>
         /// 业务返回结果
         /// </summary>
-        public int Code { get; set; }
+        public int code { get; set; }
 
         /// <summary>
         /// 业务消息
         /// </summary>
-        public string Message { get; set; }
+        public string message { get; set; }
     }
 }

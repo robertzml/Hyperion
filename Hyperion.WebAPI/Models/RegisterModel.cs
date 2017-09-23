@@ -13,16 +13,16 @@ namespace Hyperion.WebAPI.Models
         /// <summary>
         /// 业务返回结果
         /// </summary>
-        public int Code { get; set; }
+        public int code { get; set; }
 
         /// <summary>
         /// 业务消息
         /// </summary>
-        public string Message { get; set; }
+        public string message { get; set; }
 
         /// <summary>
         /// 设备返回结果
         /// </summary>
-        public int ServerResult { get; set; }
+        public int serverresult { get; set; }
     }
 }
