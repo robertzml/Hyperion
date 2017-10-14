@@ -10,11 +10,11 @@ using System.Web.Http.Description;
 
 namespace Hyperion.WebAPI.Controllers
 {
-    using log4net;
     using Poseidon.Common;
     using Hyperion.BizAdapter.Protocol;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
+    using Hyperion.Core.Utility;
     using Hyperion.WebAPI.Utility;
     using Hyperion.WebAPI.Models;
 
@@ -84,6 +84,8 @@ namespace Hyperion.WebAPI.Controllers
                 model.bizstatus.code = obj.status.code;
                 model.bizstatus.message = obj.status.message;
 
+                Logger.Instance.Debug(string.Format("API Login: code={0}, message={1}", obj.status.code, obj.status.message));
+
                 if (model.bizstatus.code == 0)
                 {
                     model.loginresult = new BizAdapter.Model.LoginResult();
@@ -114,8 +116,7 @@ namespace Hyperion.WebAPI.Controllers
             }
             catch (Exception e)
             {
-                var logger = LogManager.GetLogger(typeof(LoginMessageController));
-                logger.Error(e.Message);
+                Logger.Instance.Exception("API Login: 异常", e);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
             }
         }

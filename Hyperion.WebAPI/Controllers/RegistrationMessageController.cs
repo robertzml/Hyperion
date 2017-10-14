@@ -14,6 +14,7 @@ namespace Hyperion.WebAPI.Controllers
     using Hyperion.BizAdapter.Model;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
+    using Hyperion.Core.Utility;
     using Hyperion.WebAPI.Utility;
     using Hyperion.WebAPI.Models;
 
@@ -78,6 +79,7 @@ namespace Hyperion.WebAPI.Controllers
             }
             catch (Exception e)
             {
+                Logger.Instance.Exception("API Register GetVerifyCode: 异常", e);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
             }
         }
@@ -111,6 +113,8 @@ namespace Hyperion.WebAPI.Controllers
                 registerModel.code = obj.status.code;
                 registerModel.message = obj.status.message;
 
+                Logger.Instance.Debug(string.Format("API Register: code={0}, message={1}", registerModel.code, registerModel.message));
+
                 if (registerModel.code == 0)
                 {
                     int userId = obj.result.accountid;
@@ -139,6 +143,7 @@ namespace Hyperion.WebAPI.Controllers
             }
             catch (Exception e)
             {
+                Logger.Instance.Exception("API Register: 异常", e);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
             }
         }

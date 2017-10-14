@@ -11,6 +11,7 @@ using System.Web.Routing;
 namespace Hyperion.WebAPI
 {
     using Poseidon.Common;
+    using Hyperion.Core.Utility;
     using log4net;
     using log4net.Config;
 
@@ -38,6 +39,8 @@ namespace Hyperion.WebAPI
 
             var logCfg = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config");
             XmlConfigurator.ConfigureAndWatch(logCfg);
+
+            Logger.Instance.Info("Application Start");
         }
     }
 }
