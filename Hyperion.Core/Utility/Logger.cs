@@ -99,7 +99,10 @@ namespace Hyperion.Core.Utility
         /// <param name="e"></param>
         public void Exception(string message, Exception e)
         {
-            this.WriteLine(message + "\r\n" + e.Message);
+            if (e.InnerException == null)
+                this.WriteLine(message + "\r\n" + e.Message);
+            else
+                this.WriteLine(message + "\r\n" + e.Message + "\r\nInner:" + e.InnerException.Message);
         }
         #endregion //Method
 

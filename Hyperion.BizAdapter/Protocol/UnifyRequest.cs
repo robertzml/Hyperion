@@ -35,11 +35,12 @@ namespace Hyperion.BizAdapter.Protocol
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);
 
             ServerStatus2 status = new ServerStatus2();
-            status.Code = obj.status.code;
-            status.Message = obj.status.message;
-            status.IsOwner = obj.status.isowner;
+            status.Code = obj.code;
+            if (status.Code != 0)
+                status.Message = obj.message;
+            status.IsOwner = obj.isowner;
 
-            return obj;
+            return status;
         }
 
         /// <summary>
@@ -57,8 +58,8 @@ namespace Hyperion.BizAdapter.Protocol
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);
 
             ServerStatus status = new ServerStatus();
-            status.code = obj.status.code;
-            status.message = obj.status.message;
+            status.code = obj.code;
+            status.message = obj.message;
 
             return status;
         }

@@ -23,8 +23,8 @@ namespace Hyperion.UnitTest.Api
         #region Constructor
         public DeviceTest()
         {
-            //this.host = "http://localhost:6024/api/";
-            this.host = "http://192.168.0.111:8030/api/";
+            this.host = "http://localhost:6024/api/";
+            //this.host = "http://192.168.0.111:8030/api/";
         }
         #endregion //Construcor
 
@@ -59,6 +59,43 @@ namespace Hyperion.UnitTest.Api
         #endregion //Function
 
         #region Test
+        [TestMethod]
+        public void DeviceGetCode()
+        {
+            int accountId = 52;
+            string imei = "E0ED6BCC-7AB3-4ABF-ACEC-FE274E2EFDA2";
+            string phone = "18852547810";
+            string serialNumber = "ff10000000000000";
+
+            string url = string.Format("{0}UnifiedMessage?accountId={1}&imei={2}&phone={3}&serialNumber={4}",
+               host, accountId, imei, phone, serialNumber);
+
+            var node = TestUtility.GetString(url, "123");
+            Console.WriteLine(node);
+        }
+
+        [TestMethod]
+        public void DeviceAdd2Test()
+        {
+            string accessId = "123456a";
+            int accountId = 52;
+            string imei = "E0ED6BCC-7AB3-4ABF-ACEC-FE274E2EFDA2";
+            int houseNumber = 22;
+            int roomNumber = 21;
+            string deviceName = "TEST1";
+            string deviceType = "0";
+            string serialNumber = "ff10000000000000";
+            string verifyCode = "123456";
+
+            string url = string.Format("{0}UnifiedMessage?accountId={1}&accessId={2}&imei={3}&houseNumber={4}&roomNumber={5}&deviceName={6}&deviceType={7}&serialNumber={8}&verifyCode={9}",
+                host, accountId, accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber, verifyCode);
+
+            var node = TestUtility.GetString(url, accessId);
+            Console.WriteLine(node);
+
+            Assert.IsFalse(string.IsNullOrEmpty(node));
+        }
+
         /// <summary>
         /// 设备列表测试
         /// </summary>

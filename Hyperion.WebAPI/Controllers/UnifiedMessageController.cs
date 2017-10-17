@@ -61,8 +61,10 @@ namespace Hyperion.WebAPI.Controllers
         /// <summary>
         /// 获取验证码
         /// </summary>
+        /// <param name="accountId">用户ID</param>
+        /// <param name="imei">IMEI</param>
         /// <param name="phone">手机号</param>
-        /// <param name="accessId">手机号</param>
+        /// <param name="serialNumber">序列号</param>
         /// <returns>
         /// { Message: "", Code: 1 }
         /// </returns>
@@ -73,6 +75,8 @@ namespace Hyperion.WebAPI.Controllers
             {
                 UnifyRequest request = new UnifyRequest();
                 var data = request.GetVerifyCode(accountId, imei, phone, serialNumber);
+
+                Logger.Instance.Debug(string.Format("API Get Verify : code={0}, message={1}, isowner", data.Code, data.Message, data.IsOwner));
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, data);
                 return response;
@@ -102,18 +106,25 @@ namespace Hyperion.WebAPI.Controllers
         {
             try
             {
+                Logger.Instance.Debug(string.Format("API Unified Add2 Send: accountId={0}, accessId={1}, imei={2}, houseNumber={3}, roomNumber={4}, deviceName={5}, deviceType={6}, serailNumber={7}, verifyCode={8}",
+                    accountId, accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber, verifyCode));
+
                 UnifyRequest request = new UnifyRequest();
                 var res = request.CheckVerifyCode(accountId, imei, verifyCode);
 
-                Logger.Instance.Debug(string.Format("API Login: code={0}, message={1}", res.code, res.message));
+                Logger.Instance.Debug(string.Format("API Unified Add2: code={0}, message={1}", res.code, res.message));
 
                 if (res.code == 0)
                 {
                     UnifiedMessage message = new UnifiedMessage(accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber);
                     var msg = message.GetMessage();
 
+                    Logger.Instance.Debug(string.Format("API Unified Add2 Get Message:{0}", msg));
+
                     EquipmentServerAction act = new EquipmentServerAction();
                     var result = act.RequestToServer(msg);
+
+                    Logger.Instance.Debug(string.Format("API Unified Add2 RequestToServer result:{0}", result));
 
                     UnifiedAckMessage ack = new UnifiedAckMessage();
                     ack.ParseAck(result);
