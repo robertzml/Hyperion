@@ -12,6 +12,7 @@ namespace Hyperion.WebAPI.Controllers
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
     using Hyperion.WebAPI.Utility;
+    using Hyperion.Core.Utility;
 
     /// <summary>
     /// 设备列表报文控制器
@@ -37,8 +38,12 @@ namespace Hyperion.WebAPI.Controllers
                 DeviceListMessage message = new DeviceListMessage(accessType, accessId, imei, houseNumber, roomNumber);
                 var msg = message.GetMessage();
 
+                Logger.Instance.Debug(string.Format("device list msg: {0}", msg));
+
                 EquipmentServerAction act = new EquipmentServerAction();
                 var result = act.RequestToServer(msg);
+
+                Logger.Instance.Debug(string.Format("device list result: {0}", result));
 
                 DeviceListAckMessage ack = new DeviceListAckMessage();
                 ack.ParseAck(result);
@@ -48,6 +53,7 @@ namespace Hyperion.WebAPI.Controllers
             }
             catch (Exception e)
             {
+                Logger.Instance.Exception("Device List: 异常", e);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
             }
         }

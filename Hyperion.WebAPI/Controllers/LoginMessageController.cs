@@ -97,8 +97,12 @@ namespace Hyperion.WebAPI.Controllers
                     LoginMessage message = new LoginMessage(accessId, model.loginresult.userid, userType, imei, userLoginType, getStatus);
                     var msg = message.GetMessage();
 
+                    Logger.Instance.Debug(string.Format("login message: {0}", msg));
+
                     EquipmentServerAction act = new EquipmentServerAction();
                     var result = act.RequestToServer(msg);
+
+                    Logger.Instance.Debug(string.Format("login result: {0}", result));
 
                     LoginAckMessage ack = new LoginAckMessage();
                     ack.ParseAck(result);

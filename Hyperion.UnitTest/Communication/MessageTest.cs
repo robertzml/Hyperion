@@ -18,7 +18,8 @@ namespace Hyperion.UnitTest
         #region Constructor
         public MessageTest()
         {
-            string host = "http://192.168.0.116:8080/APP";
+            //string host = "http://192.168.0.116:8080/APP";
+            string host = "http://121.41.32.14:8080/APP";
             Cache.Instance.Add("EquipmentHost", host);
         }
         #endregion //Constructor
@@ -271,6 +272,25 @@ namespace Hyperion.UnitTest
             Assert.AreEqual("0", ack.ServerResult.Value);
 
             Assert.AreEqual(8, ack.UnifiedNode.UnifiedCode);
+        }
+
+        [TestMethod]
+        public void TestLoginMessage()
+        {
+            string message = "Homeconsole01.00000000010003006500010006wxhcdz001B00080000004100070001100040024D10CB87E-8B67-46C3-B62E-C56597E6C505001A00011001C00011";
+            var task = Task.Run(() =>
+            {
+                Request request = new Request();
+                var data = request.Post(message);
+
+                return data;
+            });
+
+            var result = task.Result;
+            var content = result.Content.ReadAsStringAsync().Result;
+
+            Console.WriteLine(content);
+            Assert.AreNotEqual(0, content.Length);
         }
         #endregion //Test
     }
