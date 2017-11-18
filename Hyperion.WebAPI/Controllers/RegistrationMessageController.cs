@@ -113,7 +113,7 @@ namespace Hyperion.WebAPI.Controllers
                 registerModel.code = obj.status.code;
                 registerModel.message = obj.status.message;
 
-                Logger.Instance.Debug(string.Format("API Register: code={0}, message={1}", registerModel.code, registerModel.message));
+                Logger.Instance.Debug(string.Format("API Register: code={0}, message={1}, accessId={2}", registerModel.code, registerModel.message, accessId));
 
                 if (registerModel.code == 0)
                 {
@@ -122,11 +122,15 @@ namespace Hyperion.WebAPI.Controllers
                     RegistrationMessage message = new RegistrationMessage(registerType, accessId, userId, userType, imei);
                     var msg = message.GetMessage();
 
+                    Logger.Instance.Debug(string.Format("Register message: {0}", msg));
+
                     EquipmentServerAction act = new EquipmentServerAction();
                     var result = act.RequestToServer(msg);
 
                     RegistrationAckMessage ack = new RegistrationAckMessage();
                     ack.ParseAck(result);
+
+                    Logger.Instance.Debug(string.Format("Register ACK: {0}", result));
 
                     registerModel.serverresult = ack.RegistrationNode.ServerResult;
 
