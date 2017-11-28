@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
@@ -40,7 +41,9 @@ namespace Hyperion.WebAPI.Controllers
         {
             try
             {
-                UnifiedMessage message = new UnifiedMessage(accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber);
+                string encodeAccessId = HttpUtility.UrlEncode(accessId);
+
+                UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber);
                 var msg = message.GetMessage();
 
                 EquipmentServerAction act = new EquipmentServerAction();
@@ -116,7 +119,9 @@ namespace Hyperion.WebAPI.Controllers
 
                 if (res.code == 0)
                 {
-                    UnifiedMessage message = new UnifiedMessage(accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber);
+                    string encodeAccessId = HttpUtility.UrlEncode(accessId);
+
+                    UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber);
                     var msg = message.GetMessage();
 
                     Logger.Instance.Debug(string.Format("API Unified Add2 Get Message:{0}", msg));
@@ -158,7 +163,9 @@ namespace Hyperion.WebAPI.Controllers
         {
             try
             {
-                UnifiedMessage message = new UnifiedMessage(accessId, imei, deviceName, serialNumber);
+                string encodeAccessId = HttpUtility.UrlEncode(accessId);
+
+                UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, deviceName, serialNumber);
                 var msg = message.GetMessage();
 
                 EquipmentServerAction act = new EquipmentServerAction();
@@ -188,7 +195,9 @@ namespace Hyperion.WebAPI.Controllers
         {
             try
             {
-                UnifiedMessage message = new UnifiedMessage(accessId, imei, serialNumber);
+                string encodeAccessId = HttpUtility.UrlEncode(accessId);
+
+                UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, serialNumber);
                 var msg = message.GetMessage();
 
                 EquipmentServerAction act = new EquipmentServerAction();

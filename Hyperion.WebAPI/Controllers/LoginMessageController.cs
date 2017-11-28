@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
@@ -94,7 +95,9 @@ namespace Hyperion.WebAPI.Controllers
                     model.loginresult.picture = obj.result.picture;
                     model.loginresult.walletid = obj.result.walletid;
 
-                    LoginMessage message = new LoginMessage(accessId, model.loginresult.userid, userType, imei, userLoginType, getStatus);
+                    string encodeAccessId = HttpUtility.UrlEncode(accessId);
+
+                    LoginMessage message = new LoginMessage(encodeAccessId, model.loginresult.userid, userType, imei, userLoginType, getStatus);
                     var msg = message.GetMessage();
 
                     Logger.Instance.Debug(string.Format("login message: {0}", msg));

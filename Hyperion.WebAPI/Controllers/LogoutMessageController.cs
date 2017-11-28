@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
@@ -45,7 +46,9 @@ namespace Hyperion.WebAPI.Controllers
 
                 if (model.Code == 0)
                 {
-                    LogoutMessage message = new LogoutMessage(accessType, accessId, imei);
+                    string encodeAccessId = HttpUtility.UrlEncode(accessId);
+
+                    LogoutMessage message = new LogoutMessage(accessType, encodeAccessId, imei);
                     var msg = message.GetMessage();
 
                     EquipmentServerAction act = new EquipmentServerAction();

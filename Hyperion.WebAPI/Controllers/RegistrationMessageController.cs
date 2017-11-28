@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
@@ -119,7 +120,9 @@ namespace Hyperion.WebAPI.Controllers
                 {
                     int userId = obj.result.accountid;
 
-                    RegistrationMessage message = new RegistrationMessage(registerType, accessId, userId, userType, imei);
+                    string encodeAccessId = HttpUtility.UrlEncode(accessId);
+
+                    RegistrationMessage message = new RegistrationMessage(registerType, encodeAccessId, userId, userType, imei);
                     var msg = message.GetMessage();
 
                     Logger.Instance.Debug(string.Format("Register message: {0}", msg));
