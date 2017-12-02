@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -35,10 +36,12 @@ namespace Hyperion.WebAPI.Controllers
         {
             try
             {
-                DeviceListMessage message = new DeviceListMessage(accessType, accessId, imei, houseNumber, roomNumber);
+                string encodeAccessId = HttpUtility.UrlEncode(accessId);
+
+                DeviceListMessage message = new DeviceListMessage(accessType, encodeAccessId, imei, houseNumber, roomNumber);
                 var msg = message.GetMessage();
 
-                Logger.Instance.Debug(string.Format("device list msg: {0}", msg));
+                Logger.Instance.Debug(string.Format("device list accessId:{0} msg: {1}", accessId, msg));
 
                 EquipmentServerAction act = new EquipmentServerAction();
                 var result = act.RequestToServer(msg);
@@ -47,6 +50,8 @@ namespace Hyperion.WebAPI.Controllers
 
                 DeviceListAckMessage ack = new DeviceListAckMessage();
                 ack.ParseAck(result);
+
+                ack.DeviceListNode.DeviceNodes.ForEach(r => r.Name = HttpUtility.UrlDecode(r.Name));
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.DeviceListNode);
                 return response;

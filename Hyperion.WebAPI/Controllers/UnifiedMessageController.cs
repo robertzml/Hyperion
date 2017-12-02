@@ -42,8 +42,9 @@ namespace Hyperion.WebAPI.Controllers
             try
             {
                 string encodeAccessId = HttpUtility.UrlEncode(accessId);
+                string encodeDeviceName = HttpUtility.UrlEncode(deviceName);
 
-                UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber);
+                UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, houseNumber, roomNumber, encodeDeviceName, deviceType, serialNumber);
                 var msg = message.GetMessage();
 
                 EquipmentServerAction act = new EquipmentServerAction();
@@ -120,8 +121,9 @@ namespace Hyperion.WebAPI.Controllers
                 if (res.code == 0)
                 {
                     string encodeAccessId = HttpUtility.UrlEncode(accessId);
+                    string encodeDeviceName = HttpUtility.UrlEncode(deviceName);
 
-                    UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber);
+                    UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, houseNumber, roomNumber, encodeDeviceName, deviceType, serialNumber);
                     var msg = message.GetMessage();
 
                     Logger.Instance.Debug(string.Format("API Unified Add2 Get Message:{0}", msg));
@@ -164,8 +166,9 @@ namespace Hyperion.WebAPI.Controllers
             try
             {
                 string encodeAccessId = HttpUtility.UrlEncode(accessId);
+                string encodeDeviceName = HttpUtility.UrlEncode(deviceName);
 
-                UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, deviceName, serialNumber);
+                UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, encodeDeviceName, serialNumber);
                 var msg = message.GetMessage();
 
                 EquipmentServerAction act = new EquipmentServerAction();
