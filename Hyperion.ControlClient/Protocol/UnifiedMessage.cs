@@ -84,6 +84,11 @@ namespace Hyperion.ControlClient.Protocol
         private TLV serialNumber;
 
         /// <summary>
+        /// 用户手机号 0x05
+        /// </summary>
+        private TLV userPhone;
+
+        /// <summary>
         /// 验证码 0x10
         /// </summary>
         private TLV verifyCode;
@@ -100,7 +105,8 @@ namespace Hyperion.ControlClient.Protocol
         /// <param name="deviceName"></param>
         /// <param name="deviceType"></param>
         /// <param name="serialNumber"></param>
-        public UnifiedMessage(string accessId, string imei, int houseNumber, int roomNumber, string deviceName, string deviceType, string serialNumber)
+        /// <param name="userPhone"></param>
+        public UnifiedMessage(string accessId, string imei, int houseNumber, int roomNumber, string deviceName, string deviceType, string serialNumber, string userPhone)
         {
             this.sequence = 1;
             this.infoCode = 0x07;
@@ -113,6 +119,7 @@ namespace Hyperion.ControlClient.Protocol
             this.deviceName = new TLV(tag: 0x123, value: deviceName);
             this.deviceType = new TLV(tag: 0x125, value: deviceType);
             this.serialNumber = new TLV(tag: 0x127, value: serialNumber);
+            this.userPhone = new TLV(tag: 0x05, value: userPhone);
         }
 
         /// <summary>
@@ -176,7 +183,7 @@ namespace Hyperion.ControlClient.Protocol
                     break;
                 case 6:
                     msg = accessId.ToString() + imei.ToString() + unifiedCode.ToString() + houseNumber.ToString() + roomNumber.ToString() +
-                        deviceName.ToString() + deviceType.ToString() + serialNumber.ToString();
+                        deviceName.ToString() + deviceType.ToString() + serialNumber.ToString() + userPhone.ToString();
                     break;
                 case 7:
                     msg = accessId.ToString() + imei.ToString() + unifiedCode.ToString() +

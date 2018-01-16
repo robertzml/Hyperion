@@ -178,7 +178,7 @@ namespace Hyperion.UnitTest
         [TestMethod]
         public void TestUnifiedAdd()
         {
-            UnifiedMessage message = new UnifiedMessage("17858655030", "1234567890", 4, 3, "TEST", "0000", "qwerty");
+            UnifiedMessage message = new UnifiedMessage("17858655030", "1234567890", 4, 3, "TEST", "0000", "qwerty", "");
             var msg = message.GetMessage();
             Console.WriteLine($"send message: {msg}");
 

@@ -81,6 +81,12 @@ namespace Hyperion.ControlClient.Model
         /// </summary>
         [DataMember(Name = "mainboardserialnumber")]
         public string MainboardSerialNumber { get; set; }
+
+        /// <summary>
+        /// 用户设备编码
+        /// </summary>
+        [DataMember(Name = "userDeviceCode")]
+        public string UserDeviceCode { get; set; }
         #endregion //Property
     }
 }
