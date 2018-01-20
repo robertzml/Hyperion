@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,5 +68,11 @@ namespace Hyperion.ControlClient.Model
         /// 主板序列号 0x12B
         /// </summary>
         public string MainboardSerialNumber { get; set; }
+
+        /// <summary>
+        /// 用户设备编码
+        /// </summary>
+        [DataMember(Name = "userDeviceCode")]
+        public string UserDeviceCode { get; set; }
     }
 }

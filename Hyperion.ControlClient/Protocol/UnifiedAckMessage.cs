@@ -95,6 +95,9 @@ namespace Hyperion.ControlClient.Protocol
                     case 0x12B:
                         unifiedNode.MainboardSerialNumber = tlv.Value;
                         break;
+                    case 0x12C:
+                        unifiedNode.UserDeviceCode = tlv.Value;
+                        break;
                     default:
                         throw new TLVException(tlv, "未知TLV类型");
                 }
