@@ -97,18 +97,19 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="imei">IMEI</param>
         /// <param name="validateCode">验证码</param>
         /// <param name="osType">操作系统类型</param>
+        /// <param name="refereePhone">推荐人手机</param>
         /// <returns></returns>
         /// <remarks>
         /// 先在业务服务器注册，再在设备服务注册
         /// </remarks>
         [AccessFilter]
         [ResponseType(typeof(RegisterModel))]
-        public HttpResponseMessage GetRegister(int registerType, string accessId, string password, string phone, int userType, string imsi, string imei, string validateCode, int osType)
+        public HttpResponseMessage GetRegister(int registerType, string accessId, string password, string phone, int userType, string imsi, string imei, string validateCode, int osType, string refereePhone)
         {
             try
             {
                 RegisterRequest request = new RegisterRequest();
-                dynamic obj = request.Register(accessId, password, phone, userType, imsi, imei, validateCode, osType);
+                dynamic obj = request.Register(accessId, password, phone, userType, imsi, imei, validateCode, osType, refereePhone);
 
                 RegisterModel registerModel = new RegisterModel();
                 registerModel.code = obj.status.code;
