@@ -52,7 +52,7 @@ namespace Hyperion.BizAdapter.Protocol
         /// <param name="imei"></param>
         /// <param name="validateCode"></param>
         /// <param name="osType"></param>
-        /// <param name="refereePhone">联系人电话</param>
+        /// <param name="refereePhone"></param>
         public dynamic Register(string userName, string password, string phone, int accountType, string imsi, string imei, string validateCode, int osType, string refereePhone)
         {
             string url = string.Format("{0}{1}register?userName={2}&password={3}&phone={4}&accountType={5}&imsi={6}&imei={7}&validateCode={8}&OsType={9}&refereePhone={10}",

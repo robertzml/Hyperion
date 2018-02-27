@@ -97,7 +97,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="imei">IMEI</param>
         /// <param name="validateCode">验证码</param>
         /// <param name="osType">操作系统类型</param>
-        /// <param name="refereePhone">联系人电话</param>
+        /// <param name="refereePhone">推荐人手机</param>
         /// <returns></returns>
         /// <remarks>
         /// 先在业务服务器注册，再在设备服务注册
