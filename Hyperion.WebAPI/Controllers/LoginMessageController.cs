@@ -91,13 +91,14 @@ namespace Hyperion.WebAPI.Controllers
                 {
                     model.loginresult = new BizAdapter.Model.LoginResult();
                     model.loginresult.userid = obj.result.accountid;
+                    model.loginresult.username = obj.result.username;
                     model.loginresult.phone = obj.result.phone;
                     model.loginresult.picture = obj.result.picture;
                     model.loginresult.walletid = obj.result.walletid;
 
                     string encodeAccessId = HttpUtility.UrlEncode(accessId);
 
-                    LoginMessage message = new LoginMessage(encodeAccessId, model.loginresult.userid, userType, imei, userLoginType, getStatus);
+                    LoginMessage message = new LoginMessage(model.loginresult.username, model.loginresult.userid, userType, imei, userLoginType, getStatus);
                     var msg = message.GetMessage();
 
                     Logger.Instance.Debug(string.Format("login message: {0}", msg));

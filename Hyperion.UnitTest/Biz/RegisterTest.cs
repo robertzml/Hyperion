@@ -90,7 +90,7 @@ namespace Hyperion.UnitTest.Biz
             int ostype = 0;
 
             RegisterRequest request = new RegisterRequest();
-            var obj = request.Register(username, password, phone, accountType, imsi, imei, validateCode, ostype);
+            var obj = request.Register(username, password, phone, accountType, imsi, imei, validateCode, ostype, "");
 
             Console.WriteLine(obj.Message);
 

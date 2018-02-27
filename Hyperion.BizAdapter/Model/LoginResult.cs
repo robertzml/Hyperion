@@ -17,6 +17,11 @@ namespace Hyperion.BizAdapter.Model
         public int userid { get; set; }
 
         /// <summary>
+        /// 用户名
+        /// </summary>
+        public string username { get; set; }
+
+        /// <summary>
         /// 手机号
         /// </summary>
         public string phone { get; set; }
