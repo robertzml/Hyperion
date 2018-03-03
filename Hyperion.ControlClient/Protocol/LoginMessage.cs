@@ -66,6 +66,9 @@ namespace Hyperion.ControlClient.Protocol
             this.sequence = 1;
             this.infoCode = 0x03;
 
+            if (userLoginType == 3) // 手机号登录
+                userLoginType = 1;
+
             this.accessId = new TLV(tag: 0x01, value: accessId);
             this.userId = new TLV(tag: 0x1B, value: userId.ToString("X8"));
             this.userType = new TLV(tag: 0x07, value: userType.ToString());
