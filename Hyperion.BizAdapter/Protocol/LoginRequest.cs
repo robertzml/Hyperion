@@ -32,8 +32,17 @@ namespace Hyperion.BizAdapter.Protocol
         /// <returns></returns>
         public dynamic Login(string userName, string password, int osType, int loginType, string imei)
         {
-            string url = string.Format("{0}{1}login?userName={2}&password={3}&phoneType={4}&loginType={5}&imei={6}",
-                host, contolller, userName, password, osType, loginType, imei);
+            string url = "";
+            if (loginType == 3)
+            {
+                url = string.Format("{0}{1}login?phone={2}&password={3}&osType={4}&loginType={5}&imei={6}",
+                    host, contolller, userName, password, osType, loginType, imei);
+            }
+            else
+            {
+                url = string.Format("{0}{1}login?userName={2}&password={3}&osType={4}&loginType={5}&imei={6}",
+                    host, contolller, userName, password, osType, loginType, imei);
+            }
 
             var content = Get(url);
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);
