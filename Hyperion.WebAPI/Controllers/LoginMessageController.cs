@@ -97,8 +97,9 @@ namespace Hyperion.WebAPI.Controllers
                     model.loginresult.walletid = obj.result.walletid;
 
                     string encodeAccessId = HttpUtility.UrlEncode(accessId);
+                    string encodeUserName = HttpUtility.UrlEncode(model.loginresult.username);
 
-                    LoginMessage message = new LoginMessage(model.loginresult.username, model.loginresult.userid, userType, imei, userLoginType, getStatus);
+                    LoginMessage message = new LoginMessage(encodeUserName, model.loginresult.userid, userType, imei, userLoginType, getStatus);
                     var msg = message.GetMessage();
 
                     Logger.Instance.Debug(string.Format("login message: {0}", msg));
