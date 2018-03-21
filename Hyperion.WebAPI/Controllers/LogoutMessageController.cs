@@ -30,15 +30,16 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="accessType">接入类型</param>
         /// <param name="accessId">接入ID</param>
         /// <param name="imei">IMEI</param>
+        /// <param name="accountId">账户ID</param>
         /// <returns></returns>
         [AccessFilter]
         [ResponseType(typeof(LogoutModel))]
-        public HttpResponseMessage Get(int accessType, string accessId, string imei)
+        public HttpResponseMessage Get(int accessType, string accessId, string imei, int accountId)
         {
             try
             {
                 LogoutRequest request = new LogoutRequest();
-                dynamic obj = request.Logout(accessId);
+                dynamic obj = request.Logout(accountId);
 
                 LogoutModel model = new LogoutModel();
                 model.Code = obj.status.code;

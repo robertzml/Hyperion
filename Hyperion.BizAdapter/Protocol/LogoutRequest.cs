@@ -22,7 +22,7 @@ namespace Hyperion.BizAdapter.Protocol
 
         #region Method
         /// <summary>
-        /// 用户登录
+        /// 用户注销
         /// </summary>
         /// <param name="userName">用户名</param>
         /// <returns></returns>
@@ -30,6 +30,22 @@ namespace Hyperion.BizAdapter.Protocol
         {
             string url = string.Format("{0}{1}logOut?userName={2}",
                 host, contolller, userName);
+
+            var content = Get(url);
+            dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);
+
+            return obj;
+        }
+
+        /// <summary>
+        /// 用户注销
+        /// </summary>
+        /// <param name="accountId">用户Id</param>
+        /// <returns></returns>
+        public dynamic Logout(int accountId)
+        {
+            string url = string.Format("{0}{1}logOut?accountId={2}",
+                host, contolller, accountId);
 
             var content = Get(url);
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);
