@@ -39,7 +39,7 @@ namespace Hyperion.WebAPI.Controllers
             try
             {
                 LogoutRequest request = new LogoutRequest();
-                dynamic obj = request.Logout(accountId);
+                dynamic obj = request.Logout(accountId, imei);
 
                 LogoutModel model = new LogoutModel();
                 model.Code = obj.status.code;

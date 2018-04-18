@@ -144,7 +144,7 @@ namespace Hyperion.UnitTest
         [TestMethod]
         public void TestDeviceList()
         {
-            DeviceListMessage message = new DeviceListMessage(0, "17858655030", "1234567890", 4, 3);
+            DeviceListMessage message = new DeviceListMessage(0, "17858655030", "1234567890", 4, 3, "roomstatus", 1);
             var msg = message.GetMessage();
             Console.WriteLine($"send message: {msg}");
 

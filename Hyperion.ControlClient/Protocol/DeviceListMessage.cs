@@ -37,6 +37,16 @@ namespace Hyperion.ControlClient.Protocol
         /// Room序号 0x112
         /// </summary>
         private TLV roomNumber;
+
+        /// <summary>
+        /// 设备类型 0x125
+        /// </summary>
+        private TLV deviceType;
+
+        /// <summary>
+        /// 设备状态 0x129
+        /// </summary>
+        private TLV deviceStatus;
         #endregion //Field
 
         #region Constructor
@@ -48,9 +58,11 @@ namespace Hyperion.ControlClient.Protocol
         /// <param name="imei">IMEI</param>
         /// <param name="houseNumber">House序号</param>
         /// <param name="roomNumber">Room序号</param>
-        public DeviceListMessage(int accessType, string accessId, string imei, int houseNumber, int roomNumber)
+        /// <param name="deviceType">设备类型</param>
+        /// <param name="deviceStatus">设备状态</param>
+        public DeviceListMessage(int accessType, string accessId, string imei, int houseNumber, int roomNumber, string deviceType, int deviceStatus)
         {
-            InitData(accessType, accessId, imei, houseNumber, roomNumber);
+            InitData(accessType, accessId, imei, houseNumber, roomNumber, deviceType, deviceStatus);
         }
         #endregion //Constructor
 
@@ -63,7 +75,7 @@ namespace Hyperion.ControlClient.Protocol
         /// <param name="imei"></param>
         /// <param name="houseNumber"></param>
         /// <param name="roomNumber"></param>
-        private void InitData(int accessType, string accessId, string imei, int houseNumber, int roomNumber)
+        private void InitData(int accessType, string accessId, string imei, int houseNumber, int roomNumber, string deviceType, int deviceStatus)
         {
             this.sequence = 1;
             this.infoCode = 0x16;
@@ -73,6 +85,8 @@ namespace Hyperion.ControlClient.Protocol
             this.imei = new TLV(tag: 0x04, value: imei);
             this.houseNumber = new TLV(tag: 0x103, value: houseNumber.ToString("X"));
             this.roomNumber = new TLV(tag: 0x112, value: roomNumber.ToString("X"));
+            this.deviceType = new TLV(tag: 0x125, value: deviceType);
+            this.deviceStatus = new TLV(tag: 0x129, value: deviceStatus.ToString("X"));
         }
 
         /// <summary>
@@ -82,7 +96,7 @@ namespace Hyperion.ControlClient.Protocol
         protected override string GenerateInfoMessage()
         {
             string msg = accessType.ToString() + accessId.ToString() + imei.ToString()
-               + houseNumber.ToString() + roomNumber.ToString();
+               + houseNumber.ToString() + roomNumber.ToString() + deviceType.ToString() + deviceStatus.ToString();
             return msg;
         }
         #endregion //Function

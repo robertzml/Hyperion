@@ -41,11 +41,12 @@ namespace Hyperion.BizAdapter.Protocol
         /// 用户注销
         /// </summary>
         /// <param name="accountId">用户Id</param>
+        /// <param name="imei">IMEI</param>
         /// <returns></returns>
-        public dynamic Logout(int accountId)
+        public dynamic Logout(int accountId, string imei)
         {
-            string url = string.Format("{0}{1}logOut?accountId={2}",
-                host, contolller, accountId);
+            string url = string.Format("{0}{1}logOut?accountId={2}&imei={3}",
+                host, contolller, accountId, imei);
 
             var content = Get(url);
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);

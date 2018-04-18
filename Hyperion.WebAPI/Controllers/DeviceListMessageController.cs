@@ -30,15 +30,17 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="imei">IMEI</param>
         /// <param name="houseNumber">House序号</param>
         /// <param name="roomNumber">Room序号</param>
+        /// <param name="deviceType">设备类型</param>
+        /// <param name="deviceStatus">设备状态</param>
         /// <returns></returns>
         [AccessFilter]
-        public HttpResponseMessage Get(int accessType, string accessId, string imei, int houseNumber, int roomNumber)
+        public HttpResponseMessage Get(int accessType, string accessId, string imei, int houseNumber, int roomNumber, string deviceType, int deviceStatus)
         {
             try
             {
                 string encodeAccessId = HttpUtility.UrlEncode(accessId);
 
-                DeviceListMessage message = new DeviceListMessage(accessType, encodeAccessId, imei, houseNumber, roomNumber);
+                DeviceListMessage message = new DeviceListMessage(accessType, encodeAccessId, imei, houseNumber, roomNumber, deviceType, deviceStatus);
                 var msg = message.GetMessage();
 
                 Logger.Instance.Debug(string.Format("device list accessId:{0} msg: {1}", accessId, msg));
