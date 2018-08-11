@@ -24,45 +24,7 @@ namespace Hyperion.WebAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UnifiedMessageController : ApiController
     {
-        #region Action       
-        /// <summary>
-        /// 增加设备
-        /// </summary>
-        /// <param name="accessId">接入ID</param>
-        /// <param name="imei">IMEI</param>
-        /// <param name="houseNumber">House序号</param>
-        /// <param name="roomNumber">Room序号</param>
-        /// <param name="deviceName">设备名称</param>
-        /// <param name="deviceType">设备类型</param>
-        /// <param name="serialNumber">设备序列号</param>
-        /// <param name="userPhone"></param>
-        /// <returns></returns>
-        [AccessFilter]
-        public HttpResponseMessage GetAdd(string accessId, string imei, int houseNumber, int roomNumber, string deviceName, string deviceType, string serialNumber, string userPhone)
-        {
-            try
-            {
-                string encodeAccessId = HttpUtility.UrlEncode(accessId);
-                string encodeDeviceName = HttpUtility.UrlEncode(deviceName);
-
-                UnifiedMessage message = new UnifiedMessage(encodeAccessId, imei, houseNumber, roomNumber, encodeDeviceName, deviceType, serialNumber, userPhone);
-                var msg = message.GetMessage();
-
-                EquipmentServerAction act = new EquipmentServerAction();
-                var result = act.RequestToServer(msg);
-
-                UnifiedAckMessage ack = new UnifiedAckMessage();
-                ack.ParseAck(result);
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.UnifiedNode);
-                return response;
-            }
-            catch (Exception e)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
-            }
-        }
-
+        #region Action
         /// <summary>
         /// 获取验证码
         /// </summary>
@@ -108,7 +70,7 @@ namespace Hyperion.WebAPI.Controllers
         /// <param name="userPhone">用户手机</param>
         /// <returns></returns>
         [AccessFilter]
-        public HttpResponseMessage GetAdd2(int accountId, string accessId, string imei, int houseNumber, int roomNumber, string deviceName, string deviceType, string serialNumber, string verifyCode, string userPhone)
+        public HttpResponseMessage GetAdd(int accountId, string accessId, string imei, int houseNumber, int roomNumber, string deviceName, string deviceType, string serialNumber, string verifyCode, string userPhone)
         {
             try
             {
