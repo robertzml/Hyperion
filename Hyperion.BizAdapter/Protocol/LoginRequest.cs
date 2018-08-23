@@ -29,8 +29,9 @@ namespace Hyperion.BizAdapter.Protocol
         /// <param name="osType">操作系统类型</param>
         /// <param name="loginType">登录方式</param>
         /// <param name="imei">IMEI</param>
+        /// <param name="sessionId">取出的Session</param>
         /// <returns></returns>
-        public dynamic Login(string userName, string password, int osType, int loginType, string imei)
+        public dynamic Login(string userName, string password, int osType, int loginType, string imei, out string sessionId)
         {
             string url = "";
             if (loginType == 3)
@@ -44,8 +45,11 @@ namespace Hyperion.BizAdapter.Protocol
                     host, contolller, userName, password, osType, loginType, imei);
             }
 
-            var content = Get(url);
-            dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);
+            // var content = Get(url);
+            var result = GetContentAndHeader(url, "Set-Cookie");
+
+            dynamic obj = JsonConvert.DeserializeObject<dynamic>(result.Item1);
+            sessionId = result.Item2;
 
             return obj;
         }

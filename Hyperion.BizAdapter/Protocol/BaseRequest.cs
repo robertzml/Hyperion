@@ -55,6 +55,37 @@ namespace Hyperion.BizAdapter.Protocol
                 return result;
             }
         }
+
+        /// <summary>
+        /// 发送GET请求
+        /// </summary>
+        /// <param name="url">地址</param>
+        /// <param name="key">需要返回的Header键</param>
+        /// <returns></returns>
+        protected Tuple<string, string> GetContentAndHeader(string url, string key)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.Timeout = new TimeSpan(0, 0, 15);
+
+                var response = client.GetAsync(url).Result;
+                string result = "";
+                string header = "";
+
+                if (response.IsSuccessStatusCode)
+                {
+                    result = response.Content.ReadAsStringAsync().Result;
+
+                    var headers = response.Headers.GetValues(key).ToList();
+                    if (headers.Count > 0)
+                        header = headers[0];
+                }
+
+                return new Tuple<string, string>(result, header);
+            }
+        }
         #endregion //Function
     }
 }

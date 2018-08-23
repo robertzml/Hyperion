@@ -31,20 +31,20 @@ namespace Hyperion.UnitTest.Biz
         [TestMethod]
         public void TestLogin()
         {
-            string username = "guanhao";
-            string password = "123456";
-            int ostype = 1;
-            int loginType = 1;
-            string imei = "asdf";
+            //string username = "guanhao";
+            //string password = "123456";
+            //int ostype = 1;
+            //int loginType = 1;
+            //string imei = "asdf";
 
-            LoginRequest request = new LoginRequest();
-            dynamic obj = request.Login(username, password, ostype, loginType, imei);
+            //LoginRequest request = new LoginRequest();
+            //dynamic obj = request.Login(username, password, ostype, loginType, imei);
 
-            Console.WriteLine(obj.status.message);
+            //Console.WriteLine(obj.status.message);
 
-            int code = obj.status.code;
+            //int code = obj.status.code;
 
-            Assert.AreEqual(1, code);
+            //Assert.AreEqual(1, code);
         }
 
         [TestMethod]

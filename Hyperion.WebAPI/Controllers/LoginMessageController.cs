@@ -77,15 +77,16 @@ namespace Hyperion.WebAPI.Controllers
         {
             try
             {
+                string sessionId;
                 LoginRequest request = new LoginRequest();
-                dynamic obj = request.Login(accessId, password, osType, userLoginType, imei);
+                dynamic obj = request.Login(accessId, password, osType, userLoginType, imei, out sessionId);
 
                 LoginModel model = new LoginModel();
                 model.bizstatus = new BizAdapter.Model.ServerStatus();
                 model.bizstatus.code = obj.status.code;
                 model.bizstatus.message = obj.status.message;
 
-                Logger.Instance.Debug(string.Format("API Login: code={0}, message={1}, accessId={2}", obj.status.code, obj.status.message, accessId));
+                //Logger.Instance.Debug(string.Format("API Login: code={0}, message={1}, accessId={2}", obj.status.code, obj.status.message, accessId));
 
                 if (model.bizstatus.code == 0)
                 {
@@ -115,6 +116,8 @@ namespace Hyperion.WebAPI.Controllers
                     model.loginnode = ack.LoginNode;
 
                     HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, model);
+                    response.Headers.Add("Set-Cookie", sessionId);
+
                     return response;
                 }
                 else
