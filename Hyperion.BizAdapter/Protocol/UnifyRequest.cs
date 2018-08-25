@@ -49,12 +49,13 @@ namespace Hyperion.BizAdapter.Protocol
         /// <param name="accountId">用户ID</param>
         /// <param name="imei">IMEI</param>
         /// <param name="verifyCode">验证码</param>
+        /// <param name="cookie">Cookie</param>
         /// <returns></returns>
-        public ServerStatus CheckVerifyCode(int accountId, string imei, string verifyCode)
+        public ServerStatus CheckVerifyCode(int accountId, string imei, string verifyCode, string cookie)
         {
             string url = string.Format("{0}{1}addDeviceCheckVerifyCode?accountid={2}&imei={3}&verifycode={4}", host, contolller, accountId, imei, verifyCode);
 
-            var content = Get(url);
+            var content = GetWithCookie(url, cookie);
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);
 
             ServerStatus status = new ServerStatus();

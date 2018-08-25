@@ -77,8 +77,17 @@ namespace Hyperion.WebAPI.Controllers
                 Logger.Instance.Debug(string.Format("API Unified Add2 Send: accountId={0}, accessId={1}, imei={2}, houseNumber={3}, roomNumber={4}, deviceName={5}, deviceType={6}, serailNumber={7}, verifyCode={8}",
                     accountId, accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber, verifyCode));
 
+                var cos = Request.Headers.GetValues("Cookie").ToList();
+                if (cos.Count == 0)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Forbidden);
+                    return response;
+                }
+
+                var cookie = cos[0];
+
                 UnifyRequest request = new UnifyRequest();
-                var res = request.CheckVerifyCode(accountId, imei, verifyCode);
+                var res = request.CheckVerifyCode(accountId, imei, verifyCode, cookie);
 
                 Logger.Instance.Debug(string.Format("API Unified Add2: code={0}, message={1}", res.code, res.message));
 

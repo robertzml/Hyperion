@@ -86,6 +86,34 @@ namespace Hyperion.BizAdapter.Protocol
                 return new Tuple<string, string>(result, header);
             }
         }
+
+        /// <summary>
+        /// 发送GET请求
+        /// </summary>
+        /// <param name="url">地址</param>
+        /// <param name="cookie">Cookie</param>
+        /// <returns></returns>
+        protected string GetWithCookie(string url, string cookie)
+        {
+            using (var handler = new HttpClientHandler { UseCookies = false })
+            using (HttpClient client = new HttpClient(handler))
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("Cookie", cookie);
+                client.Timeout = new TimeSpan(0, 0, 15);              
+
+                var response = client.GetAsync(url).Result;
+                string result = "";
+
+                if (response.IsSuccessStatusCode)
+                {
+                    result = response.Content.ReadAsStringAsync().Result;
+                }
+
+                return result;
+            }
+        }
         #endregion //Function
     }
 }

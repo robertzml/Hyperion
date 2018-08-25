@@ -38,12 +38,21 @@ namespace Hyperion.WebAPI.Controllers
         {
             try
             {
+                var cos = Request.Headers.GetValues("Cookie").ToList();
+                if (cos.Count == 0)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Forbidden);
+                    return response;
+                }
+
+                var cookie = cos[0];
+
                 LogoutRequest request = new LogoutRequest();
-                dynamic obj = request.Logout(accountId, imei);
+                dynamic obj = request.Logout(accountId, imei, cookie);
 
                 LogoutModel model = new LogoutModel();
-                model.Code = obj.status.code;
-                model.Message = obj.status.message;
+                model.Code = obj.code;
+                model.Message = obj.message;
 
                 if (model.Code == 0)
                 {

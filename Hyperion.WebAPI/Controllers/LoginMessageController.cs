@@ -83,19 +83,19 @@ namespace Hyperion.WebAPI.Controllers
 
                 LoginModel model = new LoginModel();
                 model.bizstatus = new BizAdapter.Model.ServerStatus();
-                model.bizstatus.code = obj.status.code;
-                model.bizstatus.message = obj.status.message;
+                model.bizstatus.code = obj.code;
+                model.bizstatus.message = obj.message;
 
                 //Logger.Instance.Debug(string.Format("API Login: code={0}, message={1}, accessId={2}", obj.status.code, obj.status.message, accessId));
 
                 if (model.bizstatus.code == 0)
                 {
                     model.loginresult = new BizAdapter.Model.LoginResult();
-                    model.loginresult.userid = obj.result.accountid;
-                    model.loginresult.username = obj.result.username;
-                    model.loginresult.phone = obj.result.phone;
-                    model.loginresult.picture = obj.result.picture;
-                    model.loginresult.walletid = obj.result.walletid;
+                    model.loginresult.userid = obj.accountid;
+                    model.loginresult.username = obj.username;
+                    model.loginresult.phone = obj.phone;
+                    model.loginresult.picture = obj.picture;
+                    model.loginresult.walletid = obj.walletid;
 
                     string encodeAccessId = HttpUtility.UrlEncode(accessId);
                     string encodeUserName = HttpUtility.UrlEncode(model.loginresult.username);

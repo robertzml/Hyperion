@@ -42,13 +42,14 @@ namespace Hyperion.BizAdapter.Protocol
         /// </summary>
         /// <param name="accountId">用户Id</param>
         /// <param name="imei">IMEI</param>
+        /// <param name="cookie">Cookie</param>
         /// <returns></returns>
-        public dynamic Logout(int accountId, string imei)
+        public dynamic Logout(int accountId, string imei, string cookie)
         {
             string url = string.Format("{0}{1}logOut?accountId={2}&imei={3}",
                 host, contolller, accountId, imei);
 
-            var content = Get(url);
+            var content = GetWithCookie(url, cookie);
             dynamic obj = JsonConvert.DeserializeObject<dynamic>(content);
 
             return obj;
