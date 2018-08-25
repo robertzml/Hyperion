@@ -78,9 +78,16 @@ namespace Hyperion.BizAdapter.Protocol
                 {
                     result = response.Content.ReadAsStringAsync().Result;
 
-                    var headers = response.Headers.GetValues(key).ToList();
-                    if (headers.Count > 0)
-                        header = headers[0];
+                    IEnumerable<string> h = new List<string>();
+                    if (response.Headers.TryGetValues(key, out h))
+                    {
+                        if (h.Count() > 0)
+                            header = h.First();
+                    }
+                    else
+                    {
+                        header = "";
+                    }
                 }
 
                 return new Tuple<string, string>(result, header);

@@ -86,7 +86,7 @@ namespace Hyperion.WebAPI.Controllers
                 model.bizstatus.code = obj.code;
                 model.bizstatus.message = obj.message;
 
-                //Logger.Instance.Debug(string.Format("API Login: code={0}, message={1}, accessId={2}", obj.status.code, obj.status.message, accessId));
+                Logger.Instance.Debug(string.Format("API Login: code={0}, message={1}, accessId={2}", obj.code, obj.message, accessId));
 
                 if (model.bizstatus.code == 0)
                 {
