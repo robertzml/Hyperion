@@ -61,6 +61,8 @@ namespace Hyperion.ControlClient.Protocol
 
                 switch (tlv.Tag)
                 {
+                    case 0x01:
+                        break;
                     case 0x13:
                         this.serverResult = tlv;
                         unifiedNode.ServerResult = Convert.ToInt32(tlv.Value, 16);

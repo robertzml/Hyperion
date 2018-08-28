@@ -14,6 +14,7 @@ namespace Hyperion.WebAPI.Controllers
     using Hyperion.BizAdapter.Protocol;
     using Hyperion.ControlClient.Model;
     using Hyperion.ControlClient.Protocol;
+    using Hyperion.Core.Utility;
     using Hyperion.WebAPI.Utility;
     using Hyperion.WebAPI.Models;
 
@@ -46,6 +47,8 @@ namespace Hyperion.WebAPI.Controllers
                 }
 
                 var cookie = cos[0];
+
+                Logger.Instance.Debug("Logout accessId:" + accessId);
 
                 LogoutRequest request = new LogoutRequest();
                 dynamic obj = request.Logout(accountId, imei, cookie);

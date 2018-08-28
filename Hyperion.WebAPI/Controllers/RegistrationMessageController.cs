@@ -27,38 +27,6 @@ namespace Hyperion.WebAPI.Controllers
     {
         #region Action
         /// <summary>
-        /// 用户注册
-        /// </summary>
-        /// <param name="registerType">注册类型</param>
-        /// <param name="accessId">接入ID</param>
-        /// <param name="userId">用户ID</param>
-        /// <param name="userType">用户类型</param>
-        /// <param name="imei">IMEI</param>
-        /// <returns></returns>
-        [AccessFilter]
-        private HttpResponseMessage Get(int registerType, string accessId, long userId, int userType, string imei)
-        {
-            try
-            {
-                RegistrationMessage message = new RegistrationMessage(registerType, accessId, userId, userType, imei);
-                var msg = message.GetMessage();
-
-                EquipmentServerAction act = new EquipmentServerAction();
-                var result = act.RequestToServer(msg);
-
-                RegistrationAckMessage ack = new RegistrationAckMessage();
-                ack.ParseAck(result);
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ack.RegistrationNode);
-                return response;
-            }
-            catch (Exception e)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
-            }
-        }
-
-        /// <summary>
         /// 获取验证码
         /// </summary>
         /// <param name="phone">手机号</param>
@@ -112,8 +80,8 @@ namespace Hyperion.WebAPI.Controllers
                 dynamic obj = request.Register(accessId, password, phone, userType, imsi, imei, validateCode, osType, refereePhone);
 
                 RegisterModel registerModel = new RegisterModel();
-                registerModel.code = obj.status.code;
-                registerModel.message = obj.status.message;
+                registerModel.code = obj.code;
+                registerModel.message = obj.message ?? "";
 
                 Logger.Instance.Debug(string.Format("API Register: code={0}, message={1}, accessId={2}", registerModel.code, registerModel.message, accessId));
 

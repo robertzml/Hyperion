@@ -74,8 +74,8 @@ namespace Hyperion.WebAPI.Controllers
         {
             try
             {
-                Logger.Instance.Debug(string.Format("API Unified Add2 Send: accountId={0}, accessId={1}, imei={2}, houseNumber={3}, roomNumber={4}, deviceName={5}, deviceType={6}, serailNumber={7}, verifyCode={8}",
-                    accountId, accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber, verifyCode));
+                Logger.Instance.Debug(string.Format("API Unified Add2 Send: accountId={0}, accessId={1}, imei={2}, houseNumber={3}, roomNumber={4}, deviceName={5}, deviceType={6}, serailNumber={7}, verifyCode={8}, userPhone={9}",
+                    accountId, accessId, imei, houseNumber, roomNumber, deviceName, deviceType, serialNumber, verifyCode, userPhone));
 
                 var cos = Request.Headers.GetValues("Cookie").ToList();
                 if (cos.Count == 0)
