@@ -87,7 +87,7 @@ namespace Hyperion.WebAPI.Controllers
 
                 if (registerModel.code == 0)
                 {
-                    int userId = obj.result.accountid;
+                    int userId = obj.accountid;
 
                     string encodeAccessId = HttpUtility.UrlEncode(accessId);
 
