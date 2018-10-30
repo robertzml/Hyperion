@@ -96,6 +96,8 @@ namespace Hyperion.WebAPI.Controllers
                     model.loginresult.phone = obj.phone;
                     model.loginresult.picture = obj.picture;
                     model.loginresult.walletid = obj.walletid;
+                    model.loginresult.role = obj.role;
+                    model.loginresult.auto_chargeback = obj.auto_chargeback;
 
                     string encodeAccessId = HttpUtility.UrlEncode(accessId);
                     string encodeUserName = HttpUtility.UrlEncode(model.loginresult.username);

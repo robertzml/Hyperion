@@ -35,5 +35,15 @@ namespace Hyperion.BizAdapter.Model
         /// 钱包ID
         /// </summary>
         public string walletid { get; set; }
+
+        /// <summary>
+        /// 角色
+        /// </summary>
+        public string role { get; set; }
+
+        /// <summary>
+        /// 自动扣款
+        /// </summary>
+        public string auto_chargeback { get; set; }
     }
 }
